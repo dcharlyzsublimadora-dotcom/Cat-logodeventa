@@ -1,19 +1,955 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Mi primera página</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dcharly'z - ¡Tu Tienda Geek!</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:#12161a;
+    color: #f5f7fa;
+    overflow-x:hidden;
+}
+
+/* ===== LOGIN Y REGISTRO ===== */
+.login-container, .register-container {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:rgba(10, 12, 15, 0.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    display: none;
+}
+
+.login-box, .register-box {
+    width: 400px;
+    background: #1a1f26;
+    padding: 45px 35px;
+    border: 2px solid #00f0ff;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+}
+
+.login-box h1, .register-box h1 {
+    color:#ff007f;
+    margin-bottom: 10px;
+    font-size:36px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.login-box p, .register-box p {
+    margin-bottom:25px;
+    color:#a0aec0;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.login-box input, .register-box input {
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #2d3748;
+    border-radius:8px;
+    font-size:16px;
+    background: #0f1317;
+    color: white;
+}
+
+.login-box input:focus, .register-box input:focus {
+    outline: none;
+    border-color: #ff007f;
+    box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+}
+
+.login-box button, .register-box button {
+    width:100%;
+    padding:14px;
+    border:none;
+    background: linear-gradient(45deg, #00f0ff, #ff007f);
+    color:white;
+    font-size:16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 8px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.login-box button:hover, .register-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
+}
+
+.create-account, .back-to-login {
+    margin-top:22px;
+    color:#00f0ff;
+    cursor:pointer;
+    font-weight:bold;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.create-account:hover, .back-to-login:hover {
+    text-decoration:underline;
+    color: #ff007f;
+}
+
+/* ===== HEADER Y NAVEGACIÓN ===== */
+header{
+    background:#1a1f26;
+    padding:10px 40px;
+    border-bottom: 2px solid #ff007f;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo-img {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+.search-box{
+    flex:1;
+    display:flex;
+    max-width:400px;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px 16px;
+    border: 1px solid #2d3748;
+    background: #0f1317;
+    color: white;
+    outline:none;
+    border-radius:8px 0 0 8px;
+}
+
+.search-box input:focus {
+    border-color: #00f0ff;
+}
+
+.search-box button{
+    padding:12px 24px;
+    border:none;
+    background:#00f0ff;
+    color:#12161a;
+    font-weight: bold;
+    border-radius:0 8px 8px 0;
+    cursor:pointer;
+    transition: 0.3s;
+}
+
+.search-box button:hover {
+    background: #ff007f;
+    color: white;
+}
+
+.menu{
+    display:flex;
+    align-items: center;
+    gap:10px;
+}
+
+.menu a, .dropdown-btn{
+    text-decoration:none;
+    color:#e2e8f0;
+    font-weight:600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.3s;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.menu a:hover, .menu a.active-menu, .dropdown-btn:hover {
+    color: #00f0ff;
+    background: rgba(0, 240, 255, 0.1);
+}
+
+/* MENÚ DESPLEGABLE PARA CATÁLOGOS */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1a1f26;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
+    border: 1px solid #00f0ff;
+    border-radius: 6px;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: #e2e8f0;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 0, 127, 0.1);
+    color: #ff007f;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.cart-menu-btn, .login-menu-btn {
+    background: #2d3748;
+    color: white;
+    border: 1px solid transparent;
+    padding: 10px 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.login-menu-btn {
+    border-color: #ff007f;
+    background: rgba(255, 0, 127, 0.05);
+    color: #ff007f;
+}
+
+.login-menu-btn:hover {
+    background: #ff007f;
+    color: white;
+}
+
+.cart-menu-btn {
+    border-color: #00f0ff;
+    background: rgba(0, 240, 255, 0.05);
+    color: #00f0ff;
+}
+
+.cart-menu-btn:hover {
+    background: #00f0ff;
+    color: #12161a;
+}
+
+.cart-count {
+    background: #ff007f;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 8px;
+    font-size: 12px;
+}
+
+/* ===== CARRITO LATERAL ===== */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: #1a1f26;
+    border-left: 2px solid #00f0ff;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    z-index: 10001;
+    transition: right 0.4s cubic-bezier(0.05, 0.74, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    background: #12161a;
+    color: white;
+    padding: 20px;
+    border-bottom: 1px solid #2d3748;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h2 {
+    font-size: 20px;
+    color: #00f0ff;
+}
+
+.close-cart {
+    background: transparent;
+    border: none;
+    color: #a0aec0;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.close-cart:hover {
+    color: #ff007f;
+}
+
+.cart-items-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #2d3748;
+    align-items: center;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #00f0ff;
+    background: #0f1317;
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-title {
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    color: #ffea00;
+    font-weight: bold;
+}
+
+.remove-item-btn {
+    background: transparent;
+    border: none;
+    color: #e53e3e;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.remove-item-btn:hover {
+    text-decoration: underline;
+}
+
+.cart-footer {
+    background: #12161a;
+    padding: 20px;
+    border-top: 1px solid #2d3748;
+}
+
+.cart-total-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.cart-total-box span:last-child {
+    color: #ffea00;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 14px;
+    background: #ff007f;
+    color: white;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+.checkout-btn:hover {
+    background: #d00067;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+}
+
+.clear-cart-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #4a5568;
+    padding: 8px;
+    color: #a0aec0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.clear-cart-btn:hover {
+    border-color: #e53e3e;
+    color: #e53e3e;
+}
+
+/* ===== CHECKOUT OVERLAY ===== */
+.checkout-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10,12,15,0.9);
+    z-index: 10002;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.checkout-modal {
+    width: 90%;
+    max-width: 600px;
+    background: #1a1f26;
+    border: 2px solid #00f0ff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
+}
+
+.checkout-header {
+    background: #0f1317;
+    color: #00f0ff;
+    padding: 20px;
+    border-bottom: 1px solid #2d3748;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.checkout-body {
+    padding: 25px;
+    overflow-y: auto;
+}
+
+.order-summary-box {
+    background: #12161a;
+    padding: 15px;
+    border: 1px dashed #00f0ff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.checkout-section-title {
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ff007f;
+    margin-bottom: 15px;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.checkout-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-form-group label {
+    font-size: 13px;
+    color: #a0aec0;
+    margin-bottom: 5px;
+}
+
+.checkout-form-group input {
+    padding: 12px;
+    background: #0f1317;
+    border: 1px solid #2d3748;
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.checkout-form-group input:focus {
+    border-color: #ff007f;
+    outline: none;
+}
+
+.place-order-btn {
+    width: 100%;
+    padding: 15px;
+    background: #25d366; 
+    color: white;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.place-order-btn:hover {
+    background: #128c7e;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* ===== HERO GEEK ===== */
+.hero{
+    height:300px;
+    background: linear-gradient(135deg, rgba(18, 22, 26, 0.95), rgba(26, 31, 38, 0.85)), 
+                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop'); 
+    background-size: cover;
+    background-position: center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    border-bottom: 3px solid #ff007f;
+    padding: 20px;
+}
+
+.hero h1{
+    font-size:55px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #00f0ff;
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+}
+
+.hero p{
+    margin-top:12px;
+    font-size:20px;
+    font-weight: 600;
+    color: #ff007f;
+}
+
+/* ===== SECCIÓN CATÁLOGO ===== */
+.container{
+    padding:40px;
+}
+
+.section-title{
+    font-size:28px;
+    font-weight: 800;
+    margin-bottom:30px;
+    color:white;
+    border-bottom: 2px solid #2d3748;
+    padding-bottom: 10px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#1a1f26;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    border: 1px solid #2d3748;
+    transition:0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color: #00f0ff;
+    box-shadow: 0 10px 25px rgba(0, 240, 255, 0.25);
+}
+
+.card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    background-color: #fff;
+    display: block;
+}
+
+.card-content{
+    padding:20px;
+    text-align: center;
+}
+
+.price{
+    color:#ffea00;
+    font-size:24px;
+    font-weight:800;
+    margin-bottom:10px;
+}
+
+.product-name{
+    font-size:16px;
+    font-weight: 600;
+    margin-bottom:15px;
+    color: #e2e8f0;
+    height: 44px;
+    overflow: hidden;
+}
+
+.buy-btn{
+    width:100%;
+    padding:12px;
+    border: 1px solid #00f0ff;
+    border-radius:8px;
+    background: transparent;
+    color:#00f0ff;
+    font-size:14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor:pointer;
+    transition: 0.3s;
+}
+
+.buy-btn:hover{
+    background: linear-gradient(45deg, #00f0ff, #ff007f);
+    color: white;
+    border-color: transparent;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:#1a1f26;
+    padding:30px;
+    text-align:center;
+    margin-top:50px;
+    color:#a0aec0;
+    font-size:15px;
+    border-top: 2px solid #00f0ff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+    .topbar{ flex-direction:column; gap: 15px; }
+    .menu{ flex-wrap:wrap; justify-content:center; }
+    .hero h1{ font-size:38px; }
+    .container{ padding:20px; }
+}
+</style>
 </head>
+
 <body>
-  <h1>¡Hola, GitHub!</h1>
-  <p>Esta es mi primera página web.</p>
 
-  <button onclick="mensaje()">Haz clic aquí</button>
+<div class="login-container" id="loginContainer">
+    <div class="login-box">
+        <h1>Dcharly'z</h1>
+        <p>Inicia sesión en tu cuenta Geek</p>
+        <input type="text" id="username" placeholder="Usuario">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Iniciar Sesión</button>
+        <div class="create-account" onclick="showRegisterInterface()">Crear una cuenta nueva</div>
+        <div class="back-to-login" style="margin-top: 15px;" onclick="closeLoginInterface()">Cancelar</div>
+    </div>
+</div>
 
-  <script>
-    function mensaje() {
-      alert("¡Funciona correctamente!");
+<div class="register-container" id="registerContainer">
+    <div class="register-box">
+        <h1>REGISTRO</h1>
+        <p>Únete a la experiencia Dcharly'z</p>
+        <input type="text" id="regEmail" placeholder="Correo Electrónico">
+        <input type="text" id="regUsername" placeholder="Nuevo Usuario">
+        <input type="password" id="regPassword" placeholder="Contraseña">
+        <button onclick="submitRegistration()">Registrar Cuenta</button>
+        <div class="back-to-login" onclick="showLoginInterface()">Volver al Inicio de Sesión</div>
+    </div>
+</div>
+
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+        <h2>Mi Carrito (<span id="cartHeaderCount">0</span>)</h2>
+        <button class="close-cart" onclick="toggleCart()">×</button>
+    </div>
+    <div class="cart-items-container" id="cartItemsContainer"></div>
+    <div class="cart-footer">
+        <div class="cart-total-box"><span>Total:</span><span id="cartTotalValue">$0 MXN</span></div>
+        <button class="checkout-btn" onclick="openCheckout()">Proceder al Pedido</button>
+        <button class="clear-cart-btn" onclick="clearCart()">Vaciar Carrito</button>
+    </div>
+</div>
+
+<div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-modal">
+        <div class="checkout-header">
+            <span>PROCESAR PEDIDO VÍA WHATSAPP</span>
+            <button class="close-cart" style="color: #ff007f;" onclick="closeCheckout()">×</button>
+        </div>
+        <div class="checkout-body">
+            <div class="order-summary-box">
+                <h3 style="font-size: 15px; color: #00f0ff; margin-bottom: 5px;">Resumen de Compra</h3>
+                <p id="checkoutSummaryText" style="font-size: 14px; color: #e2e8f0;">No hay artículos.</p>
+            </div>
+            <div class="checkout-section-title">Datos de Entrega</div>
+            <div class="checkout-grid">
+                <div class="checkout-form-group"><label>Nombre Completo</label><input type="text" id="checkoutName" placeholder="Ej. Juan Pérez"></div>
+                <div class="checkout-form-group"><label>Dirección Completa de Envío</label><input type="text" id="checkoutAddress" placeholder="Calle, Número, Colonia y Ciudad"></div>
+            </div>
+            <button class="place-order-btn" onclick="sendOrderWhatsApp()">Enviar pedido a WhatsApp 💬</button>
+        </div>
+    </div>
+</div>
+
+<div id="mainContent">
+<header>
+    <div class="topbar">
+        <div class="logo-container" onclick="filterCategory('Todo')">
+            <img src="IMG20260628190236.jpg" alt="Dcharly'z Logo" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerText='Dcharly\'z';">
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar productos anime, hoddies, playeras...">
+            <button onclick="searchProduct()">Buscar</button>
+        </div>
+        <nav class="menu">
+            <a href="#" class="active-menu" id="btnInicio" onclick="filterCategory('Todo', this)">Inicio</a>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn">📋 Catálogos ▼</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="filterCategory('Anime', this)">Anime</a>
+                    <a href="#" onclick="filterCategory('Hello Kitty', this)">Hello Kitty / Animados</a>
+                    <a href="#" onclick="filterCategory('Tendencia', this)">Tendencia</a>
+                </div>
+            </div>
+
+            <a href="#" onclick="filterCategory('Exclusivo', this)">Colecciones</a>
+            <button class="login-menu-btn" onclick="openLoginInterface()">👤 Login</button>
+            <button class="cart-menu-btn" onclick="toggleCart()">
+                🛒 Carrito <span class="cart-count" id="menuCartCount">0</span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Dcharly'z</h1>
+    <p>¡Tu Tienda Geek! • Anime • Electrónica • Gorras • Personalizados</p>
+</section>
+
+<main class="container">
+    <h2 class="section-title" id="sectionTitle">Colección Destacada</h2>
+    <div class="products" id="productGrid"></div>
+</main>
+
+<footer>
+    © 2026 Dcharly'z | ¡Tu Tienda Geek! Playeras personalizadas de alta calidad.
+</footer>
+</div>
+
+<script>
+// BASE DE DATOS COMPLETA
+const productsData = [
+    { id: 1, name: "Playera Blanca Snoopy & Woodstock", category: "Hello Kitty", price: 299, img: "IMG-20260628-WA0018.jpg" },
+    { id: 2, name: "Playera Toji Fushiguro - Jujutsu Kaisen", category: "Anime", price: 320, img: "IMG-20260628-WA0009.jpg" },
+    { id: 3, name: "Playera Satoru Gojo - Arte Ink Blue", category: "Anime", price: 340, img: "IMG-20260628-WA0010.jpg" },
+    { id: 4, name: "Playera Chibi FNAF (Five Nights at Freddy's)", category: "Tendencia", price: 299, img: "IMG-20260628-WA0011.jpg" },
+    { id: 5, name: "Playera Kento Nanami - Jujutsu Kaisen", category: "Anime", price: 320, img: "IMG-20260628-WA0012.jpg" },
+    { id: 6, name: "Playera Eren & Mikasa - Attack on Titan", category: "Anime", price: 325, img: "IMG-20260628-WA0013.jpg" },
+    { id: 7, name: "Playera Negra Jujutsu Kaisen Trio", category: "Anime", price: 350, img: "IMG-20260628-WA0014.jpg" },
+    { id: 8, name: "Playera Suguru Geto - Eclipse Spirit", category: "Anime", price: 340, img: "IMG-20260628-WA0015.jpg" },
+    { id: 9, name: "Playera Perrito Surfista Kawaii", category: "Hello Kitty", price: 299, img: "IMG-20260628-WA0016.jpg" },
+    { id: 10, name: "Playera Stitch & Snoopy Cosplay Crossover", category: "Hello Kitty", price: 310, img: "IMG-20260628-WA0017.jpg" }
+];
+
+let cart = [];
+
+// FUNCIONES INTERFAZ LOGIN Y REGISTRO
+function openLoginInterface() { document.getElementById("loginContainer").style.display = "flex"; }
+function closeLoginInterface() { document.getElementById("loginContainer").style.display = "none"; }
+function showRegisterInterface() { document.getElementById("loginContainer").style.display = "none"; document.getElementById("registerContainer").style.display = "flex"; }
+function showLoginInterface() { document.getElementById("registerContainer").style.display = "none"; document.getElementById("loginContainer").style.display = "flex"; }
+function login() { alert("Sesión iniciada correctamente."); closeLoginInterface(); }
+function submitRegistration() { alert("Cuenta registrada con éxito."); showLoginInterface(); }
+
+// RENDERIZAR PRODUCTOS
+function renderProducts(productsList) {
+    const grid = document.getElementById("productGrid");
+    grid.innerHTML = "";
+
+    if(productsList.length === 0) {
+        grid.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#a0aec0;'>Próximamente más diseños en este catálogo.</p>";
+        return;
     }
-  </script>
+
+    productsList.forEach(prod => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <img src="${prod.img}" alt="${prod.name}" onerror="this.src='https://via.placeholder.com/300x300?text=Diseño+Geek'">
+            <div class="card-content">
+                <div class="price">$${prod.price} MXN</div>
+                <div class="product-name">${prod.name}</div>
+                <button class="buy-btn" onclick="addToCart(${prod.id})">Agregar al Carrito</button>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// LÓGICA DEL CARRITO
+function toggleCart() { document.getElementById("cartSidebar").classList.toggle("open"); }
+
+function addToCart(id) { 
+    const p = productsData.find(x => x.id === id); 
+    if(p){ 
+        cart.push(p); 
+        updateCartUI(); 
+        document.getElementById("cartSidebar").classList.add("open"); 
+    } 
+}
+
+function removeFromCart(i) { cart.splice(i, 1); updateCartUI(); }
+function clearCart() { cart = []; updateCartUI(); }
+
+function updateCartUI() {
+    document.getElementById("menuCartCount").innerText = cart.length;
+    document.getElementById("cartHeaderCount").innerText = cart.length;
+    const container = document.getElementById("cartItemsContainer");
+    container.innerHTML = "";
+    let total = 0;
+    
+    if(cart.length === 0){ 
+        container.innerHTML = "<p style='text-align:center; color:#a0aec0;'>Tu carrito está vacío.</p>"; 
+    } else {
+        cart.forEach((item, index) => {
+            total += item.price;
+            const div = document.createElement("div");
+            div.className = "cart-item";
+            div.innerHTML = `
+                <img src="${item.img}" onerror="this.src='https://via.placeholder.com/60x60?text=Camisa'">
+                <div class="cart-item-details">
+                    <div class="cart-item-title">${item.name}</div>
+                    <div class="cart-item-price">$${item.price}</div>
+                </div>
+                <button class="remove-item-btn" onclick="removeFromCart(${index})">Quitar</button>
+            `;
+            container.appendChild(div);
+        });
+    }
+    document.getElementById("cartTotalValue").innerText = `$${total} MXN`;
+}
+
+// CHECKOUT Y ENVIAR WHATSAPP
+function openCheckout() { 
+    if(cart.length === 0) return; 
+    document.getElementById("cartSidebar").classList.remove("open"); 
+    document.getElementById("checkoutOverlay").style.display = "flex"; 
+    let total = cart.reduce((s,i) => s + i.price, 0); 
+    document.getElementById("checkoutSummaryText").innerText = `Artículos: ${cart.length} | Total: $${total} MXN`; 
+}
+
+function closeCheckout() { document.getElementById("checkoutOverlay").style.display = "none"; }
+
+function sendOrderWhatsApp() {
+    let name = document.getElementById("checkoutName").value.trim();
+    let address = document.getElementById("checkoutAddress").value.trim();
+    if(name === "" || address === "") { alert("Por favor, completa tus datos de entrega."); return; }
+    
+    let telefono = "529990000000"; // Reemplaza aquí con tu número real de WhatsApp de Dcharly'z
+    let total = cart.reduce((s,i) => s + i.price, 0);
+    let msg = `¡Hola Dcharly'z! Pedido Web:\n\n👤 Cliente: ${name}\n📍 Dirección: ${address}\n\n🛒 Productos:\n`;
+    
+    cart.forEach((item, index) => { msg += `${index + 1}. ${item.name} - $${item.price} MXN\n`; });
+    msg += `\n💰 Total: $${total} MXN`;
+    
+    window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`, '_blank');
+    clearCart(); 
+    closeCheckout();
+}
+
+// FILTRADOS Y BÚSQUEDAS
+function filterCategory(category, element) {
+    // Quitar clase activa de los enlaces del menú
+    const links = document.querySelectorAll('.menu a');
+    links.forEach(l => l.classList.remove('active-menu'));
+    
+    if(element) {
+        element.classList.add('active-menu');
+    }
+
+    if(category === "Todo") {
+        document.getElementById("sectionTitle").innerText = "Colección Destacada";
+        renderProducts(productsData);
+    } else {
+        document.getElementById("sectionTitle").innerText = `Catálogo: ${category}`;
+        const filtered = productsData.filter(p => p.category === category);
+        renderProducts(filtered);
+    }
+}
+
+function searchProduct() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const filtered = productsData.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+    document.getElementById("sectionTitle").innerText = `Resultados de: "${query}"`;
+    renderProducts(filtered);
+}
+
+// INICIALIZACIÓN AL CARGAR LA PÁGINA
+window.onload = function() { 
+    renderProducts(productsData); 
+};
+</script>
 </body>
 </html>
