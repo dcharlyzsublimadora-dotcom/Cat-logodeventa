@@ -14,8 +14,8 @@
 }
 
 body{
-    background:#12161a;
-    color: #f5f7fa;
+    background:#ffffff;
+    color: #1e293b;
     overflow-x:hidden;
 }
 
@@ -26,7 +26,7 @@ body{
     left:0;
     width:100%;
     height:100vh;
-    background:rgba(10, 12, 15, 0.95);
+    background:rgba(15, 23, 42, 0.6);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -36,16 +36,16 @@ body{
 
 .login-box, .register-box {
     width: 400px;
-    background: #1a1f26;
+    background: #ffffff;
     padding: 45px 35px;
-    border: 2px solid #00f0ff;
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .login-box h1, .register-box h1 {
-    color:#ff007f;
+    color:#0284c7;
     margin-bottom: 10px;
     font-size:36px;
     font-weight: 800;
@@ -54,7 +54,7 @@ body{
 
 .login-box p, .register-box p {
     margin-bottom:25px;
-    color:#a0aec0;
+    color:#64748b;
     letter-spacing: 1px;
     font-size: 14px;
 }
@@ -63,42 +63,43 @@ body{
     width:100%;
     padding:14px;
     margin-bottom:15px;
-    border:1px solid #2d3748;
+    border:1px solid #cbd5e1;
     border-radius:8px;
     font-size:16px;
-    background: #0f1317;
-    color: white;
+    background: #f8fafc;
+    color: #1e293b;
 }
 
 .login-box input:focus, .register-box input:focus {
     outline: none;
-    border-color: #ff007f;
-    box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+    border-color: #0284c7;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
 }
 
 .login-box button, .register-box button {
     width:100%;
     padding:14px;
     border:none;
-    background: linear-gradient(45deg, #00f0ff, #ff007f);
+    background: #0284c7;
     color:white;
     font-size:16px;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     border-radius: 8px;
     cursor:pointer;
     transition:0.3s;
 }
 
 .login-box button:hover, .register-box button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
+    background: #0369a1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
 }
 
 .create-account, .back-to-login {
     margin-top:22px;
-    color:#00f0ff;
+    color:#0284c7;
     cursor:pointer;
     font-weight:bold;
     letter-spacing: 1px;
@@ -107,15 +108,15 @@ body{
 
 .create-account:hover, .back-to-login:hover {
     text-decoration:underline;
-    color: #ff007f;
+    color: #0369a1;
 }
 
 /* ===== HEADER Y NAVEGACIÓN ===== */
 header{
-    background:#1a1f26;
-    padding:10px 40px;
-    border-bottom: 2px solid #ff007f;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    background:#e0f2fe; /* Azul claro minimalista */
+    padding:15px 40px;
+    border-bottom: 1px solid #bae6fd;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
 
 .topbar{
@@ -129,17 +130,20 @@ header{
     display: flex;
     align-items: center;
     cursor: pointer;
+    font-weight: 800;
+    color: #0369a1;
+    font-size: 24px;
 }
 
 .logo-img {
-    height: 75px;
+    height: 60px;
     width: auto;
     object-fit: contain;
     transition: transform 0.3s;
 }
 
 .logo-img:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .search-box{
@@ -151,22 +155,22 @@ header{
 .search-box input{
     width:100%;
     padding:12px 16px;
-    border: 1px solid #2d3748;
-    background: #0f1317;
-    color: white;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #1e293b;
     outline:none;
     border-radius:8px 0 0 8px;
 }
 
 .search-box input:focus {
-    border-color: #00f0ff;
+    border-color: #0284c7;
 }
 
 .search-box button{
     padding:12px 24px;
     border:none;
-    background:#00f0ff;
-    color:#12161a;
+    background:#0284c7;
+    color:white;
     font-weight: bold;
     border-radius:0 8px 8px 0;
     cursor:pointer;
@@ -174,8 +178,7 @@ header{
 }
 
 .search-box button:hover {
-    background: #ff007f;
-    color: white;
+    background: #0369a1;
 }
 
 .menu{
@@ -186,20 +189,20 @@ header{
 
 .menu a, .dropdown-btn{
     text-decoration:none;
-    color:#e2e8f0;
+    color:#334155;
     font-weight:600;
     padding: 8px 14px;
     border-radius: 6px;
     transition: 0.3s;
     background: transparent;
     border: none;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
 }
 
 .menu a:hover, .menu a.active-menu, .dropdown-btn:hover {
-    color: #00f0ff;
-    background: rgba(0, 240, 255, 0.1);
+    color: #0284c7;
+    background: rgba(2, 132, 199, 0.08);
 }
 
 /* MENÚ DESPLEGABLE PARA CATÁLOGOS */
@@ -211,27 +214,29 @@ header{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #1a1f26;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.5);
-    border: 1px solid #00f0ff;
-    border-radius: 6px;
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
     z-index: 1000;
     top: 100%;
     left: 0;
+    padding: 6px 0;
 }
 
 .dropdown-content a {
-    color: #e2e8f0;
-    padding: 12px 16px;
+    color: #334155;
+    padding: 10px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
+    font-weight: 500;
 }
 
 .dropdown-content a:hover {
-    background-color: rgba(255, 0, 127, 0.1);
-    color: #ff007f;
+    background-color: #f0f9ff;
+    color: #0284c7;
 }
 
 .dropdown:hover .dropdown-content {
@@ -239,9 +244,9 @@ header{
 }
 
 .cart-menu-btn, .login-menu-btn {
-    background: #2d3748;
-    color: white;
-    border: 1px solid transparent;
+    background: #ffffff;
+    color: #475569;
+    border: 1px solid #cbd5e1;
     padding: 10px 18px;
     font-weight: bold;
     border-radius: 8px;
@@ -253,33 +258,31 @@ header{
 }
 
 .login-menu-btn {
-    border-color: #ff007f;
-    background: rgba(255, 0, 127, 0.05);
-    color: #ff007f;
+    border-color: #cbd5e1;
+    color: #475569;
 }
 
 .login-menu-btn:hover {
-    background: #ff007f;
-    color: white;
+    background: #f1f5f9;
+    color: #1e293b;
 }
 
 .cart-menu-btn {
-    border-color: #00f0ff;
-    background: rgba(0, 240, 255, 0.05);
-    color: #00f0ff;
+    border-color: #0284c7;
+    color: #0284c7;
 }
 
 .cart-menu-btn:hover {
-    background: #00f0ff;
-    color: #12161a;
+    background: #0284c7;
+    color: white;
 }
 
 .cart-count {
-    background: #ff007f;
+    background: #ef4444;
     color: white;
     border-radius: 50%;
-    padding: 2px 8px;
-    font-size: 12px;
+    padding: 2px 7px;
+    font-size: 11px;
 }
 
 /* ===== CARRITO LATERAL ===== */
@@ -289,9 +292,9 @@ header{
     right: -400px;
     width: 400px;
     height: 100vh;
-    background: #1a1f26;
-    border-left: 2px solid #00f0ff;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    background: #ffffff;
+    border-left: 1px solid #e2e8f0;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     z-index: 10001;
     transition: right 0.4s cubic-bezier(0.05, 0.74, 0.2, 1);
     display: flex;
@@ -303,30 +306,30 @@ header{
 }
 
 .cart-header {
-    background: #12161a;
-    color: white;
+    background: #f8fafc;
+    color: #1e293b;
     padding: 20px;
-    border-bottom: 1px solid #2d3748;
+    border-bottom: 1px solid #e2e8f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .cart-header h2 {
-    font-size: 20px;
-    color: #00f0ff;
+    font-size: 19px;
+    color: #0f172a;
 }
 
 .close-cart {
     background: transparent;
     border: none;
-    color: #a0aec0;
+    color: #94a3b8;
     font-size: 28px;
     cursor: pointer;
 }
 
 .close-cart:hover {
-    color: #ff007f;
+    color: #ef4444;
 }
 
 .cart-items-container {
@@ -340,7 +343,7 @@ header{
     gap: 15px;
     padding-bottom: 15px;
     margin-bottom: 15px;
-    border-bottom: 1px solid #2d3748;
+    border-bottom: 1px solid #f1f5f9;
     align-items: center;
 }
 
@@ -349,8 +352,8 @@ header{
     height: 60px;
     object-fit: cover;
     border-radius: 6px;
-    border: 1px solid #00f0ff;
-    background: #0f1317;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
 }
 
 .cart-item-details {
@@ -358,23 +361,23 @@ header{
 }
 
 .cart-item-title {
-    font-size: 15px;
-    color: white;
-    font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 14px;
+    color: #334155;
+    font-weight: 600;
+    margin-bottom: 4px;
 }
 
 .cart-item-price {
-    color: #ffea00;
+    color: #0284c7;
     font-weight: bold;
 }
 
 .remove-item-btn {
     background: transparent;
     border: none;
-    color: #e53e3e;
+    color: #ef4444;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
 }
 
@@ -383,28 +386,28 @@ header{
 }
 
 .cart-footer {
-    background: #12161a;
+    background: #f8fafc;
     padding: 20px;
-    border-top: 1px solid #2d3748;
+    border-top: 1px solid #e2e8f0;
 }
 
 .cart-total-box {
     display: flex;
     justify-content: space-between;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
-    color: white;
+    color: #1e293b;
     margin-bottom: 15px;
 }
 
 .cart-total-box span:last-child {
-    color: #ffea00;
+    color: #0284c7;
 }
 
 .checkout-btn {
     width: 100%;
     padding: 14px;
-    background: #ff007f;
+    background: #0284c7;
     color: white;
     border: none;
     font-size: 15px;
@@ -418,24 +421,23 @@ header{
 }
 
 .checkout-btn:hover {
-    background: #d00067;
-    box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+    background: #0369a1;
 }
 
 .clear-cart-btn {
     width: 100%;
     background: transparent;
-    border: 1px solid #4a5568;
+    border: 1px solid #cbd5e1;
     padding: 8px;
-    color: #a0aec0;
+    color: #64748b;
     border-radius: 6px;
     cursor: pointer;
     font-size: 13px;
 }
 
 .clear-cart-btn:hover {
-    border-color: #e53e3e;
-    color: #e53e3e;
+    border-color: #ef4444;
+    color: #ef4444;
 }
 
 /* ===== CHECKOUT OVERLAY ===== */
@@ -445,7 +447,7 @@ header{
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(10,12,15,0.9);
+    background: rgba(15, 23, 42, 0.6);
     z-index: 10002;
     display: flex;
     justify-content: center;
@@ -456,20 +458,20 @@ header{
 .checkout-modal {
     width: 90%;
     max-width: 600px;
-    background: #1a1f26;
-    border: 2px solid #00f0ff;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     max-height: 90vh;
 }
 
 .checkout-header {
-    background: #0f1317;
-    color: #00f0ff;
+    background: #f8fafc;
+    color: #0284c7;
     padding: 20px;
-    border-bottom: 1px solid #2d3748;
+    border-bottom: 1px solid #e2e8f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -484,19 +486,20 @@ header{
 }
 
 .order-summary-box {
-    background: #12161a;
+    background: #f0f9ff;
     padding: 15px;
-    border: 1px dashed #00f0ff;
+    border: 1px dashed #0284c7;
     border-radius: 8px;
     margin-bottom: 20px;
 }
 
 .checkout-section-title {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #ff007f;
+    color: #334155;
     margin-bottom: 15px;
+    letter-spacing: 0.5px;
 }
 
 .checkout-grid {
@@ -513,21 +516,21 @@ header{
 
 .checkout-form-group label {
     font-size: 13px;
-    color: #a0aec0;
+    color: #64748b;
     margin-bottom: 5px;
 }
 
 .checkout-form-group input {
     padding: 12px;
-    background: #0f1317;
-    border: 1px solid #2d3748;
-    color: white;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
     border-radius: 6px;
     font-size: 14px;
 }
 
 .checkout-form-group input:focus {
-    border-color: #ff007f;
+    border-color: #0284c7;
     outline: none;
 }
 
@@ -552,13 +555,13 @@ header{
 
 .place-order-btn:hover {
     background: #128c7e;
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
 }
 
 /* ===== HERO GEEK ===== */
 .hero{
-    height:300px;
-    background: linear-gradient(135deg, rgba(18, 22, 26, 0.95), rgba(26, 31, 38, 0.85)), 
+    height:260px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(224, 242, 254, 0.88)), 
                 url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop'); 
     background-size: cover;
     background-position: center;
@@ -567,23 +570,22 @@ header{
     align-items:center;
     flex-direction:column;
     text-align:center;
-    border-bottom: 3px solid #ff007f;
+    border-bottom: 1px solid #bae6fd;
     padding: 20px;
 }
 
 .hero h1{
-    font-size:55px;
+    font-size:50px;
     font-weight: 900;
-    letter-spacing: 2px;
-    color: #00f0ff;
-    text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+    letter-spacing: 1px;
+    color: #0f172a;
 }
 
 .hero p{
-    margin-top:12px;
-    font-size:20px;
+    margin-top:10px;
+    font-size:18px;
     font-weight: 600;
-    color: #ff007f;
+    color: #0284c7;
 }
 
 /* ===== SECCIÓN CATÁLOGO ===== */
@@ -592,11 +594,11 @@ header{
 }
 
 .section-title{
-    font-size:28px;
+    font-size:24px;
     font-weight: 800;
     margin-bottom:30px;
-    color:white;
-    border-bottom: 2px solid #2d3748;
+    color:#0f172a;
+    border-bottom: 1px solid #e2e8f0;
     padding-bottom: 10px;
 }
 
@@ -607,25 +609,25 @@ header{
 }
 
 .card{
-    background:#1a1f26;
+    background:#ffffff;
     border-radius:12px;
     overflow:hidden;
-    box-shadow:0 5px 15px rgba(0,0,0,0.3);
-    border: 1px solid #2d3748;
-    transition:0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    border: 1px solid #e2e8f0;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover{
-    transform:translateY(-8px);
-    border-color: #00f0ff;
-    box-shadow: 0 10px 25px rgba(0, 240, 255, 0.25);
+    transform:translateY(-5px);
+    border-color: #38bdf8;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.06);
 }
 
 .card img{
     width:100%;
     height:300px;
     object-fit:cover;
-    background-color: #fff;
+    background-color: #f8fafc;
     display: block;
 }
 
@@ -635,17 +637,17 @@ header{
 }
 
 .price{
-    color:#ffea00;
-    font-size:24px;
+    color:#0284c7;
+    font-size:22px;
     font-weight:800;
     margin-bottom:10px;
 }
 
 .product-name{
-    font-size:16px;
+    font-size:15px;
     font-weight: 600;
     margin-bottom:15px;
-    color: #e2e8f0;
+    color: #334155;
     height: 44px;
     overflow: hidden;
 }
@@ -653,40 +655,39 @@ header{
 .buy-btn{
     width:100%;
     padding:12px;
-    border: 1px solid #00f0ff;
+    border: 1px solid #0284c7;
     border-radius:8px;
     background: transparent;
-    color:#00f0ff;
-    font-size:14px;
+    color:#0284c7;
+    font-size:13px;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     cursor:pointer;
     transition: 0.3s;
 }
 
 .buy-btn:hover{
-    background: linear-gradient(45deg, #00f0ff, #ff007f);
+    background: #0284c7;
     color: white;
-    border-color: transparent;
 }
 
 /* ===== FOOTER ===== */
 footer{
-    background:#1a1f26;
+    background:#f8fafc;
     padding:30px;
     text-align:center;
     margin-top:50px;
-    color:#a0aec0;
-    font-size:15px;
-    border-top: 2px solid #00f0ff;
+    color:#64748b;
+    font-size:14px;
+    border-top: 1px solid #e2e8f0;
 }
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
     .topbar{ flex-direction:column; gap: 15px; }
     .menu{ flex-wrap:wrap; justify-content:center; }
-    .hero h1{ font-size:38px; }
+    .hero h1{ font-size:36px; }
     .container{ padding:20px; }
 }
 </style>
@@ -735,12 +736,12 @@ footer{
     <div class="checkout-modal">
         <div class="checkout-header">
             <span>PROCESAR PEDIDO VÍA WHATSAPP</span>
-            <button class="close-cart" style="color: #ff007f;" onclick="closeCheckout()">×</button>
+            <button class="close-cart" style="color: #64748b;" onclick="closeCheckout()">×</button>
         </div>
         <div class="checkout-body">
             <div class="order-summary-box">
-                <h3 style="font-size: 15px; color: #00f0ff; margin-bottom: 5px;">Resumen de Compra</h3>
-                <p id="checkoutSummaryText" style="font-size: 14px; color: #e2e8f0;">No hay artículos.</p>
+                <h3 style="font-size: 15px; color: #0284c7; margin-bottom: 5px;">Resumen de Compra</h3>
+                <p id="checkoutSummaryText" style="font-size: 14px; color: #334155;">No hay artículos.</p>
             </div>
             <div class="checkout-section-title">Datos de Entrega</div>
             <div class="checkout-grid">
@@ -825,7 +826,7 @@ function renderProducts(productsList) {
     grid.innerHTML = "";
 
     if(productsList.length === 0) {
-        grid.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#a0aec0;'>Próximamente más diseños en este catálogo.</p>";
+        grid.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#64748b;'>Próximamente más diseños en este catálogo.</p>";
         return;
     }
 
@@ -833,7 +834,7 @@ function renderProducts(productsList) {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-            <img src="${prod.img}" alt="${prod.name}" onerror="this.src='https://via.placeholder.com/300x300?text=Diseño+Geek'">
+            <img src="${prod.img}" alt="${prod.name}" onerror="this.src='https://via.placeholder.com/300x300?text=Diseño+Geek';">
             <div class="card-content">
                 <div class="price">$${prod.price} MXN</div>
                 <div class="product-name">${prod.name}</div>
@@ -844,106 +845,174 @@ function renderProducts(productsList) {
     });
 }
 
-// LÓGICA DEL CARRITO
-function toggleCart() { document.getElementById("cartSidebar").classList.toggle("open"); }
-
-function addToCart(id) { 
-    const p = productsData.find(x => x.id === id); 
-    if(p){ 
-        cart.push(p); 
-        updateCartUI(); 
-        document.getElementById("cartSidebar").classList.add("open"); 
-    } 
-}
-
-function removeFromCart(i) { cart.splice(i, 1); updateCartUI(); }
-function clearCart() { cart = []; updateCartUI(); }
-
-function updateCartUI() {
-    document.getElementById("menuCartCount").innerText = cart.length;
-    document.getElementById("cartHeaderCount").innerText = cart.length;
-    const container = document.getElementById("cartItemsContainer");
-    container.innerHTML = "";
-    let total = 0;
-    
-    if(cart.length === 0){ 
-        container.innerHTML = "<p style='text-align:center; color:#a0aec0;'>Tu carrito está vacío.</p>"; 
-    } else {
-        cart.forEach((item, index) => {
-            total += item.price;
-            const div = document.createElement("div");
-            div.className = "cart-item";
-            div.innerHTML = `
-                <img src="${item.img}" onerror="this.src='https://via.placeholder.com/60x60?text=Camisa'">
-                <div class="cart-item-details">
-                    <div class="cart-item-title">${item.name}</div>
-                    <div class="cart-item-price">$${item.price}</div>
-                </div>
-                <button class="remove-item-btn" onclick="removeFromCart(${index})">Quitar</button>
-            `;
-            container.appendChild(div);
-        });
-    }
-    document.getElementById("cartTotalValue").innerText = `$${total} MXN`;
-}
-
-// CHECKOUT Y ENVIAR WHATSAPP
-function openCheckout() { 
-    if(cart.length === 0) return; 
-    document.getElementById("cartSidebar").classList.remove("open"); 
-    document.getElementById("checkoutOverlay").style.display = "flex"; 
-    let total = cart.reduce((s,i) => s + i.price, 0); 
-    document.getElementById("checkoutSummaryText").innerText = `Artículos: ${cart.length} | Total: $${total} MXN`; 
-}
-
-function closeCheckout() { document.getElementById("checkoutOverlay").style.display = "none"; }
-
-function sendOrderWhatsApp() {
-    let name = document.getElementById("checkoutName").value.trim();
-    let address = document.getElementById("checkoutAddress").value.trim();
-    if(name === "" || address === "") { alert("Por favor, completa tus datos de entrega."); return; }
-    
-    let telefono = "529990000000"; // ¡REMPLAZA AQUÍ CON TU NÚMERO DE WHATSAPP!
-    let total = cart.reduce((s,i) => s + i.price, 0);
-    let msg = `¡Hola Dcharly'z! Pedido Web:\n\n👤 Cliente: ${name}\n📍 Dirección: ${address}\n\n🛒 Productos:\n`;
-    
-    cart.forEach((item, index) => { msg += `${index + 1}. ${item.name} - $${item.price} MXN\n`; });
-    msg += `\n💰 Total: $${total} MXN`;
-    
-    window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`, '_blank');
-    clearCart(); 
-    closeCheckout();
-}
-
-// FILTRADOS Y BÚSQUEDAS
+// FILTRAR POR CATEGORÍA
 function filterCategory(category, element) {
-    const links = document.querySelectorAll('.menu a');
-    links.forEach(l => l.classList.remove('active-menu'));
-    
-    if(element) {
-        element.classList.add('active-menu');
+    document.querySelectorAll(".menu a").forEach(a => a.classList.remove("active-menu"));
+    if(element && element.tagName === 'A') {
+        element.classList.add("active-menu");
+    } else {
+        document.getElementById("btnInicio").classList.add("active-menu");
     }
+
+    const titleMap = {
+        'Todo': 'Colección Destacada',
+        'Anime': 'Catálogo Anime',
+        'Hello Kitty': 'Hello Kitty y Animados',
+        'Tendencia': 'Diseños en Tendencia',
+        'Exclusivo': 'Colecciones Exclusivas'
+    };
+    
+    document.getElementById("sectionTitle").innerText = titleMap[category] || "Productos";
 
     if(category === "Todo") {
-        document.getElementById("sectionTitle").innerText = "Colección Destacada";
         renderProducts(productsData);
     } else {
-        document.getElementById("sectionTitle").innerText = `Catálogo: ${category}`;
         const filtered = productsData.filter(p => p.category === category);
         renderProducts(filtered);
     }
 }
 
+// BUSCAR PRODUCTO
 function searchProduct() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
+    const query = document.getElementById("searchInput").value.toLowerCase().trim();
+    if(query === "") {
+        renderProducts(productsData);
+        document.getElementById("sectionTitle").innerText = "Colección Destacada";
+        return;
+    }
+
     const filtered = productsData.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
-    document.getElementById("sectionTitle").innerText = `Resultados de: "${query}"`;
+    document.getElementById("sectionTitle").innerText = `Resultados para: "${query}"`;
     renderProducts(filtered);
 }
 
-// INICIALIZACIÓN
-window.onload = function() { 
-    renderProducts(productsData); 
+// LÓGICA DEL CARRITO
+function toggleCart() {
+    document.getElementById("cartSidebar").classList.toggle("open");
+}
+
+function addToCart(id) {
+    const product = productsData.find(p => p.id === id);
+    if(product) {
+        cart.push(product);
+        updateCartUI();
+        // Feedback visual sutil al agregar
+        const btn = event.target;
+        const originalText = btn.innerText;
+        btn.innerText = "¡Agregado! ✓";
+        btn.style.background = "#0284c7";
+        btn.style.color = "white";
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = "transparent";
+            btn.style.color = "#0284c7";
+        }, 1000);
+    }
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function clearCart() {
+    cart = [];
+    updateCartUI();
+}
+
+function updateCartUI() {
+    // Actualizar Contadores
+    document.getElementById("menuCartCount").innerText = cart.length;
+    document.getElementById("cartHeaderCount").innerText = cart.length;
+
+    const container = document.getElementById("cartItemsContainer");
+    container.innerHTML = "";
+
+    let total = 0;
+
+    if(cart.length === 0) {
+        container.innerHTML = "<p style='text-align:center; color:#64748b; margin-top:40px;'>Tu carrito está vacío.</p>";
+        document.getElementById("cartTotalValue").innerText = "$0 MXN";
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+            <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/600?text=Geek';">
+            <div class="cart-item-details">
+                <div class="cart-item-title">${item.name}</div>
+                <div class="cart-item-price">$${item.price} MXN</div>
+                <button class="remove-item-btn" onclick="removeFromCart(${index})">Eliminar</button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+
+    document.getElementById("cartTotalValue").innerText = `$${total} MXN`;
+}
+
+// INTERFAZ DE CHECKOUT Y WHATSAPP
+function openCheckout() {
+    if(cart.length === 0) {
+        alert("Agrega productos al carrito antes de realizar tu pedido.");
+        return;
+    }
+    document.getElementById("checkoutOverlay").style.display = "flex";
+    
+    // Generar resumen textual corto
+    let summaryText = cart.map(item => `- ${item.name} ($${item.price} MXN)`).join("<br>");
+    let total = cart.reduce((acc, item) => acc + item.price, 0);
+    summaryText += `<br><br><strong>Total del Pedido: $${total} MXN</strong>`;
+    
+    document.getElementById("checkoutSummaryText").innerHTML = summaryText;
+}
+
+function closeCheckout() {
+    document.getElementById("checkoutOverlay").style.display = "none";
+}
+
+function sendOrderWhatsApp() {
+    const name = document.getElementById("checkoutName").value.trim();
+    const address = document.getElementById("checkoutAddress").value.trim();
+
+    if(name === "" || address === "") {
+        alert("Por favor, completa todos los campos de entrega.");
+        return;
+    }
+
+    // Número de teléfono de tu negocio (reemplazar por el tuyo completo, ej: 521XXXXXXXXXX)
+    const phoneNumber = "5210000000000"; 
+
+    let mensaje = `*NUEVO PEDIDO - DCHARLY'Z*\n\n`;
+    mensaje += `👤 *Cliente:* ${name}\n`;
+    mensaje += `📍 *Dirección de Envío:* ${address}\n\n`;
+    mensaje += `📦 *Detalle del Pedido:*\n`;
+    
+    cart.forEach((item, index) => {
+        mensaje += `${index + 1}. ${item.name} - $${item.price} MXN\n`;
+    });
+
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
+    mensaje += `\n💵 *Total Final:* $${total} MXN\n\n`;
+    mensaje += `¡Hola! Quedo a la espera de la confirmación de las existencias y los datos de pago.`;
+
+    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(mensaje)}`;
+    
+    // Abrir WhatsApp
+    window.open(urlWhatsApp, '_blank');
+    
+    // Limpieza post-compra
+    clearCart();
+    closeCheckout();
+    toggleCart();
+}
+
+// INICIALIZACIÓN POR DEFECTO
+window.onload = function() {
+    renderProducts(productsData);
 };
 </script>
 </body>
