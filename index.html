@@ -800,13 +800,13 @@ footer{
 </div>
 
 <script>
-// BASE DE DATOS COMPLETA CON NOMBRES EN MINÚSCULAS
+// BASE DE DATOS COMPLETA CON CORRECCIONES DE SINTAXIS
 const productsData = [
     { id: 1, name: "Playera Snoopy - Cute", category: "Anime", price: 100, img: "img-20260628-wa0009.jpg" },
     { id: 2, name: "Playera Toji Fushiguro (Jujutsu Kaisen)", category: "Anime", price: 100, img: "img-20260628-wa0010.jpg" },
     { id: 3, name: "Playera Satoru Gojo(Jujutsu Kaisen)", category: "Tendencia", price: 100, img: "img-20260628-wa0011.jpg" },
-    { id: 4, name: "Playera Chibi FNAF (Five Nights at Freddy's)" - Hello Kitty", category: "Anime", price: 90, img: "img-20260628-wa0012.jpg" },
-    { id: 5, name: "Playera Nanami (Jujutsu Kaisen)" - Attack on Titan", category: "Anime", price: 100, img: "img-20260628-wa0013.jpg" },
+    { id: 4, name: "Playera Chibi FNAF (Five Nights at Freddy's) - Hello Kitty", category: "Anime", price: 90, img: "img-20260628-wa0012.jpg" },
+    { id: 5, name: "Playera Nanami (Jujutsu Kaisen) - Attack on Titan", category: "Anime", price: 100, img: "img-20260628-wa0013.jpg" },
     { id: 6, name: "Playera Blanca Eren & Mikasa (Shiguenki no Kiojin)", category: "Anime", price: 100, img: "img-20260628-wa0014.jpg" }
 ];
 
@@ -838,7 +838,7 @@ function renderProducts(productsList) {
             <div class="card-content">
                 <div class="price">$${prod.price} MXN</div>
                 <div class="product-name">${prod.name}</div>
-                <button class="buy-btn" onclick="addToCart(${prod.id})">Agregar al Carrito</button>
+                <button class="buy-btn" onclick="addToCart(${prod.id}, event)">Agregar al Carrito</button>
             </div>
         `;
         grid.appendChild(card);
@@ -891,12 +891,13 @@ function toggleCart() {
     document.getElementById("cartSidebar").classList.toggle("open");
 }
 
-function addToCart(id) {
+function addToCart(id, event) {
     const product = productsData.find(p => p.id === id);
     if(product) {
         cart.push(product);
         updateCartUI();
-        // Feedback visual sutil al agregar
+        
+        // Feedback visual sutil al agregar pasando el evento de forma segura
         const btn = event.target;
         const originalText = btn.innerText;
         btn.innerText = "¡Agregado! ✓";
@@ -970,6 +971,7 @@ function openCheckout() {
     document.getElementById("checkoutSummaryText").innerHTML = summaryText;
 }
 
+// CERRAR CHECKOUT
 function closeCheckout() {
     document.getElementById("checkoutOverlay").style.display = "none";
 }
@@ -983,7 +985,7 @@ function sendOrderWhatsApp() {
         return;
     }
 
-    // Número de teléfono de tu negocio (reemplazar por el tuyo completo, ej: 521XXXXXXXXXX)
+    // Número de teléfono de tu negocio
     const phoneNumber = "529993931005"; 
 
     let mensaje = `*NUEVO PEDIDO - DCHARLY'Z*\n\n`;
