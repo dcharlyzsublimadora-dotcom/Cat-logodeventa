@@ -402,6 +402,18 @@ header{
     background: var(--dark-blue);
 }
 
+.clear-cart-btn {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: #a0aec0;
+    border: 1px solid #cbd5e0;
+    margin-top: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
 /* ===== CHECKOUT OVERLAY ===== */
 .checkout-overlay {
     position: fixed;
@@ -623,7 +635,7 @@ header{
     color: white;
 }
 
-/* ===== NUEVA SECCIÓN INFO INTERACTIVA (MISIÓN, VISIÓN, QUIÉNES) ===== */
+/* ===== INFO INTERACTIVA ===== */
 .info-section {
     background: var(--pure-white);
     max-width: 1000px;
@@ -724,7 +736,7 @@ footer{
 
 <body>
 
-<!-- MODAL PARA SELECCIONAR DETALLES -->
+<!-- MODAL SELECCIONAR DETALLES -->
 <div class="product-modal-overlay" id="productModalOverlay">
     <div class="product-modal">
         <h3 id="modalProductName">Configurar Producto</h3>
@@ -754,7 +766,7 @@ footer{
 
         <div class="modal-select-group">
             <label>Medidas / Especificaciones Extra (Opcional)</label>
-            <input type="text" id="modalCustom" placeholder="Ej. Medidas específicas, detalles del empaque...">
+            <input type="text" id="modalCustom" placeholder="Ej. Medidas específicas...">
         </div>
 
         <button onclick="confirmAddToCart()" style="width:100%; padding:12px; background:var(--primary-blue); border:none; font-weight:bold; cursor:pointer; border-radius:6px; color:white;">Confirmar y Agregar</button>
@@ -836,7 +848,7 @@ footer{
 <header>
     <div class="topbar">
         <div class="logo-container" onclick="filterCategory('Todo')">
-            <img src="IMG20260628190236.jpg" alt="Dcharly'z Logo" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerText='Dcharly\'z';">
+            <img src="img20260628190236.jpg" alt="Dcharly'z" class="logo-img">
         </div>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Buscar productos...">
@@ -875,7 +887,7 @@ footer{
     <div class="products" id="productGrid"></div>
 </main>
 
-<!-- ===== INFORMACIÓN CORPORATIVA INTERACTIVA (MISION, VISION, QUIENES) ===== -->
+<!-- ===== INFORMACIÓN CORPORATIVA ===== -->
 <section class="info-section">
     <div class="info-tabs">
         <button class="tab-btn active-tab" onclick="switchTab('quienes', this)">¿Quiénes Somos?</button>
@@ -896,17 +908,15 @@ footer{
     </div>
 </section>
 
-<!-- ===== SECCIÓN DE REDES SOCIALES ===== -->
+<!-- ===== REDES SOCIALES ===== -->
 <section class="social-container">
     <div class="social-title">Síguenos en nuestras redes sociales</div>
     <div class="social-links">
-        <!-- Reemplaza el '#' dentro de href con el enlace oficial de tu página de Facebook -->
         <a href="#" target="_blank">
-            <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook Dcharlys">
+            <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
         </a>
-        <!-- Reemplaza el '#' dentro de href con el enlace oficial de tu página de Instagram -->
         <a href="#" target="_blank">
-            <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Dcharlys">
+            <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
         </a>
     </div>
 </section>
@@ -917,39 +927,30 @@ footer{
 </div>
 
 <script>
-// BASE DE DATOS EXTENDIDA A 20 PRODUCTOS PARA EDICIÓN POSTERIOR
+// BASE DE DATOS - NOMBRES EN MINÚSCULAS SIN ELEMENTOS CORRUPTOS
 const productsData = [
-    // Sublimados (Tus 10 playeras iniciales)
-    { id: 1, name: "Playera Blanca Snoopy & Woodstock", category: "Sublimados", price: 299, img: "IMG-20260628-WA0018.jpg" },
-    { id: 2, name: "Playera Toji Fushiguro - Jujutsu Kaisen", category: "Sublimados", price: 320, img: "IMG-20260628-WA0009.jpg" },
-    { id: 3, name: "Playera Satoru Gojo - Arte Ink Blue", category: "Sublimados", price: 340, img: "IMG-20260628-WA0010.jpg" },
-    { id: 4, name: "Playera Chibi FNAF (Five Nights at Freddy's)", category: "Sublimados", price: 299, img: "IMG-20260628-WA0011.jpg" },
-    { id: 5, name: "Playera Kento Nanami - Jujutsu Kaisen", category: "Sublimados", price: 320, img: "IMG-20260628-WA0012.jpg" },
-    { id: 6, name: "Playera Eren & Mikasa - Attack on Titan", category: "Sublimados", price: 325, img: "IMG-20260628-WA0013.jpg" },
-    { id: 7, name: "Playera Negra Jujutsu Kaisen Trio", category: "Sublimados", price: 350, img: "IMG-20260628-WA0014.jpg" },
-    { id: 8, name: "Playera Suguru Geto - Eclipse Spirit", category: "Sublimados", price: 340, img: "IMG-20260628-WA0015.jpg" },
-    { id: 9, name: "Playera Perrito Surfista Kawaii", category: "Sublimados", price: 299, img: "IMG-20260628-WA0016.jpg" },
-    { id: 10, name: "Playera Stitch & Snoopy Crossover", category: "Sublimados", price: 310, img: "IMG-20260628-WA0017.jpg" },
+    { id: 1, name: "Playera Blanca Snoopy & Woodstock", category: "Sublimados", price: 299, img: "img-20260628-wa0018.jpg" },
+    { id: 2, name: "Playera Toji Fushiguro - Jujutsu Kaisen", category: "Sublimados", price: 320, img: "img-20260628-wa0009.jpg" },
+    { id: 3, name: "Playera Satoru Gojo - Arte Ink Blue", category: "Sublimados", price: 340, img: "img-20260628-wa0010.jpg" },
+    { id: 4, name: "Playera Chibi FNAF (Five Nights at Freddy's)", category: "Sublimados", price: 299, img: "img-20260628-wa0011.jpg" },
+    { id: 5, name: "Playera Kento Nanami - Jujutsu Kaisen", category: "Sublimados", price: 320, img: "img-20260628-wa0012.jpg" },
+    { id: 6, name: "Playera Eren & Mikasa - Attack on Titan", category: "Sublimados", price: 325, img: "img-20260628-wa0013.jpg" },
+    { id: 7, name: "Playera Negra Jujutsu Kaisen Trio", category: "Sublimados", price: 350, img: "img-20260628-wa0014.jpg" },
+    { id: 8, name: "Playera Suguru Geto - Eclipse Spirit", category: "Sublimados", price: 340, img: "img-20260628-wa0015.jpg" },
+    { id: 9, name: "Playera Perrito Surfista Kawaii", category: "Sublimados", price: 299, img: "img-20260628-wa0016.jpg" },
+    { id: 10, name: "Playera Stitch & Snoopy Crossover", category: "Sublimados", price: 310, img: "img-20260628-wa0017.jpg" },
     
-    // Anime (Espacios para editar)
-    { id: 11, name: "Producto Anime de Prueba 1", category: "Anime", price: 150, img: "" },
-    { id: 12, name: "Producto Anime de Prueba 2", category: "Anime", price: 200, img: "" },
-
-    // Electrónica (Espacios para editar)
-    { id: 13, name: "Producto Electrónica de Prueba 1", category: "Electronica", price: 450, img: "" },
-    { id: 14, name: "Producto Electrónica de Prueba 2", category: "Electronica", price: 600, img: "" },
-
-    // Gorras (Espacios para editar)
-    { id: 15, name: "Gorra Deportiva Geek 1", category: "Gorras", price: 180, img: "" },
-    { id: 16, name: "Gorra Diseño Anime 2", category: "Gorras", price: 195, img: "" },
-
-    // Funkos (Espacios para editar)
-    { id: 17, name: "Figura Funko Pop Popolar 1", category: "Funkos", price: 380, img: "" },
-    { id: 18, name: "Figura Funko Pop Exclusivo 2", category: "Funkos", price: 420, img: "" },
-
-    // Peluches (Espacios para editar)
-    { id: 19, name: "Peluche Kawaii Suave 1", category: "Peluches", price: 250, img: "" },
-    { id: 20, name: "Peluche Anime Colección 2", category: "Peluches", price: 280, img: "" }
+    // Apartados listos para que edites posteriormente
+    { id: 11, name: "Producto Anime de Prueba 1", category: "Anime", price: 150, img: "placeholder.jpg" },
+    { id: 12, name: "Producto Anime de Prueba 2", category: "Anime", price: 200, img: "placeholder.jpg" },
+    { id: 13, name: "Producto Electrónica de Prueba 1", category: "Electronica", price: 450, img: "placeholder.jpg" },
+    { id: 14, name: "Producto Electrónica de Prueba 2", category: "Electronica", price: 600, img: "placeholder.jpg" },
+    { id: 15, name: "Gorra Deportiva Geek 1", category: "Gorras", price: 180, img: "placeholder.jpg" },
+    { id: 16, name: "Gorra Diseño Anime 2", category: "Gorras", price: 195, img: "placeholder.jpg" },
+    { id: 17, name: "Figura Funko Pop Popular 1", category: "Funkos", price: 380, img: "placeholder.jpg" },
+    { id: 18, name: "Figura Funko Pop Exclusivo 2", category: "Funkos", price: 420, img: "placeholder.jpg" },
+    { id: 19, name: "Peluche Kawaii Suave 1", category: "Peluches", price: 250, img: "placeholder.jpg" },
+    { id: 20, name: "Peluche Anime Colección 2", category: "Peluches", price: 280, img: "placeholder.jpg" }
 ];
 
 const mapLinks = {
@@ -969,7 +970,6 @@ function openLoginInterface() { document.getElementById("loginContainer").style.
 function closeLoginInterface() { document.getElementById("loginContainer").style.display = "none"; }
 function login() { alert("Sesión iniciada."); closeLoginInterface(); }
 
-// CAMBIO INTERACTIVO DE PESTAÑAS (MISION / VISION / QUIENES)
 function switchTab(tabId, btn) {
     const contents = document.querySelectorAll('.tab-content');
     contents.forEach(c => c.style.display = 'none');
@@ -981,7 +981,6 @@ function switchTab(tabId, btn) {
     btn.classList.add('active-tab');
 }
 
-// RENDERIZAR PRODUCTOS
 function renderProducts(productsList) {
     const grid = document.getElementById("productGrid");
     grid.innerHTML = "";
@@ -995,7 +994,7 @@ function renderProducts(productsList) {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-            <img src="${prod.img}" alt="${prod.name}" onerror="this.src='https://via.placeholder.com/300x280?text=Editar+Producto'">
+            <img src="${prod.img}" alt="${prod.name}" onerror="this.src='https://via.placeholder.com/300x280?text=Dcharlys+Geek'">
             <div class="card-content">
                 <div class="price">$${prod.price} MXN</div>
                 <div class="product-name">${prod.name}</div>
@@ -1006,7 +1005,6 @@ function renderProducts(productsList) {
     });
 }
 
-// INTERFAZ DETALLES DE PRODUCTO
 function openProductModal(id) {
     const prod = productsData.find(x => x.id === id);
     if(prod) {
@@ -1043,7 +1041,6 @@ function confirmAddToCart() {
     }
 }
 
-// LÓGICA DEL CARRITO
 function toggleCart() { document.getElementById("cartSidebar").classList.toggle("open"); }
 function removeFromCart(i) { cart.splice(i, 1); updateCartUI(); }
 function clearCart() { cart = []; updateCartUI(); }
@@ -1077,7 +1074,6 @@ function updateCartUI() {
     document.getElementById("cartTotalValue").innerText = `$${total} MXN`;
 }
 
-// MINIMAPA
 function updateMinimap() {
     const select = document.getElementById("checkoutMunicipality");
     const val = select.value;
@@ -1093,7 +1089,6 @@ function updateMinimap() {
     }
 }
 
-// CHECKOUT VÍA WHATSAPP
 function openCheckout() { 
     if(cart.length === 0) return; 
     document.getElementById("cartSidebar").classList.remove("open"); 
@@ -1115,10 +1110,10 @@ function sendOrderWhatsApp() {
         return; 
     }
     
-    let telefono = "529990000000"; // Reemplaza aquí con tu WhatsApp real de Dcharly'z
+    let telefono = "529990000000"; 
     let total = cart.reduce((s,i) => s + i.price, 0);
     
-    let msg = `¡Hola Dcharly'z! Pedido Web 🛒\n\n👤 Cliente: ${name}\n📍 Municipio: ${municipality}\n🏠 Dirección: ${address}\n🗺️ Mapa de Zona: https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(municipality + ', Yucatan')}\n\n📦 Productos:\n`;
+    let msg = `¡Hola Dcharly'z! Pedido Web 🛒\n\n👤 Cliente: ${name}\n📍 Municipio: ${municipality}\n🏠 Dirección: ${address}\n🗺️ Mapa: https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(municipality + ', Yucatan')}\n\n📦 Productos:\n`;
     
     cart.forEach((item, index) => { 
         msg += `\n${index + 1}. ${item.name}\n   - Precio: $${item.price} MXN\n   - Talla: ${item.size}\n   - Variante/Color: ${item.color}\n   - Especificaciones: ${item.specs}\n`; 
@@ -1131,7 +1126,6 @@ function sendOrderWhatsApp() {
     closeCheckout();
 }
 
-// FILTRADOS
 function filterCategory(category, element) {
     const links = document.querySelectorAll('.menu a');
     links.forEach(l => l.classList.remove('active-menu'));
@@ -1161,4 +1155,3 @@ window.onload = function() {
 </script>
 </body>
 </html>
-
