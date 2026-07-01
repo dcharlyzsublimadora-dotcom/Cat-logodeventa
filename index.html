@@ -14,9 +14,19 @@
 }
 
 body{
-    background:#ffffff;
-    color: #1e293b;
+    background:#f4f7f6;
+    color: #1a202c;
     overflow-x:hidden;
+}
+
+/* ===== PALETA BLANCO Y AZUL ===== */
+:root {
+    --primary-blue: #0066cc;
+    --light-blue: #e6f0fa;
+    --dark-blue: #003366;
+    --neon-blue: #00d2ff;
+    --pure-white: #ffffff;
+    --gray-bg: #f7fafc;
 }
 
 /* ===== LOGIN Y REGISTRO ===== */
@@ -26,7 +36,7 @@ body{
     left:0;
     width:100%;
     height:100vh;
-    background:rgba(15, 23, 42, 0.6);
+    background:rgba(0, 51, 102, 0.85);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -36,87 +46,112 @@ body{
 
 .login-box, .register-box {
     width: 400px;
-    background: #ffffff;
+    background: var(--pure-white);
     padding: 45px 35px;
-    border: 1px solid #e2e8f0;
+    border: 2px solid var(--primary-blue);
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .login-box h1, .register-box h1 {
-    color:#0284c7;
+    color: var(--dark-blue);
     margin-bottom: 10px;
     font-size:36px;
     font-weight: 800;
-    letter-spacing: 1px;
 }
 
 .login-box p, .register-box p {
     margin-bottom:25px;
-    color:#64748b;
-    letter-spacing: 1px;
-    font-size: 14px;
+    color:#718096;
 }
 
 .login-box input, .register-box input {
     width:100%;
     padding:14px;
     margin-bottom:15px;
-    border:1px solid #cbd5e1;
+    border:1px solid #cbd5e0;
     border-radius:8px;
     font-size:16px;
-    background: #f8fafc;
-    color: #1e293b;
-}
-
-.login-box input:focus, .register-box input:focus {
-    outline: none;
-    border-color: #0284c7;
-    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    background: var(--gray-bg);
+    color: #1a202c;
 }
 
 .login-box button, .register-box button {
     width:100%;
     padding:14px;
     border:none;
-    background: #0284c7;
+    background: var(--primary-blue);
     color:white;
     font-size:16px;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
     border-radius: 8px;
     cursor:pointer;
-    transition:0.3s;
+    transition: 0.3s;
 }
 
-.login-box button:hover, .register-box button:hover {
-    background: #0369a1;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+.login-box button:hover {
+    background: var(--dark-blue);
 }
 
-.create-account, .back-to-login {
-    margin-top:22px;
-    color:#0284c7;
-    cursor:pointer;
-    font-weight:bold;
-    letter-spacing: 1px;
-    font-size: 14px;
+/* ===== MODAL DETALLES PRODUCTO ===== */
+.product-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 30, 60, 0.7);
+    z-index: 10005;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
 }
 
-.create-account:hover, .back-to-login:hover {
-    text-decoration:underline;
-    color: #0369a1;
+.product-modal {
+    background: var(--pure-white);
+    border: 2px solid var(--primary-blue);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    padding: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.product-modal h3 {
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.modal-select-group {
+    margin-bottom: 15px;
+}
+
+.modal-select-group label {
+    display: block;
+    font-size: 13px;
+    color: #4a5568;
+    margin-bottom: 5px;
+}
+
+.modal-select-group select, .modal-select-group input {
+    width: 100%;
+    padding: 10px;
+    background: var(--gray-bg);
+    border: 1px solid #cbd5e0;
+    color: #1a202c;
+    border-radius: 6px;
 }
 
 /* ===== HEADER Y NAVEGACIÓN ===== */
 header{
-    background:#e0f2fe; /* Azul claro minimalista */
-    padding:15px 40px;
-    border-bottom: 1px solid #bae6fd;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    background: var(--pure-white);
+    padding:10px 40px;
+    border-bottom: 3px solid var(--primary-blue);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .topbar{
@@ -130,20 +165,12 @@ header{
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-weight: 800;
-    color: #0369a1;
-    font-size: 24px;
 }
 
 .logo-img {
-    height: 60px;
+    height: 75px;
     width: auto;
     object-fit: contain;
-    transition: transform 0.3s;
-}
-
-.logo-img:hover {
-    transform: scale(1.03);
 }
 
 .search-box{
@@ -155,22 +182,18 @@ header{
 .search-box input{
     width:100%;
     padding:12px 16px;
-    border: 1px solid #cbd5e1;
-    background: #ffffff;
-    color: #1e293b;
+    border: 1px solid #cbd5e0;
+    background: var(--gray-bg);
+    color: #1a202c;
     outline:none;
     border-radius:8px 0 0 8px;
-}
-
-.search-box input:focus {
-    border-color: #0284c7;
 }
 
 .search-box button{
     padding:12px 24px;
     border:none;
-    background:#0284c7;
-    color:white;
+    background: var(--primary-blue);
+    color: white;
     font-weight: bold;
     border-radius:0 8px 8px 0;
     cursor:pointer;
@@ -178,7 +201,7 @@ header{
 }
 
 .search-box button:hover {
-    background: #0369a1;
+    background: var(--dark-blue);
 }
 
 .menu{
@@ -189,23 +212,23 @@ header{
 
 .menu a, .dropdown-btn{
     text-decoration:none;
-    color:#334155;
+    color: var(--dark-blue);
     font-weight:600;
     padding: 8px 14px;
     border-radius: 6px;
     transition: 0.3s;
     background: transparent;
     border: none;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
 }
 
 .menu a:hover, .menu a.active-menu, .dropdown-btn:hover {
-    color: #0284c7;
-    background: rgba(2, 132, 199, 0.08);
+    color: var(--primary-blue);
+    background: var(--light-blue);
 }
 
-/* MENÚ DESPLEGABLE PARA CATÁLOGOS */
+/* MENÚ DESPLEGABLE */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -214,29 +237,27 @@ header{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #ffffff;
-    min-width: 180px;
-    box-shadow: 0px 8px 24px rgba(0,0,0,0.08);
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    background-color: var(--pure-white);
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
     z-index: 1000;
     top: 100%;
     left: 0;
-    padding: 6px 0;
 }
 
 .dropdown-content a {
-    color: #334155;
-    padding: 10px 16px;
+    color: var(--dark-blue);
+    padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
-    font-weight: 500;
 }
 
 .dropdown-content a:hover {
-    background-color: #f0f9ff;
-    color: #0284c7;
+    background-color: var(--light-blue);
+    color: var(--primary-blue);
 }
 
 .dropdown:hover .dropdown-content {
@@ -244,9 +265,9 @@ header{
 }
 
 .cart-menu-btn, .login-menu-btn {
-    background: #ffffff;
-    color: #475569;
-    border: 1px solid #cbd5e1;
+    background: var(--light-blue);
+    color: var(--primary-blue);
+    border: 1px solid var(--primary-blue);
     padding: 10px 18px;
     font-weight: bold;
     border-radius: 8px;
@@ -257,32 +278,17 @@ header{
     transition: 0.3s;
 }
 
-.login-menu-btn {
-    border-color: #cbd5e1;
-    color: #475569;
-}
-
-.login-menu-btn:hover {
-    background: #f1f5f9;
-    color: #1e293b;
-}
-
-.cart-menu-btn {
-    border-color: #0284c7;
-    color: #0284c7;
-}
-
-.cart-menu-btn:hover {
-    background: #0284c7;
+.cart-menu-btn:hover, .login-menu-btn:hover {
+    background: var(--primary-blue);
     color: white;
 }
 
 .cart-count {
-    background: #ef4444;
+    background: var(--dark-blue);
     color: white;
     border-radius: 50%;
-    padding: 2px 7px;
-    font-size: 11px;
+    padding: 2px 8px;
+    font-size: 12px;
 }
 
 /* ===== CARRITO LATERAL ===== */
@@ -292,8 +298,8 @@ header{
     right: -400px;
     width: 400px;
     height: 100vh;
-    background: #ffffff;
-    border-left: 1px solid #e2e8f0;
+    background: var(--pure-white);
+    border-left: 3px solid var(--primary-blue);
     box-shadow: -10px 0 30px rgba(0,0,0,0.05);
     z-index: 10001;
     transition: right 0.4s cubic-bezier(0.05, 0.74, 0.2, 1);
@@ -306,30 +312,21 @@ header{
 }
 
 .cart-header {
-    background: #f8fafc;
-    color: #1e293b;
+    background: var(--light-blue);
+    color: var(--dark-blue);
     padding: 20px;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #cbd5e0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.cart-header h2 {
-    font-size: 19px;
-    color: #0f172a;
-}
-
 .close-cart {
     background: transparent;
     border: none;
-    color: #94a3b8;
+    color: #a0aec0;
     font-size: 28px;
     cursor: pointer;
-}
-
-.close-cart:hover {
-    color: #ef4444;
 }
 
 .cart-items-container {
@@ -343,7 +340,7 @@ header{
     gap: 15px;
     padding-bottom: 15px;
     margin-bottom: 15px;
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid #e2e8f0;
     align-items: center;
 }
 
@@ -352,8 +349,7 @@ header{
     height: 60px;
     object-fit: cover;
     border-radius: 6px;
-    border: 1px solid #e2e8f0;
-    background: #f8fafc;
+    border: 1px solid #cbd5e0;
 }
 
 .cart-item-details {
@@ -362,82 +358,48 @@ header{
 
 .cart-item-title {
     font-size: 14px;
-    color: #334155;
-    font-weight: 600;
-    margin-bottom: 4px;
+    color: var(--dark-blue);
+    font-weight: bold;
+}
+
+.cart-item-specs {
+    font-size: 11px;
+    color: #718096;
 }
 
 .cart-item-price {
-    color: #0284c7;
+    color: var(--primary-blue);
     font-weight: bold;
 }
 
 .remove-item-btn {
     background: transparent;
     border: none;
-    color: #ef4444;
+    color: #e53e3e;
     cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.remove-item-btn:hover {
-    text-decoration: underline;
 }
 
 .cart-footer {
-    background: #f8fafc;
+    background: var(--gray-bg);
     padding: 20px;
-    border-top: 1px solid #e2e8f0;
-}
-
-.cart-total-box {
-    display: flex;
-    justify-content: space-between;
-    font-size: 17px;
-    font-weight: bold;
-    color: #1e293b;
-    margin-bottom: 15px;
-}
-
-.cart-total-box span:last-child {
-    color: #0284c7;
+    border-top: 1px solid #cbd5e0;
 }
 
 .checkout-btn {
     width: 100%;
     padding: 14px;
-    background: #0284c7;
+    background: var(--primary-blue);
     color: white;
     border: none;
     font-size: 15px;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
-    margin-bottom: 10px;
 }
 
 .checkout-btn:hover {
-    background: #0369a1;
-}
-
-.clear-cart-btn {
-    width: 100%;
-    background: transparent;
-    border: 1px solid #cbd5e1;
-    padding: 8px;
-    color: #64748b;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.clear-cart-btn:hover {
-    border-color: #ef4444;
-    color: #ef4444;
+    background: var(--dark-blue);
 }
 
 /* ===== CHECKOUT OVERLAY ===== */
@@ -447,7 +409,7 @@ header{
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(15, 23, 42, 0.6);
+    background: rgba(0,30,60,0.6);
     z-index: 10002;
     display: flex;
     justify-content: center;
@@ -458,26 +420,24 @@ header{
 .checkout-modal {
     width: 90%;
     max-width: 600px;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--pure-white);
+    border: 2px solid var(--primary-blue);
     border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
-    max-height: 90vh;
+    max-height: 95vh;
 }
 
 .checkout-header {
-    background: #f8fafc;
-    color: #0284c7;
+    background: var(--light-blue);
+    color: var(--dark-blue);
     padding: 20px;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #cbd5e0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: bold;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
 }
 
 .checkout-body {
@@ -486,52 +446,55 @@ header{
 }
 
 .order-summary-box {
-    background: #f0f9ff;
+    background: var(--gray-bg);
     padding: 15px;
-    border: 1px dashed #0284c7;
+    border: 1px dashed var(--primary-blue);
     border-radius: 8px;
     margin-bottom: 20px;
 }
 
 .checkout-section-title {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
     text-transform: uppercase;
-    color: #334155;
+    color: var(--primary-blue);
     margin-bottom: 15px;
-    letter-spacing: 0.5px;
-}
-
-.checkout-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    margin-bottom: 20px;
 }
 
 .checkout-form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 15px;
 }
 
 .checkout-form-group label {
     font-size: 13px;
-    color: #64748b;
+    color: #4a5568;
     margin-bottom: 5px;
 }
 
-.checkout-form-group input {
+.checkout-form-group input, .checkout-form-group select {
     padding: 12px;
-    background: #ffffff;
-    border: 1px solid #cbd5e1;
-    color: #1e293b;
+    background: var(--gray-bg);
+    border: 1px solid #cbd5e0;
+    color: #1a202c;
     border-radius: 6px;
-    font-size: 14px;
 }
 
-.checkout-form-group input:focus {
-    border-color: #0284c7;
-    outline: none;
+.map-container {
+    width: 100%;
+    height: 180px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--primary-blue);
+    overflow: hidden;
+    display: none;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
 
 .place-order-btn {
@@ -543,25 +506,18 @@ header{
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 1px;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.place-order-btn:hover {
-    background: #128c7e;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
-}
-
 /* ===== HERO GEEK ===== */
 .hero{
-    height:260px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(224, 242, 254, 0.88)), 
+    height:250px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(230, 240, 250, 0.9)), 
                 url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop'); 
     background-size: cover;
     background-position: center;
@@ -570,22 +526,21 @@ header{
     align-items:center;
     flex-direction:column;
     text-align:center;
-    border-bottom: 1px solid #bae6fd;
+    border-bottom: 3px solid var(--primary-blue);
     padding: 20px;
 }
 
 .hero h1{
-    font-size:50px;
+    font-size:55px;
     font-weight: 900;
-    letter-spacing: 1px;
-    color: #0f172a;
+    color: var(--dark-blue);
 }
 
 .hero p{
-    margin-top:10px;
-    font-size:18px;
+    margin-top:12px;
+    font-size:20px;
     font-weight: 600;
-    color: #0284c7;
+    color: var(--primary-blue);
 }
 
 /* ===== SECCIÓN CATÁLOGO ===== */
@@ -594,11 +549,11 @@ header{
 }
 
 .section-title{
-    font-size:24px;
+    font-size:28px;
     font-weight: 800;
     margin-bottom:30px;
-    color:#0f172a;
-    border-bottom: 1px solid #e2e8f0;
+    color: var(--dark-blue);
+    border-bottom: 2px solid #cbd5e0;
     padding-bottom: 10px;
 }
 
@@ -609,26 +564,23 @@ header{
 }
 
 .card{
-    background:#ffffff;
+    background: var(--pure-white);
     border-radius:12px;
     overflow:hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    border: 1px solid #e2e8f0;
-    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #cbd5e0;
+    transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-5px);
-    border-color: #38bdf8;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.06);
+    transform:translateY(-8px);
+    border-color: var(--primary-blue);
+    box-shadow: 0 10px 20px rgba(0, 102, 204, 0.1);
 }
 
 .card img{
     width:100%;
-    height:300px;
+    height:280px;
     object-fit:cover;
-    background-color: #f8fafc;
-    display: block;
 }
 
 .card-content{
@@ -637,8 +589,8 @@ header{
 }
 
 .price{
-    color:#0284c7;
-    font-size:22px;
+    color: var(--dark-blue);
+    font-size:24px;
     font-weight:800;
     margin-bottom:10px;
 }
@@ -647,7 +599,7 @@ header{
     font-size:15px;
     font-weight: 600;
     margin-bottom:15px;
-    color: #334155;
+    color: #4a5568;
     height: 44px;
     overflow: hidden;
 }
@@ -655,45 +607,160 @@ header{
 .buy-btn{
     width:100%;
     padding:12px;
-    border: 1px solid #0284c7;
+    border: 1px solid var(--primary-blue);
     border-radius:8px;
     background: transparent;
-    color:#0284c7;
-    font-size:13px;
+    color: var(--primary-blue);
+    font-size:14px;
     font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
     cursor:pointer;
     transition: 0.3s;
 }
 
 .buy-btn:hover{
-    background: #0284c7;
+    background: var(--primary-blue);
     color: white;
 }
 
-/* ===== FOOTER ===== */
-footer{
-    background:#f8fafc;
-    padding:30px;
-    text-align:center;
-    margin-top:50px;
-    color:#64748b;
-    font-size:14px;
-    border-top: 1px solid #e2e8f0;
+/* ===== NUEVA SECCIÓN INFO INTERACTIVA (MISIÓN, VISIÓN, QUIÉNES) ===== */
+.info-section {
+    background: var(--pure-white);
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #cbd5e0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
 }
 
-/* ===== RESPONSIVE ===== */
+.info-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    padding: 12px 25px;
+    background: var(--gray-bg);
+    border: 1px solid #cbd5e0;
+    color: var(--dark-blue);
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn.active-tab, .tab-btn:hover {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+    line-height: 1.7;
+    color: #4a5568;
+    text-align: center;
+    font-size: 16px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== REDES SOCIALES ===== */
+.social-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.social-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.social-icon:hover {
+    transform: scale(1.15);
+}
+
+footer{
+    background: var(--dark-blue);
+    padding:35px;
+    text-align:center;
+    color: var(--pure-white);
+    font-size:15px;
+}
+
 @media(max-width:768px){
     .topbar{ flex-direction:column; gap: 15px; }
     .menu{ flex-wrap:wrap; justify-content:center; }
-    .hero h1{ font-size:36px; }
-    .container{ padding:20px; }
+    .hero h1{ font-size:38px; }
+    .info-tabs { flex-direction: column; gap: 10px; }
 }
 </style>
 </head>
 
 <body>
+
+<!-- MODAL PARA SELECCIONAR DETALLES -->
+<div class="product-modal-overlay" id="productModalOverlay">
+    <div class="product-modal">
+        <h3 id="modalProductName">Configurar Producto</h3>
+        <input type="hidden" id="modalProductId">
+        
+        <div class="modal-select-group">
+            <label>Talla</label>
+            <select id="modalSize">
+                <option value="CH (Chica)">CH (Chica)</option>
+                <option value="M (Mediana)">M (Mediana)</option>
+                <option value="G (Grande)">G (Grande)</option>
+                <option value="XG (Extra Grande)">XG (Extra Grande)</option>
+                <option value="Unitalla / No Aplica">Unitalla / No Aplica</option>
+            </select>
+        </div>
+        
+        <div class="modal-select-group">
+            <label>Color / Variante</label>
+            <select id="modalColor">
+                <option value="Estándar / Diseño Original">Estándar / Diseño Original</option>
+                <option value="Blanco">Blanco</option>
+                <option value="Negro">Negro</option>
+                <option value="Gris">Gris</option>
+                <option value="Azul">Azul</option>
+            </select>
+        </div>
+
+        <div class="modal-select-group">
+            <label>Medidas / Especificaciones Extra (Opcional)</label>
+            <input type="text" id="modalCustom" placeholder="Ej. Medidas específicas, detalles del empaque...">
+        </div>
+
+        <button onclick="confirmAddToCart()" style="width:100%; padding:12px; background:var(--primary-blue); border:none; font-weight:bold; cursor:pointer; border-radius:6px; color:white;">Confirmar y Agregar</button>
+        <button onclick="closeProductModal()" style="width:100%; padding:8px; background:transparent; border:none; color:#a0aec0; cursor:pointer; margin-top:5px;">Cancelar</button>
+    </div>
+</div>
 
 <div class="login-container" id="loginContainer">
     <div class="login-box">
@@ -702,20 +769,7 @@ footer{
         <input type="text" id="username" placeholder="Usuario">
         <input type="password" id="password" placeholder="Contraseña">
         <button onclick="login()">Iniciar Sesión</button>
-        <div class="create-account" onclick="showRegisterInterface()">Crear una cuenta nueva</div>
-        <div class="back-to-login" style="margin-top: 15px;" onclick="closeLoginInterface()">Cancelar</div>
-    </div>
-</div>
-
-<div class="register-container" id="registerContainer">
-    <div class="register-box">
-        <h1>REGISTRO</h1>
-        <p>Únete a la experiencia Dcharly'z</p>
-        <input type="text" id="regEmail" placeholder="Correo Electrónico">
-        <input type="text" id="regUsername" placeholder="Nuevo Usuario">
-        <input type="password" id="regPassword" placeholder="Contraseña">
-        <button onclick="submitRegistration()">Registrar Cuenta</button>
-        <div class="back-to-login" onclick="showLoginInterface()">Volver al Inicio de Sesión</div>
+        <div style="margin-top:22px; color:var(--primary-blue); cursor:pointer;" onclick="closeLoginInterface()">Cancelar</div>
     </div>
 </div>
 
@@ -726,7 +780,7 @@ footer{
     </div>
     <div class="cart-items-container" id="cartItemsContainer"></div>
     <div class="cart-footer">
-        <div class="cart-total-box"><span>Total:</span><span id="cartTotalValue">$0 MXN</span></div>
+        <div class="cart-total-box" style="display:flex; justify-content:space-between; font-weight:bold; margin-bottom:15px;"><span>Total:</span><span id="cartTotalValue">$0 MXN</span></div>
         <button class="checkout-btn" onclick="openCheckout()">Proceder al Pedido</button>
         <button class="clear-cart-btn" onclick="clearCart()">Vaciar Carrito</button>
     </div>
@@ -736,17 +790,42 @@ footer{
     <div class="checkout-modal">
         <div class="checkout-header">
             <span>PROCESAR PEDIDO VÍA WHATSAPP</span>
-            <button class="close-cart" style="color: #64748b;" onclick="closeCheckout()">×</button>
+            <button class="close-cart" style="color: var(--primary-blue);" onclick="closeCheckout()">×</button>
         </div>
         <div class="checkout-body">
             <div class="order-summary-box">
-                <h3 style="font-size: 15px; color: #0284c7; margin-bottom: 5px;">Resumen de Compra</h3>
-                <p id="checkoutSummaryText" style="font-size: 14px; color: #334155;">No hay artículos.</p>
+                <h3 style="font-size: 15px; color: var(--dark-blue); margin-bottom: 5px;">Resumen de Compra</h3>
+                <p id="checkoutSummaryText" style="font-size: 14px;">No hay artículos.</p>
             </div>
             <div class="checkout-section-title">Datos de Entrega</div>
             <div class="checkout-grid">
-                <div class="checkout-form-group"><label>Nombre Completo</label><input type="text" id="checkoutName" placeholder="Ej. Juan Pérez"></div>
-                <div class="checkout-form-group"><label>Dirección Completa de Envío</label><input type="text" id="checkoutAddress" placeholder="Calle, Número, Colonia y Ciudad"></div>
+                <div class="checkout-form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="checkoutName" placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="checkout-form-group">
+                    <label>Municipio de Envío</label>
+                    <select id="checkoutMunicipality" onchange="updateMinimap()">
+                        <option value="">-- Selecciona un Municipio --</option>
+                        <option value="maxcanu">Maxcanú</option>
+                        <option value="halacho">Halachó</option>
+                        <option value="chan chochola">Chan Chochola</option>
+                        <option value="san fernando">San Fernando</option>
+                        <option value="paraiso">Paraíso</option>
+                        <option value="granada">Granada</option>
+                        <option value="cepeda">Cepeda</option>
+                        <option value="san bernaldo">San Bernaldo</option>
+                    </select>
+                </div>
+                
+                <div class="map-container" id="minimapContainer">
+                    <iframe id="minimapIframe" src="" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <div class="checkout-form-group" style="margin-top:15px;">
+                    <label>Dirección Específica (Calle, Número, Referencias adicionales)</label>
+                    <input type="text" id="checkoutAddress" placeholder="Ej. Calle 20 x 15 y 17">
+                </div>
             </div>
             <button class="place-order-btn" onclick="sendOrderWhatsApp()">Enviar pedido a WhatsApp 💬</button>
         </div>
@@ -757,10 +836,10 @@ footer{
 <header>
     <div class="topbar">
         <div class="logo-container" onclick="filterCategory('Todo')">
-            <img src="img20260628190236.jpg" alt="Dcharly'z Logo" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerText='Dcharly\'z';">
+            <img src="IMG20260628190236.jpg" alt="Dcharly'z Logo" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerText='Dcharly\'z';">
         </div>
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Buscar productos anime, hoodies, playeras...">
+            <input type="text" id="searchInput" placeholder="Buscar productos...">
             <button onclick="searchProduct()">Buscar</button>
         </div>
         <nav class="menu">
@@ -769,13 +848,15 @@ footer{
             <div class="dropdown">
                 <button class="dropdown-btn">📋 Catálogos ▼</button>
                 <div class="dropdown-content">
+                    <a href="#" onclick="filterCategory('Sublimados', this)">Sublimados (Playeras)</a>
                     <a href="#" onclick="filterCategory('Anime', this)">Anime</a>
-                    <a href="#" onclick="filterCategory('Hello Kitty', this)">Hello Kitty / Animados</a>
-                    <a href="#" onclick="filterCategory('Tendencia', this)">Tendencia</a>
+                    <a href="#" onclick="filterCategory('Electronica', this)">Electrónica</a>
+                    <a href="#" onclick="filterCategory('Gorras', this)">Gorras</a>
+                    <a href="#" onclick="filterCategory('Funkos', this)">Funkos</a>
+                    <a href="#" onclick="filterCategory('Peluches', this)">Peluches</a>
                 </div>
             </div>
 
-            <a href="#" onclick="filterCategory('Exclusivo', this)">Colecciones</a>
             <button class="login-menu-btn" onclick="openLoginInterface()">👤 Login</button>
             <button class="cart-menu-btn" onclick="toggleCart()">
                 🛒 Carrito <span class="cart-count" id="menuCartCount">0</span>
@@ -786,7 +867,7 @@ footer{
 
 <section class="hero">
     <h1>Dcharly'z</h1>
-    <p>¡Tu Tienda Geek! • Anime • Electrónica • Gorras • Personalizados</p>
+    <p>¡Tu Tienda Geek Favorita! • Calidad y Diseños Exclusivos</p>
 </section>
 
 <main class="container">
@@ -794,31 +875,111 @@ footer{
     <div class="products" id="productGrid"></div>
 </main>
 
+<!-- ===== INFORMACIÓN CORPORATIVA INTERACTIVA (MISION, VISION, QUIENES) ===== -->
+<section class="info-section">
+    <div class="info-tabs">
+        <button class="tab-btn active-tab" onclick="switchTab('quienes', this)">¿Quiénes Somos?</button>
+        <button class="tab-btn" onclick="switchTab('mision', this)">Misión</button>
+        <button class="tab-btn" onclick="switchTab('vision', this)">Visión</button>
+    </div>
+    
+    <div id="quienes" class="tab-content" style="display: block;">
+        <p>En <strong>Dcharly'z</strong> somos un equipo apasionado por la cultura geek, el anime, los videojuegos y las tendencias tecnológicas. Nos dedicamos a ofrecer productos únicos, desde playeras personalizadas mediante sublimación de la más alta fidelidad, hasta artículos coleccionables exclusivos. Nacimos para acercar el universo geek a nuestra comunidad local con confianza, originalidad y atención de primer nivel.</p>
+    </div>
+    
+    <div id="mision" class="tab-content">
+        <p>Nuestra <strong>Misión</strong> es proveer a los fanáticos de la cultura pop y geek los mejores productos y prendas personalizadas del mercado, garantizando excelentes acabados gráficos, precios accesibles y un proceso de compra dinámico y moderno que supere las expectativas de nuestros clientes en cada rincón de nuestra zona de envíos.</p>
+    </div>
+    
+    <div id="vision" class="tab-content">
+        <p>Nuestra <strong>Visión</strong> es consolidarnos como la tienda geek de referencia en la región, expandiendo continuamente nuestros catálogos de electrónica, figuras coleccionables y sublimados, destacándonos siempre por la innovación tecnológica de nuestra plataforma y el fuerte vínculo de confianza establecido con nuestra comunidad.</p>
+    </div>
+</section>
+
+<!-- ===== SECCIÓN DE REDES SOCIALES ===== -->
+<section class="social-container">
+    <div class="social-title">Síguenos en nuestras redes sociales</div>
+    <div class="social-links">
+        <!-- Reemplaza el '#' dentro de href con el enlace oficial de tu página de Facebook -->
+        <a href="#" target="_blank">
+            <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook Dcharlys">
+        </a>
+        <!-- Reemplaza el '#' dentro de href con el enlace oficial de tu página de Instagram -->
+        <a href="#" target="_blank">
+            <img class="social-icon" src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram Dcharlys">
+        </a>
+    </div>
+</section>
+
 <footer>
-    © 2026 Dcharly'z | ¡Tu Tienda Geek! Playeras personalizadas de alta calidad.
+    © 2026 Dcharly'z | ¡Tu Tienda Geek! Playeras personalizadas y coleccionables.
 </footer>
 </div>
 
 <script>
-// BASE DE DATOS COMPLETA CON CORRECCIONES DE SINTAXIS
+// BASE DE DATOS EXTENDIDA A 20 PRODUCTOS PARA EDICIÓN POSTERIOR
 const productsData = [
-    { id: 1, name: "Playera Snoopy - Cute", category: "Anime", price: 100, img: "img-20260628-wa0009.jpg" },
-    { id: 2, name: "Playera Toji Fushiguro (Jujutsu Kaisen)", category: "Anime", price: 100, img: "img-20260628-wa0010.jpg" },
-    { id: 3, name: "Playera Satoru Gojo(Jujutsu Kaisen)", category: "Tendencia", price: 100, img: "img-20260628-wa0011.jpg" },
-    { id: 4, name: "Playera Chibi FNAF (Five Nights at Freddy's) - Hello Kitty", category: "Anime", price: 90, img: "img-20260628-wa0012.jpg" },
-    { id: 5, name: "Playera Nanami (Jujutsu Kaisen) - Attack on Titan", category: "Anime", price: 100, img: "img-20260628-wa0013.jpg" },
-    { id: 6, name: "Playera Blanca Eren & Mikasa (Shiguenki no Kiojin)", category: "Anime", price: 100, img: "img-20260628-wa0014.jpg" }
+    // Sublimados (Tus 10 playeras iniciales)
+    { id: 1, name: "Playera Blanca Snoopy & Woodstock", category: "Sublimados", price: 299, img: "IMG-20260628-WA0018.jpg" },
+    { id: 2, name: "Playera Toji Fushiguro - Jujutsu Kaisen", category: "Sublimados", price: 320, img: "IMG-20260628-WA0009.jpg" },
+    { id: 3, name: "Playera Satoru Gojo - Arte Ink Blue", category: "Sublimados", price: 340, img: "IMG-20260628-WA0010.jpg" },
+    { id: 4, name: "Playera Chibi FNAF (Five Nights at Freddy's)", category: "Sublimados", price: 299, img: "IMG-20260628-WA0011.jpg" },
+    { id: 5, name: "Playera Kento Nanami - Jujutsu Kaisen", category: "Sublimados", price: 320, img: "IMG-20260628-WA0012.jpg" },
+    { id: 6, name: "Playera Eren & Mikasa - Attack on Titan", category: "Sublimados", price: 325, img: "IMG-20260628-WA0013.jpg" },
+    { id: 7, name: "Playera Negra Jujutsu Kaisen Trio", category: "Sublimados", price: 350, img: "IMG-20260628-WA0014.jpg" },
+    { id: 8, name: "Playera Suguru Geto - Eclipse Spirit", category: "Sublimados", price: 340, img: "IMG-20260628-WA0015.jpg" },
+    { id: 9, name: "Playera Perrito Surfista Kawaii", category: "Sublimados", price: 299, img: "IMG-20260628-WA0016.jpg" },
+    { id: 10, name: "Playera Stitch & Snoopy Crossover", category: "Sublimados", price: 310, img: "IMG-20260628-WA0017.jpg" },
+    
+    // Anime (Espacios para editar)
+    { id: 11, name: "Producto Anime de Prueba 1", category: "Anime", price: 150, img: "" },
+    { id: 12, name: "Producto Anime de Prueba 2", category: "Anime", price: 200, img: "" },
+
+    // Electrónica (Espacios para editar)
+    { id: 13, name: "Producto Electrónica de Prueba 1", category: "Electronica", price: 450, img: "" },
+    { id: 14, name: "Producto Electrónica de Prueba 2", category: "Electronica", price: 600, img: "" },
+
+    // Gorras (Espacios para editar)
+    { id: 15, name: "Gorra Deportiva Geek 1", category: "Gorras", price: 180, img: "" },
+    { id: 16, name: "Gorra Diseño Anime 2", category: "Gorras", price: 195, img: "" },
+
+    // Funkos (Espacios para editar)
+    { id: 17, name: "Figura Funko Pop Popolar 1", category: "Funkos", price: 380, img: "" },
+    { id: 18, name: "Figura Funko Pop Exclusivo 2", category: "Funkos", price: 420, img: "" },
+
+    // Peluches (Espacios para editar)
+    { id: 19, name: "Peluche Kawaii Suave 1", category: "Peluches", price: 250, img: "" },
+    { id: 20, name: "Peluche Anime Colección 2", category: "Peluches", price: 280, img: "" }
 ];
+
+const mapLinks = {
+    "maxcanu": "https://maps.google.com/maps?q=Maxcanu,%20Yucatan&t=&z=14&ie=UTF8&iwloc=&output=embed",
+    "halacho": "https://maps.google.com/maps?q=Halacho,%20Yucatan&t=&z=14&ie=UTF8&iwloc=&output=embed",
+    "chan chochola": "https://maps.google.com/maps?q=Chan%20Chochola,%20Yucatan&t=&z=14&ie=UTF8&iwloc=&output=embed",
+    "san fernando": "https://maps.google.com/maps?q=San%20Fernando,%20Maxcanu,%20Yucatan&t=&z=14&ie=UTF8&iwloc=&output=embed",
+    "paraiso": "https://maps.google.com/maps?q=Paraiso,%20Maxcanu,%20Yucatan&t=&z=14&ie=UTF8&iwloc=&output=embed",
+    "granada": "https://maps.google.com/maps?q=Granada,%20Maxcanu,%20Yucatan&t=&z=14&ie=UTF8&iwloc=&output=embed",
+    "cepeda": "https://maps.google.com/maps?q=Cepeda,%20Halacho,%20Yucatan&t=&z=14&ie=UTF8&iwloc=&output=embed",
+    "san bernaldo": "https://maps.google.com/maps?q=San%20Bernardo,%20Kopoma,%20Yucatan&t=&z=14&ie=UTF8&iwloc=&output=embed"
+};
 
 let cart = [];
 
-// FUNCIONES INTERFAZ LOGIN Y REGISTRO
 function openLoginInterface() { document.getElementById("loginContainer").style.display = "flex"; }
 function closeLoginInterface() { document.getElementById("loginContainer").style.display = "none"; }
-function showRegisterInterface() { document.getElementById("loginContainer").style.display = "none"; document.getElementById("registerContainer").style.display = "flex"; }
-function showLoginInterface() { document.getElementById("registerContainer").style.display = "none"; document.getElementById("loginContainer").style.display = "flex"; }
-function login() { alert("Sesión iniciada correctamente."); closeLoginInterface(); }
-function submitRegistration() { alert("Cuenta registrada con éxito."); showLoginInterface(); }
+function login() { alert("Sesión iniciada."); closeLoginInterface(); }
+
+// CAMBIO INTERACTIVO DE PESTAÑAS (MISION / VISION / QUIENES)
+function switchTab(tabId, btn) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(c => c.style.display = 'none');
+    
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(b => b.classList.remove('active-tab'));
+    
+    document.getElementById(tabId).style.display = 'block';
+    btn.classList.add('active-tab');
+}
 
 // RENDERIZAR PRODUCTOS
 function renderProducts(productsList) {
@@ -826,7 +987,7 @@ function renderProducts(productsList) {
     grid.innerHTML = "";
 
     if(productsList.length === 0) {
-        grid.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#64748b;'>Próximamente más diseños en este catálogo.</p>";
+        grid.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#718096;'>Próximamente más productos en esta sección.</p>";
         return;
     }
 
@@ -834,188 +995,170 @@ function renderProducts(productsList) {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-            <img src="${prod.img}" alt="${prod.name}" onerror="this.src='https://via.placeholder.com/300x300?text=Diseño+Geek';">
+            <img src="${prod.img}" alt="${prod.name}" onerror="this.src='https://via.placeholder.com/300x280?text=Editar+Producto'">
             <div class="card-content">
                 <div class="price">$${prod.price} MXN</div>
                 <div class="product-name">${prod.name}</div>
-                <button class="buy-btn" onclick="addToCart(${prod.id}, event)">Agregar al Carrito</button>
+                <button class="buy-btn" onclick="openProductModal(${prod.id})">Agregar al Carrito</button>
             </div>
         `;
         grid.appendChild(card);
     });
 }
 
-// FILTRAR POR CATEGORÍA
-function filterCategory(category, element) {
-    document.querySelectorAll(".menu a").forEach(a => a.classList.remove("active-menu"));
-    if(element && element.tagName === 'A') {
-        element.classList.add("active-menu");
-    } else {
-        document.getElementById("btnInicio").classList.add("active-menu");
+// INTERFAZ DETALLES DE PRODUCTO
+function openProductModal(id) {
+    const prod = productsData.find(x => x.id === id);
+    if(prod) {
+        document.getElementById("modalProductId").value = prod.id;
+        document.getElementById("modalProductName").innerText = prod.name;
+        document.getElementById("modalCustom").value = "";
+        document.getElementById("productModalOverlay").style.display = "flex";
     }
+}
 
-    const titleMap = {
-        'Todo': 'Colección Destacada',
-        'Anime': 'Catálogo Anime',
-        'Hello Kitty': 'Hello Kitty y Animados',
-        'Tendencia': 'Diseños en Tendencia',
-        'Exclusivo': 'Colecciones Exclusivas'
-    };
+function closeProductModal() {
+    document.getElementById("productModalOverlay").style.display = "none";
+}
+
+function confirmAddToCart() {
+    const id = parseInt(document.getElementById("modalProductId").value);
+    const prod = productsData.find(x => x.id === id);
     
-    document.getElementById("sectionTitle").innerText = titleMap[category] || "Productos";
+    if(prod) {
+        const selectedSize = document.getElementById("modalSize").value;
+        const selectedColor = document.getElementById("modalColor").value;
+        const extraSpecs = document.getElementById("modalCustom").value.trim() || "Ninguna";
+        
+        cart.push({
+            ...prod,
+            size: selectedSize,
+            color: selectedColor,
+            specs: extraSpecs
+        });
+        
+        updateCartUI();
+        closeProductModal();
+        document.getElementById("cartSidebar").classList.add("open");
+    }
+}
+
+// LÓGICA DEL CARRITO
+function toggleCart() { document.getElementById("cartSidebar").classList.toggle("open"); }
+function removeFromCart(i) { cart.splice(i, 1); updateCartUI(); }
+function clearCart() { cart = []; updateCartUI(); }
+
+function updateCartUI() {
+    document.getElementById("menuCartCount").innerText = cart.length;
+    document.getElementById("cartHeaderCount").innerText = cart.length;
+    const container = document.getElementById("cartItemsContainer");
+    container.innerHTML = "";
+    let total = 0;
+    
+    if(cart.length === 0){ 
+        container.innerHTML = "<p style='text-align:center; color:#a0aec0;'>Tu carrito está vacío.</p>"; 
+    } else {
+        cart.forEach((item, index) => {
+            total += item.price;
+            const div = document.createElement("div");
+            div.className = "cart-item";
+            div.innerHTML = `
+                <img src="${item.img}" onerror="this.src='https://via.placeholder.com/60x60?text=Geek'">
+                <div class="cart-item-details">
+                    <div class="cart-item-title">${item.name}</div>
+                    <div class="cart-item-specs">Talla: ${item.size} | Color: ${item.color}<br>Notas: ${item.specs}</div>
+                    <div class="cart-item-price">$${item.price}</div>
+                </div>
+                <button class="remove-item-btn" onclick="removeFromCart(${index})">Quitar</button>
+            `;
+            container.appendChild(div);
+        });
+    }
+    document.getElementById("cartTotalValue").innerText = `$${total} MXN`;
+}
+
+// MINIMAPA
+function updateMinimap() {
+    const select = document.getElementById("checkoutMunicipality");
+    const val = select.value;
+    const container = document.getElementById("minimapContainer");
+    const iframe = document.getElementById("minimapIframe");
+    
+    if(val && mapLinks[val]) {
+        iframe.src = mapLinks[val];
+        container.style.display = "block";
+    } else {
+        container.style.display = "none";
+        iframe.src = "";
+    }
+}
+
+// CHECKOUT VÍA WHATSAPP
+function openCheckout() { 
+    if(cart.length === 0) return; 
+    document.getElementById("cartSidebar").classList.remove("open"); 
+    document.getElementById("checkoutOverlay").style.display = "flex"; 
+    let total = cart.reduce((s,i) => s + i.price, 0); 
+    document.getElementById("checkoutSummaryText").innerText = `Artículos: ${cart.length} | Total: $${total} MXN`; 
+}
+
+function closeCheckout() { document.getElementById("checkoutOverlay").style.display = "none"; }
+
+function sendOrderWhatsApp() {
+    let name = document.getElementById("checkoutName").value.trim();
+    let municipalitySelect = document.getElementById("checkoutMunicipality");
+    let municipality = municipalitySelect.options[municipalitySelect.selectedIndex].text;
+    let address = document.getElementById("checkoutAddress").value.trim();
+    
+    if(name === "" || municipalitySelect.value === "" || address === "") { 
+        alert("Por favor, completa todos los campos del envío."); 
+        return; 
+    }
+    
+    let telefono = "529990000000"; // Reemplaza aquí con tu WhatsApp real de Dcharly'z
+    let total = cart.reduce((s,i) => s + i.price, 0);
+    
+    let msg = `¡Hola Dcharly'z! Pedido Web 🛒\n\n👤 Cliente: ${name}\n📍 Municipio: ${municipality}\n🏠 Dirección: ${address}\n🗺️ Mapa de Zona: https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(municipality + ', Yucatan')}\n\n📦 Productos:\n`;
+    
+    cart.forEach((item, index) => { 
+        msg += `\n${index + 1}. ${item.name}\n   - Precio: $${item.price} MXN\n   - Talla: ${item.size}\n   - Variante/Color: ${item.color}\n   - Especificaciones: ${item.specs}\n`; 
+    });
+    
+    msg += `\n💰 Total general: $${total} MXN`;
+    
+    window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`, '_blank');
+    clearCart(); 
+    closeCheckout();
+}
+
+// FILTRADOS
+function filterCategory(category, element) {
+    const links = document.querySelectorAll('.menu a');
+    links.forEach(l => l.classList.remove('active-menu'));
+    
+    if(element) element.classList.add('active-menu');
 
     if(category === "Todo") {
+        document.getElementById("sectionTitle").innerText = "Colección Destacada";
         renderProducts(productsData);
     } else {
-        const filtered = productsData.filter(p => p.category === category);
+        document.getElementById("sectionTitle").innerText = `Catálogo: ${category}`;
+        const filtered = productsData.filter(p => p.category.toLowerCase() === category.toLowerCase());
         renderProducts(filtered);
     }
 }
 
-// BUSCAR PRODUCTO
 function searchProduct() {
-    const query = document.getElementById("searchInput").value.toLowerCase().trim();
-    if(query === "") {
-        renderProducts(productsData);
-        document.getElementById("sectionTitle").innerText = "Colección Destacada";
-        return;
-    }
-
+    const query = document.getElementById("searchInput").value.toLowerCase();
     const filtered = productsData.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
-    document.getElementById("sectionTitle").innerText = `Resultados para: "${query}"`;
+    document.getElementById("sectionTitle").innerText = `Resultados de: "${query}"`;
     renderProducts(filtered);
 }
 
-// LÓGICA DEL CARRITO
-function toggleCart() {
-    document.getElementById("cartSidebar").classList.toggle("open");
-}
-
-function addToCart(id, event) {
-    const product = productsData.find(p => p.id === id);
-    if(product) {
-        cart.push(product);
-        updateCartUI();
-        
-        // Feedback visual sutil al agregar pasando el evento de forma segura
-        const btn = event.target;
-        const originalText = btn.innerText;
-        btn.innerText = "¡Agregado! ✓";
-        btn.style.background = "#0284c7";
-        btn.style.color = "white";
-        setTimeout(() => {
-            btn.innerText = originalText;
-            btn.style.background = "transparent";
-            btn.style.color = "#0284c7";
-        }, 1000);
-    }
-}
-
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    updateCartUI();
-}
-
-function clearCart() {
-    cart = [];
-    updateCartUI();
-}
-
-function updateCartUI() {
-    // Actualizar Contadores
-    document.getElementById("menuCartCount").innerText = cart.length;
-    document.getElementById("cartHeaderCount").innerText = cart.length;
-
-    const container = document.getElementById("cartItemsContainer");
-    container.innerHTML = "";
-
-    let total = 0;
-
-    if(cart.length === 0) {
-        container.innerHTML = "<p style='text-align:center; color:#64748b; margin-top:40px;'>Tu carrito está vacío.</p>";
-        document.getElementById("cartTotalValue").innerText = "$0 MXN";
-        return;
-    }
-
-    cart.forEach((item, index) => {
-        total += item.price;
-        const div = document.createElement("div");
-        div.className = "cart-item";
-        div.innerHTML = `
-            <img src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/600?text=Geek';">
-            <div class="cart-item-details">
-                <div class="cart-item-title">${item.name}</div>
-                <div class="cart-item-price">$${item.price} MXN</div>
-                <button class="remove-item-btn" onclick="removeFromCart(${index})">Eliminar</button>
-            </div>
-        `;
-        container.appendChild(div);
-    });
-
-    document.getElementById("cartTotalValue").innerText = `$${total} MXN`;
-}
-
-// INTERFAZ DE CHECKOUT Y WHATSAPP
-function openCheckout() {
-    if(cart.length === 0) {
-        alert("Agrega productos al carrito antes de realizar tu pedido.");
-        return;
-    }
-    document.getElementById("checkoutOverlay").style.display = "flex";
-    
-    // Generar resumen textual corto
-    let summaryText = cart.map(item => `- ${item.name} ($${item.price} MXN)`).join("<br>");
-    let total = cart.reduce((acc, item) => acc + item.price, 0);
-    summaryText += `<br><br><strong>Total del Pedido: $${total} MXN</strong>`;
-    
-    document.getElementById("checkoutSummaryText").innerHTML = summaryText;
-}
-
-// CERRAR CHECKOUT
-function closeCheckout() {
-    document.getElementById("checkoutOverlay").style.display = "none";
-}
-
-function sendOrderWhatsApp() {
-    const name = document.getElementById("checkoutName").value.trim();
-    const address = document.getElementById("checkoutAddress").value.trim();
-
-    if(name === "" || address === "") {
-        alert("Por favor, completa todos los campos de entrega.");
-        return;
-    }
-
-    // Número de teléfono de tu negocio
-    const phoneNumber = "529993931005"; 
-
-    let mensaje = `*NUEVO PEDIDO - DCHARLY'Z*\n\n`;
-    mensaje += `👤 *Cliente:* ${name}\n`;
-    mensaje += `📍 *Dirección de Envío:* ${address}\n\n`;
-    mensaje += `📦 *Detalle del Pedido:*\n`;
-    
-    cart.forEach((item, index) => {
-        mensaje += `${index + 1}. ${item.name} - $${item.price} MXN\n`;
-    });
-
-    const total = cart.reduce((acc, item) => acc + item.price, 0);
-    mensaje += `\n💵 *Total Final:* $${total} MXN\n\n`;
-    mensaje += `¡Hola! Quedo a la espera de la confirmación de las existencias y los datos de pago.`;
-
-    const urlWhatsApp = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(mensaje)}`;
-    
-    // Abrir WhatsApp
-    window.open(urlWhatsApp, '_blank');
-    
-    // Limpieza post-compra
-    clearCart();
-    closeCheckout();
-    toggleCart();
-}
-
-// INICIALIZACIÓN POR DEFECTO
-window.onload = function() {
-    renderProducts(productsData);
+window.onload = function() { 
+    renderProducts(productsData); 
 };
 </script>
 </body>
 </html>
+
