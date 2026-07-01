@@ -17,6 +17,8 @@ body{
     background:#f4f7f6;
     color: #1a202c;
     overflow-x:hidden;
+    /* Evita saltos visuales durante el desplazamiento */
+    scroll-behavior: smooth;
 }
 
 /* ===== PALETA BLANCO Y AZUL ===== */
@@ -526,13 +528,10 @@ header{
     gap: 10px;
 }
 
-/* ===== HERO GEEK ===== */
+/* ===== HERO GEEK (CORREGIDO SIN IMAGEN EXTERNA PARA EVITAR PARPADEO) ===== */
 .hero{
     height:250px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(230, 240, 250, 0.9)), 
-                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop'); 
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(135deg, var(--light-blue) 0%, var(--pure-white) 50%, var(--light-blue) 100%);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -580,7 +579,9 @@ header{
     border-radius:12px;
     overflow:hidden;
     border: 1px solid #cbd5e0;
-    transition:0.3s;
+    transition: 0.25s ease-out;
+    /* Optimización de renderizado para evitar parpadeos en tarjetas */
+    will-change: transform;
 }
 
 .card:hover{
@@ -673,7 +674,7 @@ header{
 
 .tab-content {
     display: none;
-    animation: fadeIn 0.5s ease;
+    animation: fadeIn 0.4s ease-out;
     line-height: 1.7;
     color: #4a5568;
     text-align: center;
@@ -681,8 +682,8 @@ header{
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 /* ===== REDES SOCIALES ===== */
@@ -848,7 +849,7 @@ footer{
 <header>
     <div class="topbar">
         <div class="logo-container" onclick="filterCategory('Todo')">
-            <img src="img20260628190236.jpg" alt="Dcharly'z" class="logo-img">
+            <img src="img20260628190236.jpg" alt="Dcharly'z" class="logo-img" onerror="this.src='https://via.placeholder.com/150x75?text=Dcharlys';">
         </div>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Buscar productos...">
@@ -927,7 +928,7 @@ footer{
 </div>
 
 <script>
-// BASE DE DATOS - NOMBRES EN MINÚSCULAS SIN ELEMENTOS CORRUPTOS
+// BASE DE DATOS COMPLETAMENTE EN MINÚSCULAS
 const productsData = [
     { id: 1, name: "Playera Blanca Snoopy & Woodstock", category: "Sublimados", price: 299, img: "img-20260628-wa0018.jpg" },
     { id: 2, name: "Playera Toji Fushiguro - Jujutsu Kaisen", category: "Sublimados", price: 320, img: "img-20260628-wa0009.jpg" },
@@ -940,7 +941,7 @@ const productsData = [
     { id: 9, name: "Playera Perrito Surfista Kawaii", category: "Sublimados", price: 299, img: "img-20260628-wa0016.jpg" },
     { id: 10, name: "Playera Stitch & Snoopy Crossover", category: "Sublimados", price: 310, img: "img-20260628-wa0017.jpg" },
     
-    // Apartados listos para que edites posteriormente
+    // Apartados para editar después
     { id: 11, name: "Producto Anime de Prueba 1", category: "Anime", price: 150, img: "placeholder.jpg" },
     { id: 12, name: "Producto Anime de Prueba 2", category: "Anime", price: 200, img: "placeholder.jpg" },
     { id: 13, name: "Producto Electrónica de Prueba 1", category: "Electronica", price: 450, img: "placeholder.jpg" },
