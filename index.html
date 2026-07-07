@@ -3,613 +3,285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dcharly'z - Tu Mercado Geek</title>
+<title>Dcharly'z - ¡Tu Tienda Geek!</title>
 
+<!-- Hojas de estilo de Leaflet para el Mapa Real -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <style>
-:root {
-    --ml-blue: #3483fa;
-    --ml-blue-dark: #1259c7;
-    --ml-blue-light: #e3edfb;
-    --ml-dark: #333333;
-    --ml-gray: #666666;
-    --ml-light-gray: #eeeeee;
-    --success-green: #00a650;
-}
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: 'Segoe UI', -apple-system, Roboto, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
-    background: #f5f5f5;
-    color: var(--ml-dark);
+    background:#f4f6f9;
+    color: #333333;
     overflow-x:hidden;
 }
 
-/* ===== GEEK BLUE STYLE HEADER ===== */
-header {
-    background: var(--ml-blue);
-    padding: 12px 40px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+/* ===== LOGIN Y REGISTRO ===== */
+.login-container, .register-container {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:rgba(255, 255, 255, 0.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    display: none;
 }
 
-.topbar {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.logo-container h1 {
-    font-size: 26px;
-    font-weight: 800;
-    color: #ffffff;
-    cursor: pointer;
-    font-style: italic;
-}
-
-.search-box {
-    display: flex;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.search-box input {
-    flex: 1;
-    padding: 10px 15px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-}
-
-.search-box button {
-    padding: 10px 20px;
-    border: none;
+.login-box, .register-box {
+    width: 400px;
     background: #ffffff;
-    cursor: pointer;
-    border-left: 1px solid var(--ml-light-gray);
-    color: var(--ml-gray);
+    padding: 45px 35px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-.nav-row {
-    max-width: 1200px;
-    margin: 10px auto 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-}
-
-.menu-links {
-    display: flex;
-    gap: 20px;
-}
-
-.menu-links a {
-    text-decoration: none;
-    color: rgba(255,255,255,0.8);
-    transition: color 0.2s;
-    font-weight: 500;
-}
-
-.menu-links a:hover, .menu-links a.active-menu {
-    color: #ffffff;
-    border-bottom: 2px solid #ffffff;
-}
-
-.cart-menu-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: 600;
-}
-
-.cart-count {
-    background: white;
-    color: var(--ml-blue);
-    font-size: 11px;
-    padding: 2px 7px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-/* BANNER AZUL TOTAL */
-.ml-banner {
-    background: linear-gradient(to bottom, var(--ml-blue) 0%, #f5f5f5 100%);
-    height: 80px;
-    opacity: 0.9;
-}
-
-/* ===== CARRUSEL DESTACADO POR CATEGORÍAS ===== */
-.carousel-section {
-    max-width: 1200px;
-    margin: -30px auto 25px auto;
-    padding: 0 20px;
-}
-
-.carousel-container {
-    position: relative;
-    width: 100%;
-    height: 320px;
-    background: #000;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.carousel-track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-slide {
-    min-width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.carousel-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.65;
-}
-
-.carousel-caption {
-    position: absolute;
-    bottom: 40px;
-    left: 40px;
-    color: white;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-    z-index: 5;
-    max-width: 500px;
-}
-
-.carousel-caption h2 {
-    font-size: 32px;
+.login-box h1, .register-box h1 {
+    color:#0056b3;
+    margin-bottom: 10px;
+    font-size:32px;
     font-weight: 800;
-    margin-bottom: 10px;
 }
 
-.carousel-caption p {
-    font-size: 16px;
-    margin-bottom: 15px;
-    opacity: 0.9;
-}
-
-.carousel-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: var(--ml-blue);
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
+.login-box p, .register-box p {
+    margin-bottom:25px;
+    color:#666666;
     font-size: 14px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
 }
 
-.carousel-btn:hover {
-    background: var(--ml-blue-dark);
+.login-box input, .register-box input, .checkout-form-group select, .product-size-select, .product-gender-select {
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #cccccc;
+    border-radius:6px;
+    font-size:15px;
+    background: #ffffff;
+    color: #333333;
 }
 
-.carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 10;
-    transition: background 0.2s;
+.login-box input:focus, .register-box input:focus, .checkout-form-group select:focus, .product-size-select:focus, .product-gender-select:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 90, 179, 0.3);
 }
 
-.carousel-arrow:hover {
-    background: rgba(0,0,0,0.8);
-}
-
-.carousel-arrow.prev { left: 20px; }
-.carousel-arrow.next { right: 20px; }
-
-/* ===== CONTENEDOR PRINCIPAL ===== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto 40px auto;
-    padding: 0 20px;
-}
-
-.seller-reputation-strip {
-    background: white;
-    padding: 15px;
+.login-box button, .register-box button {
+    width:100%;
+    padding:12px;
+    border:none;
+    background: #0056b3;
+    color:white;
+    font-size:16px;
+    font-weight: bold;
     border-radius: 6px;
-    margin-bottom: 25px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.login-box button:hover, .register-box button:hover {
+    background: #004085;
+}
+
+.create-account, .back-to-login {
+    margin-top:20px;
+    color:#0056b3;
+    cursor:pointer;
+    font-weight:600;
+    font-size: 14px;
+}
+
+.create-account:hover, .back-to-login:hover {
+    text-decoration:underline;
+}
+
+/* ===== HEADER Y NAVEGACIÓN ===== */
+header{
+    background:#ffffff;
+    padding:15px 40px;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.logo-container{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    cursor: pointer;
 }
 
-.reputation-bar {
-    display: flex;
-    gap: 4px;
-    margin-top: 5px;
+.logo-img {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
 }
 
-.rep-box {
-    width: 40px;
-    height: 8px;
-    background: #cce0ff;
+.search-box{
+    flex:1;
+    display:flex;
+    max-width:400px;
 }
 
-.rep-box.active {
-    background: var(--success-green);
+.search-box input{
+    width:100%;
+    padding:10px 15px;
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    color: #333333;
+    outline:none;
+    border-radius:6px 0 0 6px;
+    font-size: 14px;
 }
 
-/* ===== GRILLA DE PRODUCTOS ===== */
-.products-layout {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 20px;
+.search-box input:focus {
+    border-color: #0056b3;
 }
 
-.filters-sidebar {
-    background: white;
-    padding: 20px;
+.search-box button{
+    padding:10px 20px;
+    border:none;
+    background:#0056b3;
+    color:white;
+    font-weight: bold;
+    border-radius:0 6px 6px 0;
+    cursor:pointer;
+    transition: 0.2s;
+}
+
+.search-box button:hover {
+    background: #004085;
+}
+
+.menu{
+    display:flex;
+    align-items: center;
+    gap:10px;
+}
+
+.menu a, .dropdown-btn{
+    text-decoration:none;
+    color:#333333;
+    font-weight:600;
+    padding: 8px 12px;
     border-radius: 6px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    align-self: flex-start;
-}
-
-.filter-group {
-    margin-bottom: 25px;
-}
-
-.filter-group h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: var(--ml-dark);
-}
-
-.filter-group ul {
-    list-style: none;
-}
-
-.filter-group ul li {
-    margin-bottom: 10px;
+    transition: 0.2s;
+    background: transparent;
+    border: none;
     font-size: 14px;
     cursor: pointer;
-    color: var(--ml-blue);
+}
+
+.menu a:hover, .menu a.active-menu, .dropdown-btn:hover {
+    color: #0056b3;
+    background: rgba(0, 86, 179, 0.05);
+}
+
+/* MENÚ DESPLEGABLE PARA SUBLIMADOS */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+}
+
+.dropdown-content a {
+    color: #333333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
     font-weight: 500;
 }
 
-.filter-group ul li:hover {
-    color: var(--ml-blue-dark);
-    text-decoration: underline;
+.dropdown-content a:hover {
+    background-color: #f4f6f9;
+    color: #0056b3;
 }
 
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-}
-
-.card {
-    background: white;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 7px 15px rgba(0,0,0,0.15);
-}
-
-.card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-bottom: 1px solid var(--ml-light-gray);
-    background: #fafafa;
-}
-
-.card-content {
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.card .price {
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--ml-dark);
-    margin-bottom: 5px;
-}
-
-.shipping-tag {
-    color: var(--success-green);
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.product-name {
-    font-size: 13px;
-    color: var(--ml-gray);
-    line-height: 1.3;
-    height: 36px;
-    overflow: hidden;
-    margin-bottom: 15px;
-}
-
-.buy-now-btn {
-    width: 100%;
-    padding: 10px;
-    background: var(--ml-blue-light);
-    color: var(--ml-blue-dark);
-    border: none;
-    font-weight: 600;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    margin-top: auto;
-    transition: background 0.2s;
-}
-
-/* ===== MODAL VISTA DETALLE DE PRODUCTO (VIP) ===== */
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100vh;
-    background: rgba(0,0,0,0.6);
-    z-index: 10000;
-    display: flex; justify-content: center; align-items: center;
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.modal-overlay.open {
-    opacity: 1; pointer-events: auto;
-}
-
-.vip-container {
-    background: white;
-    width: 95%;
-    max-width: 1000px;
-    height: 85vh;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.close-modal-btn {
-    position: absolute;
-    top: 15px; right: 20px;
-    background: transparent; border: none;
-    font-size: 28px; cursor: pointer; color: var(--ml-gray);
-    z-index: 10;
-}
-
-.vip-body {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    height: 100%;
-    overflow-y: auto;
-}
-
-.vip-left {
-    padding: 30px;
-    border-right: 1px solid var(--ml-light-gray);
-}
-
-.vip-img-container {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.vip-img-container img {
-    max-height: 320px;
-    max-width: 100%;
-    object-fit: contain;
-    background: #fafafa;
-}
-
-/* Tabla o Cuadro de Características Dinámicas */
-.specs-box {
-    margin-top: 20px;
-    background: #fdfdfd;
-    border: 1px solid var(--ml-light-gray);
-    border-radius: 6px;
-    padding: 15px;
-}
-
-.specs-box h3 {
-    font-size: 15px;
-    margin-bottom: 10px;
-    color: var(--ml-dark);
-    border-bottom: 2px solid var(--ml-blue);
-    padding-bottom: 4px;
-    display: inline-block;
-}
-
-.specs-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-}
-
-.specs-table tr:nth-child(odd) {
-    background: #f9f9f9;
-}
-
-.specs-table td {
-    padding: 8px;
-    border-bottom: 1px solid var(--ml-light-gray);
-}
-
-.specs-table td.spec-name {
-    font-weight: 600;
-    color: var(--ml-gray);
-    width: 35%;
-}
-
-.vip-right {
-    padding: 30px;
-    background: #fafafa;
-    display: flex;
-    flex-direction: column;
-}
-
-.vip-condition {
-    font-size: 12px;
-    color: var(--ml-gray);
-    margin-bottom: 10px;
-}
-
-.vip-title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: var(--ml-dark);
-}
-
-.vip-price {
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.location-map-box {
-    background: white;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid var(--ml-light-gray);
-    margin-bottom: 20px;
-}
-
-.location-map-box h4 {
-    color: var(--ml-dark);
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-
-.location-select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: white;
-    font-size: 14px;
-    outline: none;
-    margin-bottom: 10px;
-}
-
-.map-display {
-    width: 100%;
-    height: 160px;
-    background: #e5e3df;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-.map-instruction {
-    font-size: 11px;
-    color: var(--ml-gray);
-    margin-top: 5px;
+.dropdown:hover .dropdown-content {
     display: block;
 }
 
-/* Caja selectora de tallas para detalles */
-.size-selector-box {
-    background: white;
-    padding: 15px;
+.cart-menu-btn, .login-menu-btn {
+    background: #f4f6f9;
+    color: #333333;
+    border: 1px solid #cccccc;
+    padding: 8px 16px;
+    font-weight: 600;
     border-radius: 6px;
-    border: 1px solid var(--ml-light-gray);
-    margin-bottom: 20px;
-}
-
-.size-selector-box h4 {
-    color: var(--ml-dark);
-    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
     font-size: 14px;
 }
 
-.vip-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: auto;
+.login-menu-btn:hover {
+    background: #e2e8f0;
 }
 
-.btn-primary-ml {
-    background: var(--ml-blue);
+.cart-menu-btn {
+    border-color: #0056b3;
+    background: rgba(0, 86, 179, 0.05);
+    color: #0056b3;
+}
+
+.cart-menu-btn:hover {
+    background: #0056b3;
     color: white;
-    border: none;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
 }
 
-.btn-primary-ml:hover {
-    background: var(--ml-blue-dark);
+.cart-count {
+    background: #ff3333;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 11px;
 }
 
-.btn-secondary-ml {
-    background: var(--ml-blue-light);
-    color: var(--ml-blue-dark);
-    border: none;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-/* ===== CARRITO LATERAL SLIDE ===== */
+/* ===== CARRITO LATERAL ===== */
 .cart-sidebar {
     position: fixed;
-    top: 0; right: -420px;
-    width: 420px; height: 100vh;
-    background: white;
-    box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: #ffffff;
+    border-left: 1px solid #e2e8f0;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.1);
     z-index: 10001;
-    transition: right 0.3s cubic-bezier(0.05, 0.74, 0.2, 1);
-    display: flex; flex-direction: column;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .cart-sidebar.open {
@@ -617,893 +289,1088 @@ header {
 }
 
 .cart-header {
+    background: #f4f6f9;
+    color: #333333;
     padding: 20px;
-    border-bottom: 1px solid var(--ml-light-gray);
-    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h2 {
+    font-size: 18px;
+    color: #0056b3;
+}
+
+.close-cart {
+    background: transparent;
+    border: none;
+    color: #999999;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.close-cart:hover {
+    color: #333333;
 }
 
 .cart-items-container {
-    flex: 1; overflow-y: auto; padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
 }
 
 .cart-item {
-    display: flex; gap: 15px; align-items: center;
-    padding-bottom: 15px; margin-bottom: 15px;
-    border-bottom: 1px solid var(--ml-light-gray);
+    display: flex;
+    gap: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
 }
 
-.cart-item img {
-    width: 50px; height: 50px; object-fit: cover; border-radius: 4px;
+.cart-item-details {
+    flex: 1;
 }
 
-.qty-control {
-    display: flex; align-items: center; gap: 5px; margin-top: 5px;
+.cart-item-title {
+    font-size: 14px;
+    color: #333333;
+    font-weight: 600;
+    margin-bottom: 3px;
 }
 
-.qty-control button {
-    width: 24px; height: 24px; background: var(--ml-light-gray);
-    border: none; cursor: pointer; font-weight: bold;
+.cart-item-price {
+    color: #0056b3;
+    font-weight: bold;
+}
+
+.remove-item-btn {
+    background: transparent;
+    border: none;
+    color: #cc0000;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.remove-item-btn:hover {
+    text-decoration: underline;
 }
 
 .cart-footer {
-    padding: 20px; background: #fafafa; border-top: 1px solid var(--ml-light-gray);
+    background: #f4f6f9;
+    padding: 20px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.cart-total-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.cart-total-box span:last-child {
+    color: #0056b3;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: #0056b3;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 10px;
+}
+
+.checkout-btn:hover {
+    background: #004085;
+}
+
+.clear-cart-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #cccccc;
+    padding: 8px;
+    color: #666666;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.clear-cart-btn:hover {
+    background: #fff0f0;
+    border-color: #cc0000;
+    color: #cc0000;
+}
+
+/* ===== CHECKOUT OVERLAY WITH DYNAMIC MAP ===== */
+.checkout-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 10002;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.checkout-modal {
+    width: 95%;
+    max-width: 650px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    max-height: 95vh;
+}
+
+.checkout-header {
+    background: #f4f6f9;
+    color: #0056b3;
+    padding: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.checkout-body {
+    padding: 20px 25px;
+    overflow-y: auto;
+}
+
+.order-summary-box {
+    background: #f8fafc;
+    padding: 12px;
+    border: 1px dashed #0056b3;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.checkout-section-title {
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333333;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+@media(max-width: 500px) {
+    .checkout-grid { grid-template-columns: 1fr; }
+}
+
+.checkout-form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.checkout-form-group label {
+    font-size: 13px;
+    color: #666666;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.checkout-form-group input, .checkout-form-group select {
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    color: #333333;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* MAPA DE VERDAD (LEAFLET) */
+.map-selection-container {
+    margin-bottom: 15px;
+}
+
+.map-box {
+    width: 100%;
+    height: 220px;
+    border: 2px solid #0056b3;
+    border-radius: 8px;
+    position: relative;
+}
+
+#mapLabel {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.place-order-btn {
+    width: 100%;
+    padding: 14px;
+    background: #25d366; 
+    color: white;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.place-order-btn:hover {
+    background: #128c7e;
+}
+
+/* ===== NOVEDAD: CARRUSEL DINÁMICO DEL INICIO ===== */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    background: #000;
+}
+
+.carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.carousel-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 86, 179, 0.85), rgba(0, 0, 0, 0.6));
+    z-index: 1;
+}
+
+.carousel-content {
+    position: relative;
+    z-index: 3;
+    color: #ffffff;
+}
+
+.carousel-content h1 {
+    font-size: 42px;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.carousel-content p {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 0.95;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.carousel-arrow:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.carousel-prev { left: 20px; }
+.carousel-next { right: 20px; }
+
+/* ===== SECCIÓN CATÁLOGO Y FILTROS INTERNOS ===== */
+.container{
+    padding:40px;
+}
+
+.section-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.section-title{
+    font-size:24px;
+    font-weight: 700;
+    color:#333333;
+}
+
+.subcat-filters {
+    display: none;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.subcat-btn {
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555555;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.subcat-btn:hover, .subcat-btn.active-sub {
+    background: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#ffffff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    border: 1px solid #e2e8f0;
+    transition:0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: #0056b3;
+}
+
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    background-color: #ffffff;
+    display: block;
+}
+
+.card-content{
+    padding:15px;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.price{
+    color:#333333;
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+.product-name{
+    font-size:14px;
+    font-weight: 600;
+    margin-bottom:6px;
+    color: #222222;
+    line-height: 1.3;
+}
+
+.product-description{
+    font-size:12px;
+    color: #666666;
+    margin-bottom:12px;
+    line-height: 1.4;
+    background: #f8fafc;
+    padding: 6px;
+    border-radius: 4px;
+    border-left: 3px solid #0056b3;
+}
+
+.clothing-selection-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.select-wrapper label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #0056b3;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.product-size-select, .product-gender-select {
+    padding: 6px;
+    margin-bottom: 0;
+    font-size: 13px;
+    height: 34px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.buy-btn{
+    width:100%;
+    padding:10px;
+    border: none;
+    border-radius:6px;
+    background: #0056b3;
+    color: white;
+    font-size:14px;
+    font-weight: bold;
+    cursor:pointer;
+    transition: 0.2s;
+    text-align: center;
+}
+
+.buy-btn:hover{
+    background: #004085;
 }
 
 /* ===== FOOTER ===== */
-footer {
-    background: white;
-    border-top: 1px solid var(--ml-light-gray);
-    padding: 35px 20px;
-    text-align: center;
-    font-size: 14px;
-    color: var(--ml-gray);
-    margin-top: 60px;
+footer{
+    background:#ffffff;
+    padding:30px;
+    text-align:center;
+    margin-top:50px;
+    color:#666666;
+    font-size:14px;
+    border-top: 1px solid #e2e8f0;
 }
 
-.social-footer-container {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
-
-.social-footer-container a {
-    display: inline-block;
-    transition: transform 0.2s;
-}
-
-.social-footer-container a:hover {
-    transform: scale(1.1);
-}
-
-.social-icon-img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+    .topbar{ flex-direction:column; gap: 15px; }
+    .menu{ flex-wrap:wrap; justify-content:center; }
+    .carousel-content h1{ font-size:32px; }
+    .container{ padding:20px; }
 }
 </style>
 </head>
+
 <body>
 
-<header>
-    <div class="topbar">
-        <div class="logo-container" onclick="filterCategory('Todo')">
-            <h1>Dcharly'z</h1>
-        </div>
-        
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Buscar tazas, funkos, electrónica, peluches y más...">
-            <button onclick="searchProduct()">🔍</button>
-        </div>
-
-        <div class="user-menu">
-            <button class="cart-menu-btn" onclick="toggleCart()">
-                🛒 Carrito <span class="cart-count" id="menuCartCount">0</span>
-            </button>
-        </div>
+<div class="login-container" id="loginContainer">
+    <div class="login-box">
+        <h1>Dcharly'z</h1>
+        <p>Inicia sesión en tu cuenta</p>
+        <input type="text" id="username" placeholder="Usuario">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Iniciar Sesión</button>
+        <div class="create-account" onclick="showRegisterInterface()">Crear una cuenta nueva</div>
+        <div class="back-to-login" style="margin-top: 15px;" onclick="closeLoginInterface()">Cancelar</div>
     </div>
+</div>
 
-    <div class="nav-row">
-        <div class="menu-links">
-            <a href="#" class="active-menu" id="btnInicio" onclick="filterCategory('Todo', this)">Todos los Productos</a>
-            <a href="#" onclick="filterCategory('Funkos', this)">Funkos</a>
-            <a href="#" onclick="filterCategory('Electronica', this)">Electrónica</a>
-            <a href="#" onclick="filterCategory('Peluches', this)">Peluches</a>
-            <a href="#" onclick="filterCategory('Sublimados', this)">Sublimados</a>
-            <a href="#" onclick="filterCategory('Otros', this)">Otros</a>
-        </div>
-        <div style="color: #ffffff;">Reputación: <strong style="color: #ffffff;">MercadoLíder Platinum</strong></div>
-    </div>
-</header>
-
-<div class="ml-banner"></div>
-
-<section class="carousel-section">
-    <div class="carousel-container">
-        <button class="carousel-arrow prev" onclick="moveCarousel(-1)">❮</button>
-        <button class="carousel-arrow next" onclick="moveCarousel(1)">❯</button>
-        <div class="carousel-track" id="carouselTrack">
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1608889174637-3c44f6326f2a?w=1200&q=80" alt="Funkos">
-                <div class="carousel-caption">
-                    <h2>Colección Funko Pops!</h2>
-                    <p>Encuentra tus personajes favoritos de anime, series, películas y videojuegos en edición especial.</p>
-                    <button class="carousel-btn" onclick="filterCategory('Funkos')">Explorar Funkos</button>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200&q=80" alt="Electrónica">
-                <div class="carousel-caption">
-                    <h2>Electrónica & Setups Gamer</h2>
-                    <p>Lleva tu espacio al siguiente nivel con teclados mecánicos, audífonos RGB y gadgets inteligentes.</p>
-                    <button class="carousel-btn" onclick="filterCategory('Electronica')">Ver Electrónica</button>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1559251606-c623743a6d76?w=1200&q=80" alt="Peluches">
-                <div class="carousel-caption">
-                    <h2>Peluches Kawaii</h2>
-                    <p>Suaves, tiernos y totalmente abrazables. Tus compañeros de anime y cultura pop te esperan.</p>
-                    <button class="carousel-btn" onclick="filterCategory('Peluches')">Ver Peluches</button>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1200&q=80" alt="Sublimados">
-                <div class="carousel-caption">
-                    <h2>Sublimados & Ropa Exclusiva</h2>
-                    <p>Tazas mágicas, playeras únicas de algodón premium con tus frases y diseños favoritos.</p>
-                    <button class="carousel-btn" onclick="filterCategory('Sublimados')">Ver Sublimados</button>
-                </div>
-            </div>
-            <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1566140967404-b878994e204a?w=1200&q=80" alt="Otros">
-                <div class="carousel-caption">
-                    <h2>Accesorios & Más</h2>
-                    <p>Llaveros, libretas, pines y coleccionables variados perfectos para regalar o consentirte.</p>
-                    <button class="carousel-btn" onclick="filterCategory('Otros')">Ver Catálogo General</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<main class="container">
-    <section class="seller-reputation-strip">
-        <div>
-            <span style="font-weight: bold; font-size:16px;">Información sobre el vendedor</span>
-            <p style="font-size: 13px; color: var(--ml-gray);">Ubicado en Maxcanú, Yucatán. Lo mejor en cultura Geek, Tecnología y Regalos.</p>
-        </div>
-        <div>
-            <div class="reputation-bar">
-                <div class="rep-box"></div>
-                <div class="rep-box"></div>
-                <div class="rep-box"></div>
-                <div class="rep-box"></div>
-                <div class="rep-box active"></div>
-            </div>
-            <p style="font-size: 12px; color: var(--success-green); font-weight: bold; margin-top:3px; text-align:right;">¡Vendedor de confianza con entrega inmediata!</p>
-        </div>
-    </section>
-
-    <div class="products-layout">
-        <aside class="filters-sidebar">
-            <div class="filter-group">
-                <h3>Categorías</h3>
-                <ul>
-                    <li onclick="filterCategory('Todo')">Todas las secciones</li>
-                    <li onclick="filterCategory('Funkos')">Funko Pops!</li>
-                    <li onclick="filterCategory('Electronica')">Electrónica Geek</li>
-                    <li onclick="filterCategory('Peluches')">Peluches Kawaii</li>
-                    <li onclick="filterCategory('Sublimados')">Sublimados (Todo)</li>
-                    <li style="padding-left:15px; font-size:12px; color:var(--ml-gray);" onclick="filterCategory('Sublimados - Anime')">• Sublimados Anime</li>
-                    <li style="padding-left:15px; font-size:12px; color:var(--ml-gray);" onclick="filterCategory('Sublimados - Animados')">• Sublimados Animados</li>
-                    <li style="padding-left:15px; font-size:12px; color:var(--ml-gray);" onclick="filterCategory('Sublimados - Frases')">• Sublimados Frases</li>
-                    <li onclick="filterCategory('Otros')">Otros Artículos</li>
-                </ul>
-            </div>
-        </aside>
-
-        <section>
-            <h2 style="font-size: 24px; font-weight: 300; margin-bottom: 20px;" id="sectionTitle">Colección Destacada</h2>
-            <div class="products-grid" id="productGrid"></div>
-        </section>
-    </div>
-</main>
-
-<div class="modal-overlay" id="vipModal">
-    <div class="vip-container">
-        <button class="close-modal-btn" onclick="closeVipModal()">×</button>
-        <div class="vip-body" id="vipModalBody"></div>
+<div class="register-container" id="registerContainer">
+    <div class="register-box">
+        <h1>REGISTRO</h1>
+        <p>Regístrate en Dcharly'z</p>
+        <input type="text" id="regEmail" placeholder="Correo Electrónico">
+        <input type="text" id="regUsername" placeholder="Nuevo Usuario">
+        <input type="password" id="regPassword" placeholder="Contraseña">
+        <button onclick="submitRegistration()">Registrar Cuenta</button>
+        <div class="back-to-login" onclick="showLoginInterface()">Volver al Inicio de Sesión</div>
     </div>
 </div>
 
 <div class="cart-sidebar" id="cartSidebar">
     <div class="cart-header">
-        <h2 style="font-size: 18px;">Productos en tu Carrito (<span id="cartHeaderCount">0</span>)</h2>
-        <button style="background:none; border:none; font-size:24px; cursor:pointer;" onclick="toggleCart()">×</button>
+        <h2>Mi Carrito (<span id="cartHeaderCount">0</span>)</h2>
+        <button class="close-cart" onclick="toggleCart()">×</button>
     </div>
     <div class="cart-items-container" id="cartItemsContainer"></div>
     <div class="cart-footer">
-        <div class="location-map-box">
-            <label style="font-size: 12px; font-weight: bold; color: var(--ml-dark); display: block; margin-bottom: 5px;">📍 Localidad de Entrega:</label>
-            <select id="cartLocationSelect" class="location-select" onchange="updateMapFocus('cart')">
-                <option value="Maxcanu">Maxcanú</option>
-                <option value="Halacho">Halachó</option>
-                <option value="Granada">Granada</option>
-                <option value="San fernando">San Fernando</option>
-                <option value="Paraiso">Paraíso</option>
-                <option value="Cepeda">Cepeda</option>
-            </select>
-            <div id="cartMap" class="map-display"></div>
-            <span class="map-instruction">Mueve el mapa y toca tu ubicación exacta para fijar el marcador.</span>
-        </div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;">
-            <span>Total:</span>
-            <span id="cartTotalValue" style="font-size:20px; color: var(--ml-dark);">$0 MXN</span>
-        </div>
-        <button class="btn-primary-ml" style="width:100%; margin-bottom:10px;" onclick="checkoutCartOrder()">Comprar ahora</button>
-        <button style="width:100%; padding:8px; border:none; background:none; color:var(--ml-gray); cursor:pointer; font-size:12px;" onclick="clearCart()">Vaciar Carrito</button>
+        <div class="cart-total-box"><span>Total:</span><span id="cartTotalValue">$0 MXN</span></div>
+        <button class="checkout-btn" onclick="openCheckout()">Proceder al Pedido</button>
+        <button class="clear-cart-btn" onclick="clearCart()">Vaciar Carrito</button>
     </div>
 </div>
 
-<footer>
-    <div class="social-footer-container">
-        <a href="https://facebook.com" target="_blank" title="Síguenos en Facebook">
-            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="social-icon-img">
-        </a>
-        <a href="https://instagram.com" target="_blank" title="Síguenos en Instagram">
-            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon-img">
-        </a>
-    </div>
-    <p>© 2026 Dcharly'z | Tu Tienda Geek en Yucatán.</p>
-</footer>
+<!-- MODAL DE COMPRA CON SELECCIÓN DE MUNICIPIO Y MAPA REGIONAL REAL -->
+<div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-modal">
+        <div class="checkout-header">
+            <span>PROCESAR PEDIDO VÍA WHATSAPP</span>
+            <button class="close-cart" onclick="closeCheckout()">×</button>
+        </div>
+        <div class="checkout-body">
+            <div class="order-summary-box">
+                <h3 style="font-size: 13px; color: #0056b3; margin-bottom: 3px;">Resumen de Compra</h3>
+                <p id="checkoutSummaryText" style="font-size: 13px; color: #333333;">No hay artículos.</p>
+            </div>
+            
+            <div class="checkout-section-title">Datos de Entrega</div>
+            <div class="checkout-grid">
+                <div class="checkout-form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="checkoutName" placeholder="Ej. Juan Pérez">
+                </div>
+                <div class="checkout-form-group">
+                    <label>Elegir Municipio / Región</label>
+                    <select id="checkoutLocation" onchange="handleLocationChange()">
+                        <option value="Maxcanu" data-cost="0">Maxcanú (Local - Gratis)</option>
+                        <option value="Halacho" data-cost="35">Halachó (+$35 MXN)</option>
+                        <option value="Granada" data-cost="40">Granada (+$40 MXN)</option>
+                        <option value="San Fernando" data-cost="45">San Fernando (+$45 MXN)</option>
+                        <option value="Paraiso" data-cost="50">Paraíso (+$50 MXN)</option>
+                        <option value="Cepeda" data-cost="35">Cepeda (+$35 MXN)</option>
+                        <option value="San Bernaldo" data-cost="40">San Bernaldo (+$40 MXN)</option>
+                    </select>
+                </div>
+                <div class="checkout-form-group full-width">
+                    <label>Dirección (Calle, Número y Referencias)</label>
+                    <input type="text" id="checkoutAddress" placeholder="Ej. Calle 20 x 15 y 17, Fachada azul">
+                </div>
+            </div>
 
+            <div class="checkout-section-title">Ubicación Exacta en el Mapa</div>
+            <div id="mapLabel">📍 Cargando mapa del municipio...</div>
+            <div class="map-selection-container">
+                <div class="map-box" id="interactiveMap"></div>
+            </div>
+
+            <button class="place-order-btn" onclick="sendOrderWhatsApp()">Enviar pedido a WhatsApp 💬</button>
+        </div>
+    </div>
+</div>
+
+<div id="mainContent">
+<header>
+    <div class="topbar">
+        <div class="logo-container" onclick="filterCategory('Todo')">
+            <img src="logod.png" alt="Dcharly'z Logo" class="logo-img" onerror="this.onerror=null; this.src='IMG20260628190236.jpg';">
+        </div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar funkos, electrónica, peluches...">
+            <button onclick="searchProduct()">Buscar</button>
+        </div>
+        <nav class="menu">
+            <a href="#" class="active-menu" id="btnInicio" onclick="filterCategory('Todo', this)">Inicio</a>
+            
+            <a href="#" onclick="filterCategory('Funkos', this)">Funkos</a>
+            <a href="#" onclick="filterCategory('Electronica', this)">Electrónica</a>
+            <a href="#" onclick="filterCategory('Peluches', this)">Peluches</a>
+            
+            <div class="dropdown">
+                <button class="dropdown-btn">👕 Sublimados ▼</button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="filterCategory('Anime', this)">Anime / Manga</a>
+                    <a href="#" onclick="filterCategory('Hello Kitty', this)">Hello Kitty / Animados</a>
+                </div>
+            </div>
+
+            <a href="#" onclick="filterCategory('Tendencia', this)">De todo un poco</a>
+
+            <button class="login-menu-btn" onclick="openLoginInterface()">👤 Login</button>
+            <button class="cart-menu-btn" onclick="toggleCart()">
+                🛒 Carrito <span class="cart-count" id="menuCartCount">0</span>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<!-- NUEVO CARRUSEL DINÁMICO REEMPLAZANDO LA IMAGEN ANTERIOR -->
+<section class="carousel-container">
+    <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1200&auto=format&fit=crop');">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+            <h1>Gorras Exclusivas</h1>
+            <p>Estilo urbano y diseños únicos para protegerte del sol.</p>
+        </div>
+    </div>
+    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop');">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+            <h1>Cultura Anime</h1>
+            <p>Tus personajes favoritos plasmados en las mejores playeras y accesorios.</p>
+        </div>
+    </div>
+    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1608889174637-3c99800e1791?q=80&w=1200&auto=format&fit=crop');">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+            <h1>Mundo Funkos</h1>
+            <p>Amplía tu colección geek con las figuras de vinilo más buscadas.</p>
+        </div>
+    </div>
+    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1624222247344-550fb8ef986d?q=80&w=1200&auto=format&fit=crop');">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+            <h1>Cinturones Tácticos y de Moda</h1>
+            <p>Ajuste perfecto, durabilidad extrema y estética de vanguardia.</p>
+        </div>
+    </div>
+    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop');">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+            <h1>Sublimados Premium</h1>
+            <p>Tazas, termos y prendas personalizadas con la mayor nitidez.</p>
+        </div>
+    </div>
+    
+    <button class="carousel-arrow carousel-prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="carousel-arrow carousel-next" onclick="changeSlide(1)">&#10095;</button>
+</section>
+
+<main class="container">
+    <div class="section-title-container">
+        <h2 class="section-title" id="sectionTitle">Colección Destacada</h2>
+        <!-- Subcategorías exclusivas para 'De todo un poco' -->
+        <div class="subcat-filters" id="subcatFilters">
+            <button class="subcat-btn active-sub" onclick="filterSubcategory('Todas')">Todas</button>
+            <button class="subcat-btn" onclick="filterSubcategory('Gorras')">Gorras</button>
+            <button class="subcat-btn" onclick="filterSubcategory('Carteras')">Carteras</button>
+            <button class="subcat-btn" onclick="filterSubcategory('Cinturones')">Cinturones</button>
+            <button class="subcat-btn" onclick="filterSubcategory('Herramientas')">Herramientas</button>
+            <button class="subcat-btn" onclick="filterSubcategory('Bisutería')">Bisutería</button>
+        </div>
+    </div>
+    
+    <div class="products" id="productGrid"></div>
+</main>
+
+<footer>
+    © 2026 Dcharly'z | Especialistas en mercancía niche y personalizaciones de alta calidad.
+</footer>
+</div>
+
+<!-- Scripts de Leaflet.js para control geográfico real -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-// BASE DE DATOS TOTALMENTE CONFIGURADA CON 30 ARTÍCULOS POR CATEGORÍA PRINCIPAL (150 PRODUCTOS)
-const categories = ["Funkos", "Electronica", "Peluches", "Sublimados", "Otros"];
+const locationCoordinates = {
+    "Maxcanu": [20.6592, -90.0019],
+    "Halacho": [20.4819, -90.0814],
+    "Granada": [20.5975, -90.0150],
+    "San Fernando": [20.6350, -89.9620],
+    "Paraiso": [20.6820, -90.0450],
+    "Cepeda": [20.5475, -90.0572],
+    "San Bernaldo": [20.6940, -89.9210]
+};
 
-const genericNames = {
-    "Funkos": ["Funko Pop Batman Metallic", "Funko Pop Iron Man Glow", "Funko Pop Goku SSJ", "Funko Pop Naruto Sage Mode", "Funko Pop Spiderman No Way Home", "Funko Pop Pikachu Waving", "Funko Pop Stitch Diamond", "Funko Pop Yoda Hologram", "Funko Pop Luffy Gear 4", "Funko Pop Harry Potter w/Hedwig", "Funko Pop Tanjiro Hinokami", "Funko Pop Nezuko Run", "Funko Pop Kakashi Lightning Blade", "Funko Pop Vegeta Power Up", "Funko Pop Grogu con Taza", "Funko Pop Darth Vader Lights", "Funko Pop Joker Ledger", "Funko Pop Flash Justice League", "Funko Pop Thor Avengers", "Funko Pop Zoro Wano", "Funko Pop Inosuke Zenitsu", "Funko Pop Sailor Moon Moon Stick", "Funko Pop Eren Yeager Titan", "Funko Pop Levi Ackerman Ackerman", "Funko Pop Sukuna on Throne", "Funko Pop Gojo Unmasked", "Funko Pop Sonic w/Emerald", "Funko Pop Mario Kart", "Funko Pop Zelda Breath of Wild", "Funko Pop Deadpool Taco"],
-    "Electronica": ["Audífonos Gamer RGB Stereo", "Teclado Mecánico Switch Azul", "Mouse Óptico Gamer Pro", "Cargador Portátil 20000mAh", "Bocina Bluetooth Impermeable", "Lámpara de Escritorio Inteligente", "Cable Tipo C Reforzado Uso Rudo", "Hub USB Extensor 4 Puertos", "Soporte para Celular Aluminio", "Micrófono Streamer de Condensador", "Aro de Luz LED Ajustable", "Smartwatch Deportivo Notificaciones", "Audífonos Inalámbricos Bluetooth 5.3", "Ventilador Portátil USB Recargable", "Adaptador Bluetooth PC Inalámbrico", "Tira LED RGB 5 metros App", "Control Inalámbrico PC/Android", "Soporte Audífonos Gamer RGB", "Lector de Tarjetas SD Multi-Slot", "Mini Proyector Cine en Casa", "Consola Retro Portátil 400 Juegos", "Cargador Inalámbrico Carga Rápida", "Funda Airpods Anime Silicona", "Báscula Digital de Alta Precisión", "Limpiador de Teclados Gel Limpiador", "Lente Macro Celular Kit", "Organizador Cables Escritorio", "Batería Recargable AA Pack", "Termómetro Digital Infrarrojo", "Mini Bocina de Bolsillo Compacta"],
-    "Peluches": ["Peluche Totoro Sonriente", "Peluche Kuromi Gothic", "Peluche Hello Kitty Clásica", "Peluche Pochacco Sport", "Peluche Cinnamoroll Pastel", "Peluche Pikachu XL Soft", "Peluche Snorlax Gigante Almohada", "Peluche Agente P Phineas", "Peluche Kirby Esfera Esponjosa", "Peluche Chopper One Piece", "Peluche Anya Forger Spy", "Peluche Nezuko en Caja", "Peluche Pochita con Sierra", "Peluche Gengar Sonrisa Macabra", "Peluche Charmander de Fuego", "Peluche Pulpo Reversible Feliz/Enojado", "Peluche Stitch Azul Espacial", "Peluche Angel Rosa San Valentín", "Peluche Toothless Furia Nocturna", "Peluche Axolote Kawaii Rosa", "Peluche Shiba Inu Cosplay", "Peluche Oso Panda Escandalosos", "Peluche Dinosaurio Verde Abrazable", "Peluche Alpaca Pastel Arcoíris", "Peluche Aguacate Feliz Mediano", "Peluche Almohada Gato Largo", "Peluche Rem Re:Zero Chibi", "Peluche Shinobu Kocho Demon", "Peluche Sonic Rápido Plush", "Peluche Baby Yoda Grogu Mandorian"],
-    "Otros": ["Llavero Metálico Escudo Zelda", "Sticker Vinil Auto Akatsuki", "Pin Metálico Solapa Marvel", "Taza Cerámica Reactiva al Calor", "Termo Plástico Libre de BPA", "Poster de Tela Wallscroll", "Libreta Pasta Dura Hojas Raya", "Pluma de Gel Personaje Kawaii", "Bolsa Ecológica Reutilizable", "Pulsera Silicona Gamer Nocturna", "Anillo Antiestrés Giratorio", "Caja Sorpresa Misteriosa Otaku", "Espejo de Bolsillo Sailor Moon", "Cojín Decorativo Control Retro", "Separador de Libros Metálico", "Monedas de Colección Anime", "Rompecabezas Mini Metal 3D", "Naipes Personalizados Anime Deck", "Tarjetero Aluminio Bloqueo RFID", "Paraguas Compacto Cambia con Agua", "Funda de Almohada Estampado Digital", "Gafete Porta Credencial Premium", "Encendedor Recargable USB Plasma", "Llavero de Goma Funko Pocket", "Mini Figura Ciega Gashapon", "Goma de Borrar Gigante Divertida", "Sacapuntas Eléctrico Automático", "Sello de Lacre Kit Medieval", "Cinta Decorativa Washi Tape Pack", "Caja Musical Madera Sailor Moon Theme"],
+const productsData = [
+    { id: 1, name: "Playera Blanca Snoopy & Woodstock", category: "Hello Kitty", price: 299, img: "img-20260628-wa0018.jpg", description: "Corte premium 100% algodón, tacto suave. Estampado de alta durabilidad." },
+    { id: 2, name: "Playera Toji Fushiguro - Jujutsu Kaisen", category: "Anime", price: 320, img: "IMG-20260628-WA0009.jpg", description: "Estilo Streetwear Niche, tela transpirable ideal para climas cálidos." },
+    { id: 3, name: "Playera Satoru Gojo - Arte Ink Blue", category: "Anime", price: 340, img: "IMG-20260628-WA0010.jpg", description: "Diseño exclusivo estilo tinta artística. Tintas eco-friendly de alta gama." },
+    { id: 4, name: "Playera Chibi FNAF (Five Nights at Freddy's)", category: "Tendencia", subcategory: "General", price: 299, img: "IMG-20260628-WA0011.jpg", description: "Edición especial de colección. Ajuste cómodo unisex." },
+    { id: 5, name: "Playera Kento Nanami - Jujutsu Kaisen", category: "Anime", price: 320, img: "IMG-20260628-WA0012.jpg", description: "Tela de alta resistencia al lavado. Colores vivos garantizados." },
+    { id: 6, name: "Playera Eren & Mikasa - Attack on Titan", category: "Anime", price: 325, img: "IMG-20260628-WA0013.jpg", description: "Doble costura de refuerzo en cuello y hombros. Acabado suave." },
+    { id: 7, name: "Playera Negra Jujutsu Kaisen Trio", category: "Anime", price: 350, img: "IMG-20260628-WA0014.jpg", description: "Algodón peinado premium que evita la decoloración con el sol." },
+    { id: 8, name: "Playera Suguru Geto - Eclipse Spirit", category: "Anime", price: 340, img: "IMG-20260628-WA0015.jpg", description: "Diseño oscuro detallado. Estampado flexible que no se cuartea." },
+    { id: 9, name: "Playera Perrito Surfista Kawaii", category: "Hello Kitty", price: 299, img: "IMG-20260628-WA0016.jpg", description: "Estilo estético minimalista y tierno. Confección fresca." },
+    { id: 10, name: "Playera Stitch & Snoopy Cosplay Crossover", category: "Hello Kitty", price: 310, img: "IMG-20260628-WA0017.jpg", description: "Divertido crossover coleccionable de alta resolución visual." },
+    //categoria de funkos y legos//
+    { id: 11, name: "Flor armable", category: "Funkos", price: 80, img: "lego1.jpg", description: "Tamaño: 17cm. Material: Plastico de alta calidad." },
+    { id: 12, name: "Lego crazy circus", category: "Funkos", price: 45, img: "lego13.jpg", description: "Tamaño: 9.5cm. Características: Calidad super. Embalaje premium." },
+    { id: 13, name: "Micro blocks one pice", category: "Funkos", price: 30, img: "lego2.jpg", description: "Tamaño: 10cm a 14. Material: Vinilo rígido." },
+    { id: 14, name: "Micro blocks kuromi", category: "Funkos", price: 30, img: "lego3.jpg", description: "Tamaño: 10 a 14 cm armado." },
+    { id: 15, name: "Micro blocks Pikachu ", category: "Funkos", price: 45, img: "lego5.jpg", description: "Tamaño: 10cm." },
+    { id: 15, name: "Micro blocks kuromi", category: "Funkos", price: 45, img: "lego6.jpg", description: "Tamaño: 10cm." },
+    { id: 15, name: "Bricks make Kitty", category: "Funkos", price: 35, img: "lego4.jpg", description: "Tamaño: 10cm." },
+    { id: 15, name: "Bricks make Kitty", category: "Funkos", price: 35, img: "lego7.jpg", description: "Tamaño: 10cm." },
+    { id: 15, name: "Lego Marvel", category: "Funkos", price: 50, img: "lego8.jpg", description: "Tamaño: 10cm." },
+    { id: 15, name: "Bricks Plantas vs Zombies", category: "Funkos", price: 65, img: "lego9.jpg", description: "Tamaño: 16cm." },
+    { id: 15, name: "Lego Intensamente", category: "Funkos", price: 45, img: "lego10.jpg", description: "Tamaño: 10cm." },
+    { id: 15, name: "Lego Pokemon", category: "Funkos", price: 45, img: "lego11.jpg", description: "Tamaño: 10cm." },
+    { id: 15, name: "Bricks Lanza guizante", category: "Funkos", price: 65, img: "lego12.jpg", description: "Tamaño: 16cm." },
+    { id: 15, name: "Lego Ninja lord", category: "Funkos", price: 80, img: "lego14.jpg", description: "Tamaño: 18cm." },
+    { id: 15, name: "Lego Minion", category: "Funkos", price: 80, img: "lego15.jpg", description: "Tamaño: 18cm." },
+    { id: 15, name: "Lego Mario bros Peaches", category: "Funkos", price: 75, img: "lego16.jpg", description: "Tamaño: 18cm." },
+    { id: 15, name: "Lego Dragon ball z", category: "Funkos", price: 80, img: "lego17.jpg", description: "Tamaño: 18cm." },
+    { id: 15, name: "Lego Super hero", category: "Funkos", price: 80, img: "lego20.jpg", description: "Tamaño: 10cm." },
+    { id: 15, name: "Lego Harry Potter", category: "Funkos", price: 120, img: "lego22.jpg", description: "Tamaño: 26x30cm." },
     
-    "Sublimados_Anime": ["Taza Sublimada Naruto Rasengan", "Playera Sublimada Gojo Satoru XL", "Gorra Sublimada Akatsuki Clouds", "Mousepad Sublimado One Piece Wano", "Termo Sublimado Demon Slayer", "Taza Cónica Sublimada Sailor Moon", "Sudadera Sublimada Attack on Titan", "Rompecabezas Sublimado Jujutsu Kaisen", "Cojín Sublimado Tokyo Ghoul", "Playera Sublimada Bleach Ichigo"],
-    "Sublimados_Animados": ["Taza Sublimada Stitch Espacial", "Playera Sublimada Mickey Vintage", "Termo Sublimado Rick and Morty", "Gorra Sublimada Bob Esponja Cara", "Cojín Sublimado Los Simpson Familia", "Taza Sublimada Avatar Last Airbender", "Playera Sublimada Gravity Falls", "Mousepad Sublimado Pokémon Iniciales", "Termo Sublimado Hora de Aventura", "Taza Sublimada Shrek Aesthetic"],
-    "Sublimados_Frases": ["Taza Sublimada 'Primero mi Café, luego existo'", "Playera Sublimada 'Gamer No Muere, Hace Respawn'", "Termo Sublimado 'Motivación de Lunes'", "Taza Sublimada 'No soy raro, soy edición limitada'", "Cojín Sublimado 'Mi lugar feliz'", "Gorra Sublimada 'Just Do It Later'", "Taza Sublimada 'Programador en cafeína'", "Playera Sublimada 'Nacido para ser Libre'", "Termo Sublimado 'Mantén la Calma y sé Geek'", "Taza Sublimada 'Sonríe, es un nuevo día'"]
-};
 
-const productsData = [];
-let globalId = 1;
 
-// Construimos el catálogo dinámicamente
-// 1. DICCIONARIO DE IMÁGENES LOCALES
-// Modifica las rutas (ej. "img/...") con el nombre real de tus archivos locales.
-const imagenesProductos = {
-    // === FUNKOS ===
-    "Funko Pop Batman Metallic": "imagenes/funkos/batman_metallic.jpg",
-    "Funko Pop Iron Man Glow": "imagenes/funkos/ironman_glow.jpg",
-    "Funko Pop Goku SSJ": "imagenes/funkos/goku_ssj.jpg",
-    "Funko Pop Naruto Sage Mode": "imagenes/funkos/naruto_sage.jpg",
-    "Funko Pop Spiderman No Way Home": "imagenes/funkos/spiderman.jpg",
-    "Funko Pop Pikachu Waving": "imagenes/funkos/pikachu.jpg",
-    "Funko Pop Stitch Diamond": "imagenes/funkos/stitch_diamond.jpg",
-    "Funko Pop Yoda Hologram": "imagenes/funkos/yoda.jpg",
-    "Funko Pop Luffy Gear 4": "imagenes/funkos/luffy_g4.jpg",
-    "Funko Pop Harry Potter w/Hedwig": "imagenes/funkos/harry_potter.jpg",
-    "Funko Pop Tanjiro Hinokami": "imagenes/funkos/tanjiro.jpg",
-    "Funko Pop Nezuko Run": "imagenes/funkos/nezuko.jpg",
-    "Funko Pop Kakashi Lightning Blade": "imagenes/funkos/kakashi.jpg",
-    "Funko Pop Vegeta Power Up": "imagenes/funkos/vegeta.jpg",
-    "Funko Pop Grogu con Taza": "imagenes/funkos/grogu_taza.jpg",
-    "Funko Pop Darth Vader Lights": "imagenes/funkos/darth_vader.jpg",
-    "Funko Pop Joker Ledger": "imagenes/funkos/joker.jpg",
-    "Funko Pop Flash Justice League": "imagenes/funkos/flash.jpg",
-    "Funko Pop Thor Avengers": "imagenes/funkos/thor.jpg",
-    "Funko Pop Zoro Wano": "imagenes/funkos/zoro.jpg",
-    "Funko Pop Inosuke Zenitsu": "imagenes/funkos/inosuke.jpg",
-    "Funko Pop Sailor Moon Moon Stick": "imagenes/funkos/sailor_moon.jpg",
-    "Funko Pop Eren Yeager Titan": "imagenes/funkos/eren.jpg",
-    "Funko Pop Levi Ackerman Ackerman": "imagenes/funkos/levi.jpg",
-    "Funko Pop Sukuna on Throne": "imagenes/funkos/sukuna.jpg",
-    "Funko Pop Gojo Unmasked": "imagenes/funkos/gojo_unmasked.jpg",
-    "Funko Pop Sonic w/Emerald": "imagenes/funkos/sonic.jpg",
-    "Funko Pop Mario Kart": "imagenes/funkos/mario_kart.jpg",
-    "Funko Pop Zelda Breath of Wild": "imagenes/funkos/zelda.jpg",
-    "Funko Pop Deadpool Taco": "imagenes/funkos/deadpool.jpg",
 
-    // === ELECTRÓNICA ===
-    "Audífonos Gamer RGB Stereo": "imagenes/electronica/audifonos_rgb.jpg",
-    "Teclado Mecánico Switch Azul": "imagenes/electronica/teclado_azul.jpg",
-    "Mouse Óptico Gamer Pro": "imagenes/electronica/mouse_gamer.jpg",
-    "Cargador Portátil 20000mAh": "imagenes/electronica/powerbank.jpg",
-    "Bocina Bluetooth Impermeable": "imagenes/electronica/bocina.jpg",
-    "Lámpara de Escritorio Inteligente": "imagenes/electronica/lampara.jpg",
-    "Cable Tipo C Reforzado Uso Rudo": "imagenes/electronica/cable_c.jpg",
-    "Hub USB Extensor 4 Puertos": "imagenes/electronica/hub_usb.jpg",
-    "Soporte para Celular Aluminio": "imagenes/electronica/soporte_cel.jpg",
-    "Micrófono Streamer de Condensador": "imagenes/electronica/microfono.jpg",
-    "Aro de Luz LED Ajustable": "imagenes/electronica/aro_luz.jpg",
-    "Smartwatch Deportivo Notificaciones": "imagenes/electronica/smartwatch.jpg",
-    "Audífonos Inalámbricos Bluetooth 5.3": "imagenes/electronica/audifonos_bt.jpg",
-    "Ventilador Portátil USB Recargable": "imagenes/electronica/ventilador.jpg",
-    "Adaptador Bluetooth PC Inalámbrico": "imagenes/electronica/adaptador_bt.jpg",
-    "Tira LED RGB 5 metros App": "imagenes/electronica/tira_led.jpg",
-    "Control Inalámbrico PC/Android": "imagenes/electronica/control.jpg",
-    "Soporte Audífonos Gamer RGB": "imagenes/electronica/soporte_audifonos.jpg",
-    "Lector de Tarjetas SD Multi-Slot": "imagenes/electronica/lector_sd.jpg",
-    "Mini Proyector Cine en Casa": "imagenes/electronica/proyector.jpg",
-    "Consola Retro Portátil 400 Juegos": "imagenes/electronica/consola_retro.jpg",
-    "Cargador Inalámbrico Carga Rápida": "imagenes/electronica/cargador_inambrico.jpg",
-    "Funda Airpods Anime Silicona": "imagenes/electronica/funda_airpods.jpg",
-    "Báscula Digital de Alta Precisión": "imagenes/electronica/bascula.jpg",
-    "Limpiador de Teclados Gel Limpiador": "imagenes/electronica/gel_limpiador.jpg",
-    "Lente Macro Celular Kit": "imagenes/electronica/lente_cel.jpg",
-    "Organizador Cables Escritorio": "imagenes/electronica/organizador_cables.jpg",
-    "Batería Recargable AA Pack": "imagenes/electronica/baterias.jpg",
-    "Termómetro Digital Infrarrojo": "imagenes/electronica/termometro.jpg",
-    "Mini Bocina de Bolsillo Compacta": "imagenes/electronica/mini_bocina.jpg",
 
-    // === PELUCHES ===
-    "Peluche Totoro Sonriente": "imagenes/peluches/totoro.jpg",
-    "Peluche Kuromi Gothic": "imagenes/peluches/kuromi.jpg",
-    "Peluche Hello Kitty Clásica": "imagenes/peluches/hello_kitty.jpg",
-    "Peluche Pochacco Sport": "imagenes/peluches/pochacco.jpg",
-    "Peluche Cinnamoroll Pastel": "imagenes/peluches/cinnamoroll.jpg",
-    "Peluche Pikachu XL Soft": "imagenes/peluches/pikachu_xl.jpg",
-    "Peluche Snorlax Gigante Almohada": "imagenes/peluches/snorlax.jpg",
-    "Peluche Agente P Phineas": "imagenes/peluches/perry.jpg",
-    "Peluche Kirby Esfera Esponjosa": "imagenes/peluches/kirby.jpg",
-    "Peluche Chopper One Piece": "imagenes/peluches/chopper.jpg",
-    "Peluche Anya Forger Spy": "imagenes/peluches/anya.jpg",
-    "Peluche Nezuko en Caja": "imagenes/peluches/nezuko_caja.jpg",
-    "Peluche Pochita con Sierra": "imagenes/peluches/pochita.jpg",
-    "Peluche Gengar Sonrisa Macabra": "imagenes/peluches/gengar.jpg",
-    "Peluche Charmander de Fuego": "imagenes/peluches/charmander.jpg",
-    "Peluche Pulpo Reversible Feliz/Enojado": "imagenes/peluches/pulpo.jpg",
-    "Peluche Stitch Azul Espacial": "imagenes/peluches/stitch.jpg",
-    "Peluche Angel Rosa San Valentín": "imagenes/peluches/angel.jpg",
-    "Peluche Toothless Furia Nocturna": "imagenes/peluches/chimuelo.jpg",
-    "Peluche Axolote Kawaii Rosa": "imagenes/peluches/ajolote.jpg",
-    "Peluche Shiba Inu Cosplay": "imagenes/peluches/shiba.jpg",
-    "Peluche Oso Panda Escandalosos": "imagenes/peluches/panda.jpg",
-    "Peluche Dinosaurio Verde Abrazable": "imagenes/peluches/dinosaurio.jpg",
-    "Peluche Alpaca Pastel Arcoíris": "imagenes/peluches/alpaca.jpg",
-    "Peluche Aguacate Feliz Mediano": "imagenes/peluches/aguacate.jpg",
-    "Peluche Almohada Gato Largo": "imagenes/peluches/gato_largo.jpg",
-    "Peluche Rem Re:Zero Chibi": "imagenes/peluches/rem.jpg",
-    "Peluche Shinobu Kocho Demon": "imagenes/peluches/shinobu.jpg",
-    "Peluche Sonic Rápido Plush": "imagenes/peluches/sonic.jpg",
-    "Peluche Baby Yoda Grogu Mandorian": "imagenes/peluches/baby_yoda.jpg",
+    //categoria electronica//
+    { id: 41, name: "Secadora de cabello", category: "Electronica", price: 200, img: "lego23.jpg", description: "Exelente" },
+    { id: 42, name: "DRON con sensor", category: "Electronica", price: 110, img: "lego19.jpg", description: "Juguete volador, se controla con la palma de la mano" },
 
-    // === SUBLIMADOS ANIME ===
-    "Playera Sublimada Satoru Gojo": "img-20260628-wa0011.jpg",
-    "Playera Sublimada Toji fushiguro ": "img-20260628-wa0010.jpg",
-    "Playera Sublimada Nanami Kento": "img-20260628-wa0013.jpg",
-    "Playera Sublimada Eren & Mikasa": "img-20260628-wa0014.jpg",
-    "Playera Sublimada Negra Jujutsu Kaisen": "img-20260628-wa0015.jpg",
-    "Playera Sublimada Geto ": "img-20260628-wa0016.jpg",
-    "Sudadera Sublimada Attack on Titan": "imagenes/sublimados/sudadera_aot.jpg",
-    "Rompecabezas Sublimado Jujutsu Kaisen": "imagenes/sublimados/rompecabezas_jjk.jpg",
-    "Cojín Sublimado Tokyo Ghoul": "imagenes/sublimados/cojin_kaneki.jpg",
-    "Playera Sublimada Bleach Ichigo": "imagenes/sublimados/playera_ichigo.jpg",
+    //peluches//
+    { id: 71, name: "Peluche Totoro Sonriente", category: "Peluches", price: 299, img: "", description: "Tamaño: 30cm de alto. Material: Felpa extra suave hipoalergénica con relleno de algodón siliconado." },
+    { id: 72, name: "Peluche Kuromi Gothic", category: "Peluches", price: 280, img: "", description: "Tamaño: 25cm. Colección Sanrio vestido de gala gótica con detalles bordados de alta definición." },
 
-    // === SUBLIMADOS ANIMADOS ===
-    "Playera Sublimada Stitch & Snoppy": "imagenes/sublimados/taza_stitch.jpg",
-    "Playera Sublimada Snoppy": "img-20260628-wa0009.jpg",
-    "Playera Sublimada Five night": "img-20260628-wa0012.jpg",
-    "Playera Sublimada Perrito ": "img-20260628-wa0017.jpg",
-    "Cojín Sublimado Los Simpson Familia": "imagenes/sublimados/cojin_simpsons.jpg",
-    "Taza Sublimada Avatar Last Airbender": "imagenes/sublimados/taza_aang.jpg",
-    "Playera Sublimada Gravity Falls": "imagenes/sublimados/playera_gravity.jpg",
-    "Mousepad Sublimado Pokémon Iniciales": "imagenes/sublimados/mousepad_pokemon.jpg",
-    "Termo Sublimado Hora de Aventura": "imagenes/sublimados/termo_hda.jpg",
-    "Taza Sublimada Shrek Aesthetic": "imagenes/sublimados/taza_shrek.jpg",
+    //tazas//
+    { id: 131, name: "Taza Sublimada Naruto Rasengan", category: "Anime", price: 140, img: "", description: "Capacidad: 11 oz (325 ml). Material: Cerámica de alta calidad apta para microondas." },
+    
+    /* NUEVOS PRODUCTOS POR SUB-CATEGORÍA SOLICITADA */
 
-    // === SUBLIMADOS FRASES ===
-    "Taza Sublimada 'Primero mi Café, luego existo'": "imagenes/sublimados/taza_cafe.jpg",
-    "Playera Sublimada 'Gamer No Muere, Hace Respawn'": "imagenes/sublimados/playera_gamer.jpg",
-    "Termo Sublimado 'Motivación de Lunes'": "imagenes/sublimados/termo_lunes.jpg",
-    "Taza Sublimada 'No soy raro, soy edición limitada'": "imagenes/sublimados/taza_raro.jpg",
-    "Cojín Sublimado 'Mi lugar feliz'": "imagenes/sublimados/cojin_feliz.jpg",
-    "Gorra Sublimada 'Just Do It Later'": "imagenes/sublimados/gorra_later.jpg",
-    "Taza Sublimada 'Programador en cafeína'": "imagenes/sublimados/taza_dev.jpg",
-    "Playera Sublimada 'Nacido para ser Libre'": "imagenes/sublimados/playera_libre.jpg",
-    "Termo Sublimado 'Mantén la Calma y sé Geek'": "imagenes/sublimados/termo_geek.jpg",
-    "Taza Sublimada 'Sonríe, es un nuevo día'": "imagenes/sublimados/taza_sonrie.jpg",
+    { id: 201, name: "Gorra Snapback Akatsuki Bordada", category: "Tendencia", subcategory: "Gorras", price: 245, img: "", description: "Gorra de visera plana con el logo clásico de Akatsuki bordado en relieve de alta densidad." },
+    { id: 202, name: "Gorra Trucker Básica Ajustable", category: "Tendencia", subcategory: "Gorras", price: 150, img: "", description: "Estilo camionero clásico con malla transpirable posterior y broche de plástico ajustable." },
+    
+    { id: 203, name: "Cartera Minimalista de Fibra de Carbono", category: "Tendencia", subcategory: "Carteras", price: 320, img: "", description: "Tarjetero rígido con protección RFID integrada anti-clonación. Capacidad de 12 tarjetas." },
+    { id: 204, name: "Cartera de Piel Genuina Vintage", category: "Tendencia", subcategory: "Carteras", price: 280, img: "", description: "Billetera clásica de piel texturizada con compartimento doble y monedero integrado." },
+    
+    { id: 205, name: "Cinturón Táctico Militar Hebilla Quick Release", category: "Tendencia", subcategory: "Cinturones", price: 195, img: "", description: "Cinta de lona de nylon reforzada de uso rudo con hebilla de liberación rápida magnética." },
+    { id: 206, name: "Cinturón Casual de Piel Negra Estilo Minimal", category: "Tendencia", subcategory: "Cinturones", price: 220, img: "", description: "Hebilla metálica pulida mate en color plata con correa de piel premium de alta durabilidad." },
+    
+    { id: 207, name: "Juego de Destornilladores de Precisión 24 en 1", category: "Tendencia", subcategory: "Herramientas", price: 260, img: "", description: "Estuche de aluminio con puntas magnéticas de aleación S2 ideales para celulares y consolas." },
+    { id: 208, name: "Mini Pinza Multiusos 10 en 1 Acero Inoxidable", category: "Tendencia", subcategory: "Herramientas", price: 185, img: "", description: "Herramienta de bolsillo plegable que incluye navaja, destapador, sierra y pinza de presión." },
+    
+    { id: 209, name: "Collar Unisex Ojo de Agamotto Metálico", category: "Tendencia", subcategory: "Bisutería", price: 135, img: "", description: "Amuleto de aleación de zinc con acabados dorados envejecidos y gema central detallada." },
+    { id: 210, name: "Pulsera de Cuentas de Piedra Volcánica Natural", category: "Tendencia", subcategory: "Bisutería", price: 95, img: "", description: "Diseño elástico unisex con esferas de roca volcánica real de 8mm y detalles plateados." }
+];
 
-    // === OTROS ===
-    "Llavero Metálico Escudo Zelda": "imagenes/otros/llavero_zelda.jpg",
-    "Sticker Vinil Auto Akatsuki": "imagenes/otros/sticker_akatsuki.jpg",
-    "Pin Metálico Solapa Marvel": "imagenes/otros/pin_marvel.jpg",
-    "Taza Cerámica Reactiva al Calor": "imagenes/otros/taza_magica.jpg",
-    "Termo Plástico Libre de BPA": "imagenes/otros/termo_plastico.jpg",
-    "Poster de Tela Wallscroll": "imagenes/otros/wallscroll.jpg",
-    "Libreta Pasta Dura Hojas Raya": "imagenes/otros/libreta.jpg",
-    "Pluma de Gel Personaje Kawaii": "imagenes/otros/pluma.jpg",
-    "Bolsa Ecológica Reutilizable": "imagenes/otros/bolsa_eco.jpg",
-    "Pulsera Silicona Gamer Nocturna": "imagenes/otros/pulsera_gamer.jpg",
-    "Anillo Antiestrés Giratorio": "imagenes/otros/anillo.jpg",
-    "Caja Sorpresa Misteriosa Otaku": "imagenes/otros/caja_misteriosa.jpg",
-    "Espejo de Bolsillo Sailor Moon": "imagenes/otros/espejo_sailor.jpg",
-    "Cojín Decorativo Control Retro": "imagenes/otros/cojin_control.jpg",
-    "Separador de Libros Metálico": "imagenes/otros/separador.jpg",
-    "Monedas de Colección Anime": "imagenes/otros/monedas.jpg",
-    "Rompecabezas Mini Metal 3D": "imagenes/otros/puzzle_3d.jpg",
-    "Naipes Personalizados Anime Deck": "imagenes/otros/baraja.jpg",
-    "Tarjetero Aluminio Bloqueo RFID": "imagenes/otros/tarjetero.jpg",
-    "Paraguas Compacto Cambia con Agua": "imagenes/otros/paraguas.jpg",
-    "Funda de Almohada Estampado Digital": "imagenes/otros/funda_almohada.jpg",
-    "Gafete Porta Credencial Premium": "imagenes/otros/porta_gafete.jpg",
-    "Encendedor Recargable USB Plasma": "imagenes/otros/encendedor.jpg",
-    "Llavero de Goma Funko Pocket": "imagenes/otros/llavero_funko.jpg",
-    "Mini Figura Ciega Gashapon": "imagenes/otros/gashapon.jpg",
-    "Goma de Borrar Gigante Divertida": "imagenes/otros/goma_borrar.jpg",
-    "Sacapuntas Eléctrico Automático": "imagenes/otros/sacapuntas.jpg",
-    "Sello de Lacre Kit Medieval": "imagenes/otros/lacre_kit.jpg",
-    "Cinta Decorativa Washi Tape Pack": "imagenes/otros/washi_tape.jpg",
-    "Caja Musical Madera Sailor Moon Theme": "imagenes/otros/caja_musical.jpg"
-};
-
-// 2. CONSTRUCCIÓN AUTOMÁTICA DEL CATÁLOGO ASOCIANDO LAS IMÁGENES
-categories.forEach(cat => {
-    if (cat === "Sublimados") {
-        const subCats = ["Sublimados_Anime", "Sublimados_Animados", "Sublimados_Frases"];
-        subCats.forEach(subKey => {
-            const listNames = genericNames[subKey];
-            const subLabel = subKey.replace("Sublimados_", "");
-            listNames.forEach(name => {
-                let tipoArticulo = "Taza / Cerámica"; 
-                if (name.includes("Playera") || name.includes("Sudadera") || name.includes("Gorra")) tipoArticulo = "Ropa / Textil";
-                if (name.includes("Mousepad")) tipoArticulo = "Accesorio Gamer";
-
-                // Busca en el diccionario. Si no existe, usa una por defecto.
-                let rutaImagen = imagenesProductos[name] || "imagenes/placeholder.jpg";
-
-                productsData.push({
-                    id: globalId,
-                    name: name,
-                    category: "Sublimados",
-                    subCategory: subLabel, 
-                    type: tipoArticulo,
-                    price: 150 + ((globalId * 13) % 150),
-                    img: rutaImagen 
-                });
-                globalId++;
-            });
-        });
-    } else {
-        const listNames = genericNames[cat];
-        for (let i = 0; i < 30; i++) {
-            let priceBase = 120 + ((i * 17) % 480);
-            let name = listNames[i];
-            
-            // Busca en el diccionario. Si no existe, usa una por defecto.
-            let rutaImagen = imagenesProductos[name] || "imagenes/placeholder.jpg";
-
-            productsData.push({
-                id: globalId,
-                name: name,
-                category: cat,
-                subCategory: null,
-                type: cat, 
-                price: priceBase,
-                img: rutaImagen 
-            });
-            globalId++;
-        }
-
-    }
-});
-    } else {
-        const listNames = genericNames[cat];
-        for (let i = 0; i < 30; i++) {
-            let priceBase = 120 + ((i * 17) % 480);
-            
-            // Ruta por defecto para las categorías principales
-            let rutaImagen = "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80";
-            
-            // Ejemplo extra para que veas cómo cambiar imágenes localmente de otra categoría por su nombre:
-            if(listNames[i] === "Funko Pop Batman Metallic") {
-                rutaImagen = "imagenes/funkos/batman_metallic.jpg"; // <-- Ruta local ejemplo
-            }
-
-            productsData.push({
-                id: globalId,
-                name: listNames[i],
-                category: cat,
-                subCategory: null,
-                type: cat, 
-                price: priceBase,
-                img: rutaImagen // Cada elemento guarda su propia propiedad de imagen única
-            });
-            globalId++;
-        }
-    }
-});
-
-const numeroWhatsapp = "529990000000";
-
-const localizacionesCoords = {
-    "Maxcanu": [20.5847, -89.9856],
-    "Halacho": [20.4822, -90.0814],
-    "Granada": [20.5486, -89.9238],
-    "San fernando": [20.6277, -89.9572],
-    "Paraiso": [20.6125, -90.0458],
-    "Cepeda": [20.4311, -90.0381]
-};
-
-let activeMap = null;
-let activeMarker = null;
-let selectedCoordinates = null; 
 let cart = [];
+let mapInstance = null;
+let currentMarker = null;
+let selectedLat = null;
+let selectedLng = null;
+let currentSlideIndex = 0;
 
-// LÓGICA DEL CARRUSEL DE IMÁGENES
-let currentSlide = 0;
-const totalSlides = 5;
-let carouselInterval = null;
-
-function moveCarousel(direction) {
-    currentSlide += direction;
-    if (currentSlide >= totalSlides) {
-        currentSlide = 0;
-    } else if (currentSlide < 0) {
-        currentSlide = totalSlides - 1;
-    }
-    const track = document.getElementById("carouselTrack");
-    if(track) {
-        track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    }
-    resetCarouselTimer();
+// LÓGICA DE CONTROL DEL NUEVO CARRUSEL
+function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-slide');
+    if (index >= slides.length) currentSlideIndex = 0;
+    if (index < 0) currentSlideIndex = slides.length - 1;
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[currentSlideIndex].classList.add('active');
 }
 
-function startCarouselTimer() {
-    carouselInterval = setInterval(() => {
-        moveCarousel(1);
-    }, 5000);
+function changeSlide(direction) {
+    currentSlideIndex += direction;
+    showSlide(currentSlideIndex);
 }
 
-function resetCarouselTimer() {
-    clearInterval(carouselInterval);
-    startCarouselTimer();
-}
+// Inicialización automática cada 5 segundos
+setInterval(() => {
+    changeSlide(1);
+}, 5000);
 
-window.onload = function() {
-    renderProducts(productsData);
-    startCarouselTimer();
-};
+function openLoginInterface() { document.getElementById("loginContainer").style.display = "flex"; }
+function closeLoginInterface() { document.getElementById("loginContainer").style.display = "none"; }
+function showRegisterInterface() { document.getElementById("loginContainer").style.display = "none"; document.getElementById("registerContainer").style.display = "flex"; }
+function showLoginInterface() { document.getElementById("registerContainer").style.display = "none"; document.getElementById("loginContainer").style.display = "flex"; }
+function login() { alert("Sesión iniciada."); closeLoginInterface(); }
+function submitRegistration() { alert("Cuenta creada."); showLoginInterface(); }
 
-function renderProducts(list) {
+function renderProducts(productsList) {
     const grid = document.getElementById("productGrid");
     grid.innerHTML = "";
-    if(list.length === 0){
-        grid.innerHTML = `<p style="grid-column:1/-1; text-align:center; padding:40px; color:var(--ml-gray);">No hay artículos disponibles.</p>`;
+
+    if(productsList.length === 0) {
+        grid.innerHTML = "<p style='grid-column:1/-1; text-align:center; color:#666666; padding:40px;'>Próximamente más diseños.</p>";
         return;
     }
-    list.forEach(prod => {
+
+    productsList.forEach(prod => {
+        let nameLower = prod.name.toLowerCase();
+        let fallbackUrl = "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=300&auto=format&fit=crop";
+
+        if (nameLower.includes("funko")) fallbackUrl = "https://images.unsplash.com/photo-1608889174637-3c99800e1791?q=80&w=300&auto=format&fit=crop";
+        else if (nameLower.includes("peluche")) fallbackUrl = "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=300&auto=format&fit=crop";
+        else if (nameLower.includes("taza") || nameLower.includes("termo")) fallbackUrl = "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=300&auto=format&fit=crop";
+        else if (nameLower.includes("gorra")) fallbackUrl = "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=300&auto=format&fit=crop";
+        else if (nameLower.includes("cartera")) fallbackUrl = "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=300&auto=format&fit=crop";
+        else if (nameLower.includes("cinturón") || nameLower.includes("cinturon")) fallbackUrl = "https://images.unsplash.com/photo-1624222247344-550fb8ef986d?q=80&w=300&auto=format&fit=crop";
+        else if (prod.subcategory === "Herramientas") fallbackUrl = "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?q=80&w=300&auto=format&fit=crop";
+        else if (prod.subcategory === "Bisutería") fallbackUrl = "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=300&auto=format&fit=crop";
+        else if (prod.category === "Electronica") fallbackUrl = "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=300&auto=format&fit=crop";
+        else if (nameLower.includes("playera")) fallbackUrl = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=300&auto=format&fit=crop";
+
+        const isPlayera = nameLower.includes("playera");
+        const specLabel = isPlayera ? "Especificación Textil" : "Ficha Técnica / Características";
+
         const card = document.createElement("div");
         card.className = "card";
-        card.setAttribute("onclick", `openVipModal(${prod.id})`);
         card.innerHTML = `
-            <img src="${prod.img}" alt="${prod.name}">
+            <img src="${prod.img ? prod.img : 'error-trigger.png'}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackUrl}';">
             <div class="card-content">
-                <div class="price">$${prod.price} MXN</div>
-                <div class="shipping-tag">Envío Local Express</div>
-                <div class="product-name">${prod.name}</div>
-                <button class="buy-now-btn" onclick="event.stopPropagation(); openVipModal(${prod.id})">Ver Detalles</button>
+                <div>
+                    <div class="price">$${prod.price} MXN</div>
+                    <div class="product-name">${prod.name}</div>
+                    <div class="product-description"><strong>${specLabel}:</strong> ${prod.description || 'No disponible'}</div>
+                    
+                    ${isPlayera ? `
+                    <div class="clothing-selection-container">
+                        <div class="select-wrapper">
+                            <label for="size-${prod.id}">Talla:</label>
+                            <select id="size-${prod.id}" class="product-size-select">
+                                <option value="CH">Chica (CH)</option>
+                                <option value="M" selected>Mediana (M)</option>
+                                <option value="G">Grande (G)</option>
+                                <option value="XG">Extra Grande (XG)</option>
+                            </select>
+                        </div>
+                        <div class="select-wrapper">
+                            <label for="gender-${prod.id}">Corte:</label>
+                            <select id="gender-${prod.id}" class="product-gender-select">
+                                <option value="Hombre" selected>Hombre</option>
+                                <option value="Mujer">Mujer</option>
+                            </select>
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+                <button class="buy-btn" onclick="addToCart(${prod.id}, ${isPlayera})">Agregar al Carrito</button>
             </div>
         `;
         grid.appendChild(card);
     });
 }
 
-function filterCategory(category, element) {
-    const links = document.querySelectorAll('.menu-links a');
-    links.forEach(l => l.classList.remove('active-menu'));
-    
-    if(element) {
-        element.classList.add('active-menu');
-    } else {
-        links.forEach(l => {
-            if(l.innerText === category || (category === "Todo" && l.innerText.includes("Todos"))) {
-                l.classList.add('active-menu');
-            }
-        });
-    }
-    
-    if(category === "Todo") {
-        document.getElementById("sectionTitle").innerText = "Todos los productos del catálogo";
-        renderProducts(productsData);
-    } else if (category.startsWith("Sublimados - ")) {
-        const subFiltro = category.replace("Sublimados - ", "");
-        const filtrados = productsData.filter(p => p.category === "Sublimados" && p.subCategory === subFiltro);
-        document.getElementById("sectionTitle").innerText = `Sublimados: ${subFiltro} (${filtrados.length} Disponibles)`;
-        renderProducts(filtrados);
-    } else {
-        const filtrados = productsData.filter(p => p.category === category);
-        document.getElementById("sectionTitle").innerText = `Categoría: ${category} (${filtrados.length} Disponibles)`;
-        renderProducts(filtrados);
-    }
-    
-    document.getElementById("sectionTitle").scrollIntoView({ behavior: 'smooth' });
-}
+function toggleCart() { document.getElementById("cartSidebar").classList.toggle("open"); }
 
-function searchProduct() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    const matches = productsData.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
-    document.getElementById("sectionTitle").innerText = `Resultados para: "${query}"`;
-    renderProducts(matches);
-}
-
-function initLeafletMap(containerId, initialLocation) {
-    if (activeMap) { activeMap.remove(); }
-    const center = localizacionesCoords[initialLocation] || [20.5847, -89.9856];
-    selectedCoordinates = { lat: center[0], lng: center[1] };
-
-    activeMap = L.map(containerId).setView(center, 14);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap'
-    }).addTo(activeMap);
-
-    activeMarker = L.marker(center, { draggable: true }).addTo(activeMap);
-
-    activeMarker.on('dragend', function () {
-        const pos = activeMarker.getLatLng();
-        selectedCoordinates = { lat: pos.lat, lng: pos.lng };
-    });
-
-    activeMap.on('click', function(e) {
-        activeMarker.setLatLng(e.latlng);
-        selectedCoordinates = { lat: e.latlng.lat, lng: e.latlng.lng };
-    });
-}
-
-function updateMapFocus(prefix) {
-    const loc = document.getElementById(`${prefix}LocationSelect`).value;
-    const newCenter = localizacionesCoords[loc];
-    if(newCenter && activeMap) {
-        activeMap.setView(newCenter, 14);
-        activeMarker.setLatLng(newCenter);
-        selectedCoordinates = { lat: newCenter[0], lng: newCenter[1] };
-    }
-}
-
-// Conservamos la ficha de especificaciones intacta
-function generateSpecsHTML(prod) {
-    let html = `<div class="specs-box">`;
-    
-    if (prod.type === "Electronica") {
-        html += `<h3>⚡ Especificaciones Técnicas</h3>
-        <table class="specs-table">
-            <tr><td class="spec-name">Conectividad</td><td>Bluetooth 5.2 / USB Plug & Play</td></tr>
-            <tr><td class="spec-name">Alimentación</td><td>Batería recargable integrada / Cable Tipo C</td></tr>
-            <tr><td class="spec-name">Compatibilidad</td><td>Android, iOS, Windows, Mac y Consolas</td></tr>
-            <tr><td class="spec-name">Iluminación</td><td>LED RGB Inteligente Dinámica</td></tr>
-            <tr><td class="spec-name">Condición</td><td>Nuevo en Caja Sellada</td></tr>
-        </table>`;
+function addToCart(id, isPlayera) { 
+    const p = productsData.find(x => x.id === id); 
+    if(p){
+        let itemToAdd = { ...p };
+        if(isPlayera) {
+            const sizeSelect = document.getElementById(`size-${id}`);
+            const genderSelect = document.getElementById(`gender-${id}`);
+            itemToAdd.chosenSize = sizeSelect ? sizeSelect.value : "M";
+            itemToAdd.chosenGender = genderSelect ? genderSelect.value : "Hombre";
+        }
+        cart.push(itemToAdd); 
+        updateCartUI(); 
+        document.getElementById("cartSidebar").classList.add("open"); 
     } 
-    else if (prod.type === "Ropa / Textil") {
-        html += `<h3>👕 Ficha de Prenda</h3>
-        <table class="specs-table">
-            <tr><td class="spec-name">Material</td><td>100% Algodón Premium / Poliéster tacto algodón</td></tr>
-            <tr><td class="spec-name">Tipo de Estampado</td><td>Sublimación HD de alta durabilidad (Cero grietas)</td></tr>
-            <tr><td class="spec-name">Tallas Disponibles</td><td>S, M, G (Corte Unisex)</td></tr>
-            <tr><td class="spec-name">Cuidado diario</td><td>Lavar a máquina con agua fría, no usar secadora</td></tr>
-        </table>`;
-    } 
-    else if (prod.type === "Funkos") {
-        html += `<h3>📦 Detalles de Colección</h3>
-        <table class="specs-table">
-            <tr><td class="spec-name">Material</td><td>Vinil Premium de Alta Calidad</td></tr>
-            <tr><td class="spec-name">Altura Aprox.</td><td>10 cm (Tamaño Estándar de exhibición)</td></tr>
-            <tr><td class="spec-name">Línea Pop</td><td>Animation / Movies / Games Special Edition</td></tr>
-            <tr><td class="spec-name">Caja</td><td>Incluye ventana transparente protectora original</td></tr>
-        </table>`;
-    } 
-    else if (prod.type === "Peluches") {
-        html += `<h3>🧸 Materiales Kawaii</h3>
-        <table class="specs-table">
-            <tr><td class="spec-name">Tejido Exterior</td><td>Felpa extra suave Hipoalergénica</td></tr>
-            <tr><td class="spec-name">Relleno Interno</td><td>Algodón PP Sintético indeformable y esponjoso</td></tr>
-            <tr><td class="spec-name">Seguridad</td><td>Detalles bordados sin piezas plásticas sueltas</td></tr>
-            <tr><td class="spec-name">Tamaño</td><td>Mediano / Ideal para abrazos y decoración</td></tr>
-        </table>`;
-    } 
-    else if (prod.type === "Taza / Cerámica") {
-        html += `<h3>☕ Especificaciones de Vajilla</h3>
-        <table class="specs-table">
-            <tr><td class="spec-name">Capacidad</td><td>11 oz (325 ml estándar)</td></tr>
-            <tr><td class="spec-name">Material</td><td>Cerámica de alta densidad AAA blanca</td></tr>
-            <tr><td class="spec-name">Resistencia</td><td>Apta para Microondas y lavavajillas</td></tr>
-            <tr><td class="spec-name">Acabado</td><td>Brillante reflectivo con tintas de importación</td></tr>
-        </table>`;
-    } 
-    else {
-        html += `<h3>✨ Detalles del Coleccionable</h3>
-        <table class="specs-table">
-            <tr><td class="spec-name">Tipo</td><td>Artículo Oficial de Colección Geek</td></tr>
-            <tr><td class="spec-name">Acabado</td><td>Detallado de alta fidelidad al personaje</td></tr>
-            <tr><td class="spec-name">Uso Sugerido</td><td>Regalos, Decoración de setups o uso diario</td></tr>
-        </table>`;
-    }
-    
-    html += `</div>`;
-    return html;
 }
 
-function openVipModal(id) {
-    const prod = productsData.find(x => x.id === id);
-    const modal = document.getElementById("vipModal");
-    const body = document.getElementById("vipModalBody");
-    
-    const categoriaTexto = prod.subCategory ? `${prod.category} (${prod.subCategory})` : prod.category;
-    const specsHTML = generateSpecsHTML(prod);
-
-    // Selector de tallas S, M, G si el artículo es textil
-    let sizeSelectorHTML = "";
-    if (prod.name.includes("Playera") || prod.name.includes("Sudadera")) {
-        sizeSelectorHTML = `
-            <div class="size-selector-box">
-                <h4>📐 Selecciona tu Talla:</h4>
-                <select id="vipSizeSelect" class="location-select">
-                    <option value="S">Chica (S)</option>
-                    <option value="M">Mediana (M)</option>
-                    <option value="G">Grande (G)</option>
-                </select>
-            </div>
-        `;
-    }
-
-    body.innerHTML = `
-        <div class="vip-left">
-            <div class="vip-img-container">
-                <img src="${prod.img}">
-            </div>
-            ${specsHTML}
-        </div>
-        
-        <div class="vip-right">
-            <span class="vip-condition">Categoría: ${categoriaTexto} | Coleccionable</span>
-            <h1 class="vip-title">${prod.name}</h1>
-            <div class="vip-price">$${prod.price} MXN</div>
-            
-            <div class="location-map-box">
-                <h4>📍 Lugar de Entrega Express:</h4>
-                <select id="vipLocationSelect" class="location-select" onchange="updateMapFocus('vip')">
-                    <option value="Maxcanu">Maxcanú</option>
-                    <option value="Halacho">Halachó</option>
-                    <option value="Granada">Granada</option>
-                    <option value="San fernando">San Fernando</option>
-                    <option value="Paraiso">Paraíso</option>
-                    <option value="Cepeda">Cepeda</option>
-                </select>
-                <div id="vipMap" class="map-display"></div>
-                <span class="map-instruction">Arrastra el pin o toca sobre el mapa para marcar tu entrega exacta.</span>
-            </div>
-
-            ${sizeSelectorHTML}
-
-            <div class="vip-actions">
-                <button class="btn-primary-ml" onclick="buyNowDirect(${prod.id})">Comprar ahora</button>
-                <button class="btn-secondary-ml" onclick="addToCart(${prod.id})">Agregar al carrito</button>
-            </div>
-        </div>
-    `;
-    modal.classList.add("open");
-    setTimeout(() => { initLeafletMap('vipMap', 'Maxcanu'); }, 200);
-}
-
-function closeVipModal() { document.getElementById("vipModal").classList.remove("open"); }
-
-function toggleCart() {
-    const sidebar = document.getElementById("cartSidebar");
-    sidebar.classList.toggle("open");
-    if(sidebar.classList.contains("open")) {
-        setTimeout(() => { initLeafletMap('cartMap', 'Maxcanu'); }, 200);
-    }
-}
-
-function addToCart(id) {
-    const prod = productsData.find(x => x.id === id);
-    let chosenSize = null;
-    const sizeSelect = document.getElementById("vipSizeSelect");
-    if(sizeSelect) { chosenSize = sizeSelect.value; }
-
-    const existing = cart.find(item => item.product.id === id && item.size === chosenSize);
-    if (existing) { 
-        existing.quantity += 1; 
-    } else { 
-        cart.push({ product: prod, quantity: 1, size: chosenSize }); 
-    }
-    
-    updateCartUI();
-    closeVipModal();
-    toggleCart();
-}
-
-function updateQty(index, offset) {
-    cart[index].quantity += offset;
-    if(cart[index].quantity <= 0) cart.splice(index, 1);
-    updateCartUI();
-}
-
+function removeFromCart(i) { cart.splice(i, 1); updateCartUI(); }
 function clearCart() { cart = []; updateCartUI(); }
 
 function updateCartUI() {
-    let totalItems = 0; let totalPrice = 0;
-    cart.forEach(item => { totalItems += item.quantity; totalPrice += (item.product.price * item.quantity); });
-    document.getElementById("menuCartCount").innerText = totalItems;
-    document.getElementById("cartHeaderCount").innerText = totalItems;
-    
+    document.getElementById("menuCartCount").innerText = cart.length;
+    document.getElementById("cartHeaderCount").innerText = cart.length;
     const container = document.getElementById("cartItemsContainer");
     container.innerHTML = "";
-    if(cart.length === 0) {
-        container.innerHTML = `<p style="text-align:center; color:var(--ml-gray); padding-top:30px;">Tu carrito está vacío.</p>`;
+    let total = 0;
+    
+    if(cart.length === 0){ 
+        container.innerHTML = "<p style='text-align:center; color:#666666;'>Tu carrito está vacío.</p>"; 
     } else {
         cart.forEach((item, index) => {
-            const sizeLabel = item.size ? `<span style="background:var(--ml-blue-light); color:var(--ml-blue-dark); font-size:11px; padding:2px 6px; border-radius:3px; font-weight:bold; margin-left:5px;">Talla: ${item.size}</span>` : "";
+            total += item.price;
+            const clothingSpecs = (item.chosenSize && item.chosenGender) ? ` [${item.chosenGender} - Talla: ${item.chosenSize}]` : '';
             const div = document.createElement("div");
             div.className = "cart-item";
             div.innerHTML = `
-                <img src="${item.product.img}">
-                <div style="flex:1;">
-                    <div style="font-size:13px; font-weight:600; color:var(--ml-dark);">${item.product.name} ${sizeLabel}</div>
-                    <div style="color:var(--ml-dark); font-weight:bold;">$${item.product.price} MXN</div>
-                    <div class="qty-control"><button onclick="updateQty(${index}, -1)">-</button><span>${item.quantity}</span><button onclick="updateQty(${index}, 1)">+</button></div>
+                <div class="cart-item-details">
+                    <div class="cart-item-title">${item.name}${clothingSpecs}</div>
+                    <div class="cart-item-price">$${item.price} MXN</div>
                 </div>
+                <button class="remove-item-btn" onclick="removeFromCart(${index})">Quitar</button>
             `;
             container.appendChild(div);
         });
     }
-    document.getElementById("cartTotalValue").innerText = `$${totalPrice} MXN`;
+    document.getElementById("cartTotalValue").innerText = `$${total} MXN`;
 }
 
-function buyNowDirect(id) {
-    const prod = productsData.find(x => x.id === id);
-    const localidad = document.getElementById("vipLocationSelect").value;
-    const mapaEnlace = `https://www.google.com/maps?q=${selectedCoordinates.lat},${selectedCoordinates.lng}`;
-    const etiquetaCat = prod.subCategory ? `${prod.category} (${prod.subCategory})` : prod.category;
+function openCheckout() { 
+    if(cart.length === 0) return; 
+    document.getElementById("cartSidebar").classList.remove("open"); 
+    document.getElementById("checkoutOverlay").style.display = "flex"; 
     
-    let sizeDetails = "";
-    const sizeSelect = document.getElementById("vipSizeSelect");
-    if(sizeSelect) { sizeDetails = ` [Talla elegida: ${sizeSelect.value}]`; }
-
-    let msg = `¡Hola Dcharly'z! Te presento una compra rápida:\n\n`;
-    msg += `📦 ARTÍCULO GEEK:\n- ${prod.name}${sizeDetails} (Cat: ${etiquetaCat}) (Cant: 1) - $${prod.price} MXN\n\n`;
-    msg += `📍 LOCALIDAD DETECTADA: ${localidad}\n`;
-    msg += `🗺️ UBICACIÓN EXACTA DE ENTREGA:\n${mapaEnlace}\n\n`;
-    msg += `💰 TOTAL DEL PEDIDO: $${prod.price} MXN`;
-
-    window.open(`https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
-    closeVipModal();
+    selectedLat = null;
+    selectedLng = null;
+    
+    handleLocationChange();
 }
 
-function checkoutCartOrder() {
-    if(cart.length === 0) return;
-    const localidad = document.getElementById("cartLocationSelect").value;
-    const mapaEnlace = `https://www.google.com/maps?q=${selectedCoordinates.lat},${selectedCoordinates.lng}`;
-    let total = 0;
+function closeCheckout() { document.getElementById("checkoutOverlay").style.display = "none"; }
+
+function handleLocationChange() {
+    let selectLoc = document.getElementById("checkoutLocation");
+    let municipioSeleccionado = selectLoc.value;
+    let costEnvio = parseInt(selectLoc.options[selectLoc.selectedIndex].getAttribute("data-cost"));
+    let subtotal = cart.reduce((s,i) => s + i.price, 0);
+    let totalNeto = subtotal + costEnvio;
     
-    let msg = `¡Hola Dcharly'z! Pedido múltiple generado por carrito:\n\n`;
-    msg += `🛒 ARTÍCULOS SELECCIONADOS:\n`;
-    cart.forEach((item, idx) => {
-        let sub = item.product.price * item.quantity;
-        total += sub;
-        const etiquetaCat = item.product.subCategory ? `${item.product.category} (${item.product.subCategory})` : item.product.category;
-        const sizeString = item.size ? ` [Talla: ${item.size}]` : "";
-        msg += `${idx + 1}. [${etiquetaCat}] ${item.product.name}${sizeString} (Cant: ${item.quantity}) - $${sub} MXN\n`;
+    document.getElementById("mapLabel").innerHTML = `
+        🗺️ Región de Entrega activa: ${municipioSeleccionado}. Arrastra el marcador rojo hasta tu casa.
+    `;
+
+    document.getElementById("checkoutSummaryText").innerHTML = `
+        Artículos: <b>${cart.length}</b> | Subtotal: <b>$${subtotal} MXN</b><br>
+        Envío (${municipioSeleccionado}): <b>$${costEnvio} MXN</b><br>
+        Total Neto: <span style='color:#0056b3; font-weight:bold;'>$${totalNeto} MXN</span>
+    `;
+    
+    const coords = locationCoordinates[municipioSeleccionado] || [20.6592, -90.0019];
+    selectedLat = coords[0];
+    selectedLng = coords[1];
+    
+    setTimeout(() => {
+        if (!mapInstance) {
+            mapInstance = L.map('interactiveMap').setView(coords, 14);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap'
+            }).addTo(mapInstance);
+            
+            currentMarker = L.marker(coords, { draggable: true }).addTo(mapInstance);
+            
+            currentMarker.on('dragend', function(e) {
+                let position = currentMarker.getLatLng();
+                selectedLat = position.lat;
+                selectedLng = position.lng;
+            });
+
+            mapInstance.on('click', function(e) {
+                currentMarker.setLatLng(e.latlng);
+                selectedLat = e.latlng.lat;
+                selectedLng = e.latlng.lng;
+            });
+        } else {
+            mapInstance.setView(coords, 14);
+            currentMarker.setLatLng(coords);
+            mapInstance.invalidateSize();
+        }
+    }, 200);
+}
+
+function sendOrderWhatsApp() {
+    let name = document.getElementById("checkoutName").value.trim();
+    let address = document.getElementById("checkoutAddress").value.trim();
+    let selectLoc = document.getElementById("checkoutLocation");
+    let municipio = selectLoc.value;
+    let costEnvio = parseInt(selectLoc.options[selectLoc.selectedIndex].getAttribute("data-cost"));
+    
+    if(name === "" || address === "") { alert("Por favor, completa tus datos de entrega."); return; }
+    
+    let telefono = "529990000000"; 
+    let subtotal = cart.reduce((s,i) => s + i.price, 0);
+    let totalNeto = subtotal + costEnvio;
+    
+    let googleMapsLink = `https://www.google.com/maps?q=${selectedLat},${selectedLng}`;
+    
+    let msg = `¡Hola Dcharly'z! Nuevo Pedido Web:\n\n👤 Cliente: ${name}\n📍 Municipio/Región: ${municipio}\n🏠 Dirección: ${address}\n📌 Ubicación de satélite fija:\n${googleMapsLink}\n\n🛒 Productos:\n`;
+    
+    cart.forEach((item, index) => { 
+        const clothingSpecs = (item.chosenSize && item.chosenGender) ? ` (${item.chosenGender} - Talla: ${item.chosenSize})` : '';
+        msg += `${index + 1}. ${item.name}${clothingSpecs} - $${item.price} MXN\n`; 
     });
+    msg += `\n📦 Costo Envío: $${costEnvio} MXN\n💰 Total General: $${totalNeto} MXN`;
     
-    msg += `\n📍 LOCALIDAD DE DESTINO: ${localidad}\n`;
-    msg += `🗺️ UBICACIÓN MAPA:\n${mapaEnlace}\n\n`;
-    msg += `💰 TOTAL ACUMULADO: $${total} MXN`;
-
-    window.open(`https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
-    clearCart();
-    toggleCart();
+    window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`, '_blank');
+    clearCart(); 
+    closeCheckout();
 }
+
+function filterCategory(category, element) {
+    const links = document.querySelectorAll('.menu a, .dropdown-content a');
+    links.forEach(l => l.classList.remove('active-menu'));
+    if(element) element.classList.add('active-menu');
+
+    const subcatBar = document.getElementById("subcatFilters");
+
+    if(category === "Todo") {
+        subcatBar.style.display = "none";
+        document.getElementById("sectionTitle").innerText = "Colección Destacada";
+        renderProducts(productsData);
+    } else if(category === 'Tendencia') {
+        // Mostrar la barra de subcategorías si entramos a "De todo un poco"
+        subcatBar.style.display = "flex";
+        document.getElementById("sectionTitle").innerText = "Catálogo: De todo un poco";
+        // Resetear píldora activa de subcategoría
+        const subBtns = document.querySelectorAll('.subcat-btn');
+        subBtns.forEach(b => b.classList.remove('active-sub'));
+        subBtns[0].classList.add('active-sub');
+        
+        renderProducts(productsData.filter(p => p.category === "Tendencia"));
+    } else {
+        subcatBar.style.display = "none";
+        document.getElementById("sectionTitle").innerText = `Catálogo: ${category}`;
+        renderProducts(productsData.filter(p => p.category === category));
+    }
+}
+
+// NUEVO: FILTRADO DE SUB-CATEGORÍAS INTERNAS
+function filterSubcategory(subcat) {
+    const subBtns = document.querySelectorAll('.subcat-btn');
+    subBtns.forEach(b => b.classList.remove('active-sub'));
+    event.target.classList.add('active-sub');
+
+    if (subcat === 'Todas') {
+        renderProducts(productsData.filter(p => p.category === "Tendencia"));
+    } else {
+        renderProducts(productsData.filter(p => p.category === "Tendencia" && p.subcategory === subcat));
+    }
+}
+
+function searchProduct() {
+    const query = document.getElementById("searchInput").value.toLowerCase().trim();
+    document.getElementById("subcatFilters").style.display = "none";
+    if(query === "") { renderProducts(productsData); document.getElementById("sectionTitle").innerText = "Colección Destacada"; return; }
+    const filtered = productsData.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+    document.getElementById("sectionTitle").innerText = `Resultados de: "${query}"`;
+    renderProducts(filtered);
+}
+
+window.onload = function() { renderProducts(productsData); };
 </script>
 </body>
 </html>
