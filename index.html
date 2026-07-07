@@ -38,9 +38,10 @@ body{
 }
 
 .login-box, .register-box {
-    width: 400px;
+    width: 90%;
+    max-width: 400px;
     background: #ffffff;
-    padding: 45px 35px;
+    padding: 30px 20px;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     text-align: center;
@@ -50,12 +51,12 @@ body{
 .login-box h1, .register-box h1 {
     color:#0056b3;
     margin-bottom: 10px;
-    font-size:32px;
+    font-size:28px;
     font-weight: 800;
 }
 
 .login-box p, .register-box p {
-    margin-bottom:25px;
+    margin-bottom:20px;
     color:#666666;
     font-size: 14px;
 }
@@ -106,19 +107,27 @@ body{
     text-decoration:underline;
 }
 
-/* ===== HEADER Y NAVEGACIÓN ===== */
+/* ===== HEADER Y NAVEGACIÓN RESPONSIVA ===== */
 header{
     background:#ffffff;
-    padding:15px 40px;
+    padding:15px 20px;
     border-bottom: 1px solid #e2e8f0;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .topbar{
     display:flex;
-    justify-content:space-between;
+    flex-direction: column;
     align-items:center;
-    gap:20px;
+    gap:15px;
+}
+
+@media(min-width: 992px) {
+    .topbar {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
 }
 
 .logo-container{
@@ -128,30 +137,26 @@ header{
 }
 
 .logo-img {
-    height: 75px;
+    height: 65px;
     width: auto;
     object-fit: contain;
 }
 
 .search-box{
-    flex:1;
+    width: 100%;
     display:flex;
-    max-width:400px;
+    max-width: 500px;
 }
 
 .search-box input{
     width:100%;
-    padding:10px 15px;
+    padding:12px 15px;
     border: 1px solid #cccccc;
     background: #ffffff;
     color: #333333;
     outline:none;
     border-radius:6px 0 0 6px;
     font-size: 14px;
-}
-
-.search-box input:focus {
-    border-color: #0056b3;
 }
 
 .search-box button{
@@ -162,38 +167,54 @@ header{
     font-weight: bold;
     border-radius:0 6px 6px 0;
     cursor:pointer;
-    transition: 0.2s;
-}
-
-.search-box button:hover {
-    background: #004085;
 }
 
 .menu{
     display:flex;
-    align-items: center;
-    gap:10px;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 5px;
+    gap: 8px;
+    scrollbar-width: none; /* Ocultar scroll en Firefox */
+}
+.menu::-webkit-scrollbar {
+    display: none; /* Ocultar scroll en Chrome/Safari */
+}
+
+@media(min-width: 992px) {
+    .menu {
+        overflow-x: visible;
+        width: auto;
+        justify-content: flex-end;
+    }
 }
 
 .menu a, .dropdown-btn{
     text-decoration:none;
     color:#333333;
     font-weight:600;
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-radius: 6px;
-    transition: 0.2s;
-    background: transparent;
+    white-space: nowrap;
+    background: #f4f6f9;
     border: none;
-    font-size: 14px;
+    font-size: 13px;
     cursor: pointer;
+    display: inline-block;
+}
+
+@media(min-width: 992px) {
+    .menu a, .dropdown-btn {
+        background: transparent;
+    }
 }
 
 .menu a:hover, .menu a.active-menu, .dropdown-btn:hover {
     color: #0056b3;
-    background: rgba(0, 86, 179, 0.05);
+    background: rgba(0, 86, 179, 0.08);
 }
 
-/* MENÚ DESPLEGABLE PARA SUBLIMADOS */
+/* MENÚ DESPLEGABLE */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -203,7 +224,7 @@ header{
     display: none;
     position: absolute;
     background-color: #ffffff;
-    min-width: 200px;
+    min-width: 180px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
     border: 1px solid #e2e8f0;
     border-radius: 6px;
@@ -221,11 +242,6 @@ header{
     font-weight: 500;
 }
 
-.dropdown-content a:hover {
-    background-color: #f4f6f9;
-    color: #0056b3;
-}
-
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -234,30 +250,21 @@ header{
     background: #f4f6f9;
     color: #333333;
     border: 1px solid #cccccc;
-    padding: 8px 16px;
+    padding: 10px 14px;
     font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: 0.2s;
-    font-size: 14px;
-}
-
-.login-menu-btn:hover {
-    background: #e2e8f0;
+    gap: 6px;
+    font-size: 13px;
+    white-space: nowrap;
 }
 
 .cart-menu-btn {
     border-color: #0056b3;
     background: rgba(0, 86, 179, 0.05);
     color: #0056b3;
-}
-
-.cart-menu-btn:hover {
-    background: #0056b3;
-    color: white;
 }
 
 .cart-count {
@@ -268,12 +275,13 @@ header{
     font-size: 11px;
 }
 
-/* ===== CARRITO LATERAL ===== */
+/* ===== CARRITO LATERAL ADAPTADO A MÓVILES ===== */
 .cart-sidebar {
     position: fixed;
     top: 0;
-    right: -400px;
-    width: 400px;
+    right: -100%;
+    width: 100%;
+    max-width: 400px;
     height: 100vh;
     background: #ffffff;
     border-left: 1px solid #e2e8f0;
@@ -290,130 +298,55 @@ header{
 
 .cart-header {
     background: #f4f6f9;
-    color: #333333;
     padding: 20px;
     border-bottom: 1px solid #e2e8f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.cart-header h2 {
-    font-size: 18px;
-    color: #0056b3;
 }
 
 .close-cart {
     background: transparent;
     border: none;
     color: #999999;
-    font-size: 24px;
+    font-size: 30px;
     cursor: pointer;
-}
-
-.close-cart:hover {
-    color: #333333;
+    padding: 5px 10px;
 }
 
 .cart-items-container {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    padding: 15px;
 }
 
 .cart-item {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     padding-bottom: 15px;
     margin-bottom: 15px;
     border-bottom: 1px solid #e2e8f0;
     align-items: center;
 }
 
-.cart-item-details {
-    flex: 1;
-}
-
-.cart-item-title {
-    font-size: 14px;
-    color: #333333;
-    font-weight: 600;
-    margin-bottom: 3px;
-}
-
-.cart-item-price {
-    color: #0056b3;
-    font-weight: bold;
-}
-
-.remove-item-btn {
-    background: transparent;
-    border: none;
-    color: #cc0000;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.remove-item-btn:hover {
-    text-decoration: underline;
-}
-
 .cart-footer {
     background: #f4f6f9;
     padding: 20px;
-    border-top: 1px solid #e2e8f0;
-}
-
-.cart-total-box {
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333333;
-    margin-bottom: 15px;
-}
-
-.cart-total-box span:last-child {
-    color: #0056b3;
 }
 
 .checkout-btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     background: #0056b3;
     color: white;
     border: none;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
-    text-transform: uppercase;
     border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s;
-    margin-bottom: 10px;
 }
 
-.checkout-btn:hover {
-    background: #004085;
-}
-
-.clear-cart-btn {
-    width: 100%;
-    background: transparent;
-    border: 1px solid #cccccc;
-    padding: 8px;
-    color: #666666;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.clear-cart-btn:hover {
-    background: #fff0f0;
-    border-color: #cc0000;
-    color: #cc0000;
-}
-
-/* ===== CHECKOUT OVERLAY WITH DYNAMIC MAP ===== */
+/* ===== CHECKOUT OVERLAY RESPONSIVO ===== */
 .checkout-overlay {
     position: fixed;
     top: 0;
@@ -432,108 +365,37 @@ header{
     width: 95%;
     max-width: 650px;
     background: #ffffff;
-    border: 1px solid #e2e8f0;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     display: flex;
     flex-direction: column;
-    max-height: 95vh;
-}
-
-.checkout-header {
-    background: #f4f6f9;
-    color: #0056b3;
-    padding: 20px;
-    border-bottom: 1px solid #e2e8f0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    max-height: 90vh;
 }
 
 .checkout-body {
-    padding: 20px 25px;
+    padding: 15px;
     overflow-y: auto;
-}
-
-.order-summary-box {
-    background: #f8fafc;
-    padding: 12px;
-    border: 1px dashed #0056b3;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.checkout-section-title {
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #333333;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #e2e8f0;
 }
 
 .checkout-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    grid-template-columns: 1fr;
+    gap: 12px;
     margin-bottom: 15px;
 }
 
-@media(max-width: 500px) {
-    .checkout-grid { grid-template-columns: 1fr; }
-}
-
-.checkout-form-group {
-    display: flex;
-    flex-direction: column;
+@media(min-width: 550px) {
+    .checkout-grid { grid-template-columns: 1fr 1fr; }
 }
 
 .checkout-form-group.full-width {
     grid-column: 1 / -1;
 }
 
-.checkout-form-group label {
-    font-size: 13px;
-    color: #666666;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.checkout-form-group input, .checkout-form-group select {
-    padding: 10px;
-    background: #ffffff;
-    border: 1px solid #cccccc;
-    color: #333333;
-    border-radius: 6px;
-    font-size: 14px;
-}
-
-/* MAPA DE VERDAD (LEAFLET) */
-.map-selection-container {
-    margin-bottom: 15px;
-}
-
 .map-box {
     width: 100%;
-    height: 220px;
+    height: 180px;
     border: 2px solid #0056b3;
     border-radius: 8px;
-    position: relative;
-}
-
-#mapLabel {
-    background: #f0fdf4;
-    border: 1px solid #bbf7d0;
-    color: #166534;
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    font-size: 13px;
-    font-weight: 600;
 }
 
 .place-order-btn {
@@ -542,28 +404,27 @@ header{
     background: #25d366; 
     color: white;
     border: none;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-.place-order-btn:hover {
-    background: #128c7e;
-}
-
-/* ===== NOVEDAD: CARRUSEL DINÁMICO DEL INICIO ===== */
+/* ===== CARRUSEL DINÁMICO ADAPTATIVO ===== */
 .carousel-container {
     position: relative;
     width: 100%;
-    height: 280px;
+    height: 220px;
     overflow: hidden;
     background: #000;
+}
+
+@media(min-width: 768px) {
+    .carousel-container { height: 320px; }
 }
 
 .carousel-slide {
@@ -579,7 +440,7 @@ header{
     align-items: center;
     flex-direction: column;
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     background-size: cover;
     background-position: center;
 }
@@ -606,17 +467,18 @@ header{
 }
 
 .carousel-content h1 {
-    font-size: 42px;
+    font-size: 24px;
     font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
 .carousel-content p {
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: 500;
-    opacity: 0.95;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+@media(min-width: 768px) {
+    .carousel-content h1 { font-size: 38px; }
+    .carousel-content p { font-size: 18px; }
 }
 
 .carousel-arrow {
@@ -626,62 +488,67 @@ header{
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: none;
-    font-size: 24px;
-    padding: 10px 15px;
+    font-size: 18px;
+    padding: 8px 12px;
     cursor: pointer;
     z-index: 10;
     border-radius: 50%;
-    transition: 0.2s;
 }
 
-.carousel-arrow:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
 
-.carousel-prev { left: 20px; }
-.carousel-next { right: 20px; }
-
-/* ===== SECCIÓN CATÁLOGO Y FILTROS INTERNOS ===== */
+/* ===== SECCIÓN CATÁLOGO Y PRODUCTOS ===== */
 .container{
-    padding:40px;
+    padding: 20px 15px;
 }
 
 .section-title-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 12px;
     border-bottom: 1px solid #cccccc;
-    padding-bottom: 10px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-    gap: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+@media(min-width: 768px) {
+    .section-title-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
 
 .section-title{
-    font-size:24px;
+    font-size:20px;
     font-weight: 700;
     color:#333333;
 }
 
 .subcat-filters {
     display: none;
-    gap: 8px;
-    flex-wrap: wrap;
+    gap: 6px;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 4px;
+    scrollbar-width: none;
 }
+.subcat-filters::-webkit-scrollbar { display: none; }
 
 .subcat-btn {
     background: #ffffff;
     border: 1px solid #cccccc;
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
-    font-size: 13px;
+    font-size: 12px;
+    white-space: nowrap;
     font-weight: 600;
     color: #555555;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-.subcat-btn:hover, .subcat-btn.active-sub {
+.subcat-btn.active-sub {
     background: #0056b3;
     color: white;
     border-color: #0056b3;
@@ -689,39 +556,41 @@ header{
 
 .products{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:25px;
+    grid-template-columns: repeat(2, 1fr); /* 2 Productos por fila en celular */
+    gap:12px;
+}
+
+@media(min-width: 600px) {
+    .products { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+}
+@media(min-width: 992px) {
+    .products { grid-template-columns: repeat(4, 1fr); }
 }
 
 .card{
     background:#ffffff;
     border-radius:8px;
     overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,0.06);
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
     border: 1px solid #e2e8f0;
-    transition:0.2s ease;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.card:hover{
-    transform:translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    border-color: #0056b3;
-}
-
 .card img{
     width:100%;
-    height:250px;
+    height:160px; /* Reducido para pantallas pequeñas */
     object-fit:cover;
     background-color: #ffffff;
-    display: block;
+}
+
+@media(min-width: 768px) {
+    .card img { height: 230px; }
 }
 
 .card-content{
-    padding:15px;
-    text-align: left;
+    padding:10px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -730,89 +599,119 @@ header{
 
 .price{
     color:#333333;
-    font-size:22px;
+    font-size:16px;
     font-weight:700;
-    margin-bottom:5px;
+    margin-bottom:3px;
+}
+
+@media(min-width: 768px) {
+    .price { font-size: 20px; }
 }
 
 .product-name{
-    font-size:14px;
+    font-size:12px;
     font-weight: 600;
     margin-bottom:6px;
     color: #222222;
-    line-height: 1.3;
+    line-height: 1.2;
+}
+
+@media(min-width: 768px) {
+    .product-name { font-size: 14px; }
 }
 
 .product-description{
-    font-size:12px;
+    font-size:11px;
     color: #666666;
-    margin-bottom:12px;
-    line-height: 1.4;
+    margin-bottom:8px;
+    line-height: 1.3;
     background: #f8fafc;
-    padding: 6px;
+    padding: 4px;
     border-radius: 4px;
     border-left: 3px solid #0056b3;
 }
 
 .clothing-selection-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.select-wrapper label {
-    font-size: 11px;
-    font-weight: bold;
-    color: #0056b3;
-    display: block;
-    margin-bottom: 4px;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    margin-bottom: 8px;
 }
 
 .product-size-select, .product-gender-select {
-    padding: 6px;
-    margin-bottom: 0;
-    font-size: 13px;
-    height: 34px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
+    padding: 4px;
+    font-size: 12px;
+    height: 30px;
 }
 
 .buy-btn{
     width:100%;
-    padding:10px;
+    padding:10px 5px;
     border: none;
     border-radius:6px;
     background: #0056b3;
     color: white;
-    font-size:14px;
+    font-size:12px;
     font-weight: bold;
     cursor:pointer;
-    transition: 0.2s;
-    text-align: center;
 }
 
-.buy-btn:hover{
-    background: #004085;
+@media(min-width: 768px) {
+    .buy-btn { font-size: 14px; padding: 12px; }
 }
 
-/* ===== FOOTER ===== */
+/* ===== FOOTER CON REDES SOCIALES ADAPTADAS ===== */
 footer{
     background:#ffffff;
-    padding:30px;
+    padding:30px 15px;
     text-align:center;
     margin-top:50px;
     color:#666666;
-    font-size:14px;
+    font-size:13px;
     border-top: 1px solid #e2e8f0;
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-    .topbar{ flex-direction:column; gap: 15px; }
-    .menu{ flex-wrap:wrap; justify-content:center; }
-    .carousel-content h1{ font-size:32px; }
-    .container{ padding:20px; }
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #f4f6f9;
+    transition: transform 0.2s, background-color 0.2s;
+    text-decoration: none;
+}
+
+.social-link:active, .social-link:hover {
+    transform: scale(1.1);
+}
+
+.social-link.fb:hover, .social-link.fb:active {
+    background-color: #1877f2;
+}
+
+.social-link.ig:hover, .social-link.ig:active {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-link svg {
+    width: 22px;
+    height: 22px;
+    fill: #555555;
+    transition: fill 0.2s;
+}
+
+.social-link:hover svg, .social-link:active svg {
+    fill: #ffffff;
 }
 </style>
 </head>
@@ -850,52 +749,50 @@ footer{
     </div>
     <div class="cart-items-container" id="cartItemsContainer"></div>
     <div class="cart-footer">
-        <div class="cart-total-box"><span>Total:</span><span id="cartTotalValue">$0 MXN</span></div>
+        <div class="cart-total-box" style="display:flex; justify-content:space-between; margin-bottom:15px; font-weight:bold;"><span>Total:</span><span id="cartTotalValue">$0 MXN</span></div>
         <button class="checkout-btn" onclick="openCheckout()">Proceder al Pedido</button>
-        <button class="clear-cart-btn" onclick="clearCart()">Vaciar Carrito</button>
+        <button class="clear-cart-btn" style="width:100%; background:transparent; border:1px solid #cccccc; padding:8px; margin-top:8px; border-radius:6px; color:#666666;" onclick="clearCart()">Vaciar Carrito</button>
     </div>
 </div>
 
-<!-- MODAL DE COMPRA CON SELECCIÓN DE MUNICIPIO Y MAPA REGIONAL REAL -->
+<!-- MODAL DE COMPRA -->
 <div class="checkout-overlay" id="checkoutOverlay">
     <div class="checkout-modal">
-        <div class="checkout-header">
-            <span>PROCESAR PEDIDO VÍA WHATSAPP</span>
+        <div class="cart-header">
+            <span style="font-weight:bold; color:#0056b3;">PROCESAR PEDIDO VÍA WHATSAPP</span>
             <button class="close-cart" onclick="closeCheckout()">×</button>
         </div>
         <div class="checkout-body">
-            <div class="order-summary-box">
+            <div class="order-summary-box" style="background:#f8fafc; padding:12px; border:1px dashed #0056b3; border-radius:8px; margin-bottom:15px;">
                 <h3 style="font-size: 13px; color: #0056b3; margin-bottom: 3px;">Resumen de Compra</h3>
                 <p id="checkoutSummaryText" style="font-size: 13px; color: #333333;">No hay artículos.</p>
             </div>
             
-            <div class="checkout-section-title">Datos de Entrega</div>
             <div class="checkout-grid">
                 <div class="checkout-form-group">
-                    <label>Nombre Completo</label>
+                    <label style="font-size:12px; font-weight:600; margin-bottom:4px;">Nombre Completo</label>
                     <input type="text" id="checkoutName" placeholder="Ej. Juan Pérez">
                 </div>
                 <div class="checkout-form-group">
-                    <label>Elegir Municipio / Región</label>
+                    <label style="font-size:12px; font-weight:600; margin-bottom:4px;">Elegir Municipio / Región</label>
                     <select id="checkoutLocation" onchange="handleLocationChange()">
                         <option value="Maxcanu" data-cost="0">Maxcanú (Local - Gratis)</option>
-                        <option value="Halacho" data-cost="35">Halachó </option>
-                        <option value="Granada" data-cost="40">Granada </option>
-                        <option value="San Fernando" data-cost="45">San Fernando )</option>
-                        <option value="Paraiso" data-cost="50">Paraíso </option>
-                        <option value="Cepeda" data-cost="35">Cepeda </option>
+                        <option value="Halacho" data-cost="35">Halachó</option>
+                        <option value="Granada" data-cost="40">Granada</option>
+                        <option value="San Fernando" data-cost="45">San Fernando</option>
+                        <option value="Paraiso" data-cost="50">Paraíso</option>
+                        <option value="Cepeda" data-cost="35">Cepeda</option>
                         <option value="San Bernaldo" data-cost="40">San Bernaldo</option>
                     </select>
                 </div>
                 <div class="checkout-form-group full-width">
-                    <label>Dirección (Calle, Número y Referencias)</label>
-                    <input type="text" id="checkoutAddress" placeholder="Ej. Calle 20 x 15 y 17, Fachada azul">
+                    <label style="font-size:12px; font-weight:600; margin-bottom:4px;">Dirección (Calle, Número y Referencias)</label>
+                    <input type="text" id="checkoutAddress" placeholder="Ej. Calle 20 x 15 y 17">
                 </div>
             </div>
 
-            <div class="checkout-section-title">Ubicación Exacta en el Mapa</div>
-            <div id="mapLabel">📍 Cargando mapa del municipio...</div>
-            <div class="map-selection-container">
+            <div id="mapLabel" style="font-size:12px; background:#f0fdf4; padding:8px; border-radius:6px; margin-bottom:8px; color:#166534; font-weight:600;">📍 Cargando mapa...</div>
+            <div style="margin-bottom:15px;">
                 <div class="map-box" id="interactiveMap"></div>
             </div>
 
@@ -916,7 +813,6 @@ footer{
         </div>
         <nav class="menu">
             <a href="#" class="active-menu" id="btnInicio" onclick="filterCategory('Todo', this)">Inicio</a>
-            
             <a href="#" onclick="filterCategory('Funkos', this)">Funkos</a>
             <a href="#" onclick="filterCategory('Electronica', this)">Electrónica</a>
             <a href="#" onclick="filterCategory('Peluches', this)">Peluches</a>
@@ -930,16 +826,14 @@ footer{
             </div>
 
             <a href="#" onclick="filterCategory('Tendencia', this)">De todo un poco</a>
-
             <button class="login-menu-btn" onclick="openLoginInterface()">👤 Login</button>
             <button class="cart-menu-btn" onclick="toggleCart()">
-                🛒 Carrito <span class="cart-count" id="menuCartCount">0</span>
+                🛒 <span class="cart-count" id="menuCartCount">0</span>
             </button>
         </nav>
     </div>
 </header>
 
-<!-- NUEVO CARRUSEL DINÁMICO REEMPLAZANDO LA IMAGEN ANTERIOR -->
 <section class="carousel-container">
     <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=1200&auto=format&fit=crop');">
         <div class="carousel-overlay"></div>
@@ -962,20 +856,6 @@ footer{
             <p>Amplía tu colección geek con las figuras de vinilo más buscadas.</p>
         </div>
     </div>
-    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1624222247344-550fb8ef986d?q=80&w=1200&auto=format&fit=crop');">
-        <div class="carousel-overlay"></div>
-        <div class="carousel-content">
-            <h1>Cinturones Tácticos y de Moda</h1>
-            <p>Ajuste perfecto, durabilidad extrema y estética de vanguardia.</p>
-        </div>
-    </div>
-    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=1200&auto=format&fit=crop');">
-        <div class="carousel-overlay"></div>
-        <div class="carousel-content">
-            <h1>Sublimados Premium</h1>
-            <p>Tazas, termos y prendas personalizadas con la mayor nitidez.</p>
-        </div>
-    </div>
     
     <button class="carousel-arrow carousel-prev" onclick="changeSlide(-1)">&#10094;</button>
     <button class="carousel-arrow carousel-next" onclick="changeSlide(1)">&#10095;</button>
@@ -984,7 +864,6 @@ footer{
 <main class="container">
     <div class="section-title-container">
         <h2 class="section-title" id="sectionTitle">Colección Destacada</h2>
-        <!-- Subcategorías exclusivas para 'De todo un poco' -->
         <div class="subcat-filters" id="subcatFilters">
             <button class="subcat-btn active-sub" onclick="filterSubcategory('Todas')">Todas</button>
             <button class="subcat-btn" onclick="filterSubcategory('Gorras')">Gorras</button>
@@ -999,11 +878,27 @@ footer{
 </main>
 
 <footer>
-    © 2026 Dcharly'z | Especialistas en mercancía Anime y articulos personalizaciones de alta calidad.
+    <p>© 2026 Dcharly'z | Especialistas en mercancía Anime y artículos personalizados de alta calidad.</p>
+    
+    <!-- SECCIÓN DE REDES SOCIALES SOLICITADA -->
+    <div class="footer-socials">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/1Hn64NxNWw/" target="_blank" class="social-link fb" title="Síguenos en Facebook">
+            <svg viewBox="0 0 24 24">
+                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+            </svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/dcharlyzsublimadora?utm_source=qr&igsh=Z2Nnb2l1cTl3anBo" target="_blank" class="social-link ig" title="Síguenos en Instagram">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+        </a>
+    </div>
 </footer>
 </div>
 
-<!-- Scripts de Leaflet.js para control geográfico real -->
+<!-- Scripts de Leaflet.js -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
@@ -1028,58 +923,40 @@ const productsData = [
     { id: 8, name: "Playera Negra Jujutsu Kaisen", category: "Anime", price: 200, img: "img-20260628-wa0015.jpg", description: "Diseño oscuro detallado. Estampado flexible que no se cuartea." },
     { id: 9, name: "Playera Blanca Geto", category: "Anime", price: 150, img: "img-20260628-wa0016.jpg", description: "Estilo estético minimalista y tierno. Confección fresca." },
     { id: 10, name: "Playera Blanca perrito surfista Kawaii", category: "Hello Kitty", price: 150, img: "img-20260628-wa0017.jpg", description: "Divertido crossover coleccionable de alta resolución visual." },
-    //categoria de funkos y legos//
     { id: 11, name: "Flor armable", category: "Funkos", price: 80, img: "lego1.jpg", description: "Tamaño: 17cm. Material: Plastico de alta calidad." },
     { id: 12, name: "Lego crazy circus", category: "Funkos", price: 45, img: "lego13.jpg", description: "Tamaño: 9.5cm. Características: Calidad super. Embalaje premium." },
     { id: 13, name: "Micro blocks one pice", category: "Funkos", price: 30, img: "lego2.jpg", description: "Tamaño: 10cm a 14. Material: Vinilo rígido." },
     { id: 14, name: "Micro blocks kuromi", category: "Funkos", price: 30, img: "lego3.jpg", description: "Tamaño: 10 a 14 cm armado." },
     { id: 15, name: "Micro blocks Pikachu ", category: "Funkos", price: 45, img: "lego5.jpg", description: "Tamaño: 10cm." },
-    { id: 15, name: "Micro blocks kuromi", category: "Funkos", price: 45, img: "lego6.jpg", description: "Tamaño: 10cm." },
-    { id: 15, name: "Bricks make Kitty", category: "Funkos", price: 35, img: "lego4.jpg", description: "Tamaño: 10cm." },
-    { id: 15, name: "Bricks make Kitty", category: "Funkos", price: 35, img: "lego7.jpg", description: "Tamaño: 10cm." },
-    { id: 15, name: "Lego Marvel", category: "Funkos", price: 50, img: "lego8.jpg", description: "Tamaño: 10cm." },
-    { id: 15, name: "Bricks Plantas vs Zombies", category: "Funkos", price: 65, img: "lego9.jpg", description: "Tamaño: 16cm." },
-    { id: 15, name: "Lego Intensamente", category: "Funkos", price: 45, img: "lego10.jpg", description: "Tamaño: 10cm." },
-    { id: 15, name: "Lego Pokemon", category: "Funkos", price: 45, img: "lego11.jpg", description: "Tamaño: 10cm." },
-    { id: 15, name: "Bricks Lanza guizante", category: "Funkos", price: 65, img: "lego12.jpg", description: "Tamaño: 16cm." },
-    { id: 15, name: "Lego Ninja lord", category: "Funkos", price: 80, img: "lego14.jpg", description: "Tamaño: 18cm." },
-    { id: 15, name: "Lego Minion", category: "Funkos", price: 80, img: "lego15.jpg", description: "Tamaño: 18cm." },
-    { id: 15, name: "Lego Mario bros Peaches", category: "Funkos", price: 75, img: "lego16.jpg", description: "Tamaño: 18cm." },
-    { id: 15, name: "Lego Dragon ball z", category: "Funkos", price: 80, img: "lego17.jpg", description: "Tamaño: 18cm." },
-    { id: 15, name: "Lego Super hero", category: "Funkos", price: 80, img: "lego20.jpg", description: "Tamaño: 10cm." },
-    { id: 15, name: "Lego Harry Potter", category: "Funkos", price: 120, img: "lego22.jpg", description: "Tamaño: 26x30cm." },
-    
-
-
-
-
-    //categoria electronica//
+    { id: 16, name: "Micro blocks kuromi v2", category: "Funkos", price: 45, img: "lego6.jpg", description: "Tamaño: 10cm." },
+    { id: 17, name: "Bricks make Kitty", category: "Funkos", price: 35, img: "lego4.jpg", description: "Tamaño: 10cm." },
+    { id: 18, name: "Bricks make Kitty v2", category: "Funkos", price: 35, img: "lego7.jpg", description: "Tamaño: 10cm." },
+    { id: 19, name: "Lego Marvel", category: "Funkos", price: 50, img: "lego8.jpg", description: "Tamaño: 10cm." },
+    { id: 20, name: "Bricks Plantas vs Zombies", category: "Funkos", price: 65, img: "lego9.jpg", description: "Tamaño: 16cm." },
+    { id: 21, name: "Lego Intensamente", category: "Funkos", price: 45, img: "lego10.jpg", description: "Tamaño: 10cm." },
+    { id: 22, name: "Lego Pokemon", category: "Funkos", price: 45, img: "lego11.jpg", description: "Tamaño: 10cm." },
+    { id: 23, name: "Bricks Lanza guizante", category: "Funkos", price: 65, img: "lego12.jpg", description: "Tamaño: 16cm." },
+    { id: 24, name: "Lego Ninja lord", category: "Funkos", price: 80, img: "lego14.jpg", description: "Tamaño: 18cm." },
+    { id: 25, name: "Lego Minion", category: "Funkos", price: 80, img: "lego15.jpg", description: "Tamaño: 18cm." },
+    { id: 26, name: "Lego Mario bros Peaches", category: "Funkos", price: 75, img: "lego16.jpg", description: "Tamaño: 18cm." },
+    { id: 27, name: "Lego Dragon ball z", category: "Funkos", price: 80, img: "lego17.jpg", description: "Tamaño: 18cm." },
+    { id: 28, name: "Lego Super hero", category: "Funkos", price: 80, img: "lego20.jpg", description: "Tamaño: 10cm." },
+    { id: 29, name: "Lego Harry Potter", category: "Funkos", price: 120, img: "lego22.jpg", description: "Tamaño: 26x30cm." },
     { id: 41, name: "Secadora de cabello", category: "Electronica", price: 200, img: "lego23.jpg", description: "Exelente" },
     { id: 42, name: "DRON con sensor", category: "Electronica", price: 110, img: "lego19.jpg", description: "Juguete volador, se controla con la palma de la mano" },
-
-    //peluches//
     { id: 71, name: "Llavero Chopper one pice", category: "Peluches", price: 299, img: "pelu1.jpg", description: "Tamaño: 13cm de alto. Material: Extra suave ." },
     { id: 72, name: "Llavero Sabo one pice", category: "Peluches", price: 280, img: "pelu3.jpg", description: "Tamaño: 13cm. Material suave." },
-
-    //tazas//
-    { id: 131, name: "Taza Sublimada Naruto Rasengan", category: "Anime", price: 140, img: "", description: "Capacidad: 11 oz (325 ml). Material: Cerámica de alta calidad apta para microondas." },
-    
-    /* NUEVOS PRODUCTOS POR SUB-CATEGORÍA SOLICITADA */
-
-    { id: 201, name: "Gorra Snapback Akatsuki Bordada", category: "Tendencia", subcategory: "Gorras", price: 245, img: "", description: "Gorra de visera plana con el logo clásico de Akatsuki bordado en relieve de alta densidad." },
-    { id: 202, name: "Gorra Trucker Básica Ajustable", category: "Tendencia", subcategory: "Gorras", price: 150, img: "", description: "Estilo camionero clásico con malla transpirable posterior y broche de plástico ajustable." },
-    
-    { id: 203, name: "Cartera Minimalista de Fibra de Carbono", category: "Tendencia", subcategory: "Carteras", price: 320, img: "", description: "Tarjetero rígido con protección RFID integrada anti-clonación. Capacidad de 12 tarjetas." },
-    { id: 204, name: "Cartera de Piel Genuina Vintage", category: "Tendencia", subcategory: "Carteras", price: 280, img: "", description: "Billetera clásica de piel texturizada con compartimento doble y monedero integrado." },
-    
-    { id: 205, name: "Cinturón Táctico Militar Hebilla Quick Release", category: "Tendencia", subcategory: "Cinturones", price: 195, img: "", description: "Cinta de lona de nylon reforzada de uso rudo con hebilla de liberación rápida magnética." },
-    { id: 206, name: "Cinturón Casual de Piel Negra Estilo Minimal", category: "Tendencia", subcategory: "Cinturones", price: 220, img: "", description: "Hebilla metálica pulida mate en color plata con correa de piel premium de alta durabilidad." },
-    
-    { id: 207, name: "Juego de Destornilladores de Precisión 24 en 1", category: "Tendencia", subcategory: "Herramientas", price: 260, img: "", description: "Estuche de aluminio con puntas magnéticas de aleación S2 ideales para celulares y consolas." },
-    { id: 208, name: "Mini Pinza Multiusos 10 en 1 Acero Inoxidable", category: "Tendencia", subcategory: "Herramientas", price: 185, img: "", description: "Herramienta de bolsillo plegable que incluye navaja, destapador, sierra y pinza de presión." },
-    
-    { id: 209, name: "Collar Unisex Ojo de Agamotto Metálico", category: "Tendencia", subcategory: "Bisutería", price: 135, img: "", description: "Amuleto de aleación de zinc con acabados dorados envejecidos y gema central detallada." },
-    { id: 210, name: "Pulsera de Cuentas de Piedra Volcánica Natural", category: "Tendencia", subcategory: "Bisutería", price: 95, img: "", description: "Diseño elástico unisex con esferas de roca volcánica real de 8mm y detalles plateados." }
+    { id: 131, name: "Taza Sublimada Naruto Rasengan", category: "Anime", price: 140, img: "", description: "Capacidad: 11 oz. Material: Cerámica de alta calidad apta para microondas." },
+    { id: 201, name: "Gorra Snapback Akatsuki Bordada", category: "Tendencia", subcategory: "Gorras", price: 245, img: "", description: "Gorra de visera plana con el logo clásico de Akatsuki bordado en relieve." },
+    { id: 202, name: "Gorra Trucker Básica Ajustable", category: "Tendencia", subcategory: "Gorras", price: 150, img: "", description: "Estilo camionero clásico con malla transpirable posterior." },
+    { id: 203, name: "Cartera Minimalista de Fibra de Carbono", category: "Tendencia", subcategory: "Carteras", price: 320, img: "", description: "Tarjetero rígido con protección RFID integrada anti-clonación." },
+    { id: 204, name: "Cartera de Piel Genuina Vintage", category: "Tendencia", subcategory: "Carteras", price: 280, img: "", description: "Billetera clásica de piel texturizada con compartimento doble." },
+    { id: 205, name: "Cinturón Táctico Militar Hebilla", category: "Tendencia", subcategory: "Cinturones", price: 195, img: "", description: "Cinta de lona de nylon reforzada con hebilla de liberación rápida." },
+    { id: 206, name: "Cinturón Casual de Piel Negra", category: "Tendencia", subcategory: "Cinturones", price: 220, img: "", description: "Hebilla metálica pulida mate en color plata con correa de piel premium." },
+    { id: 207, name: "Juego de Destornilladores de Precisión", category: "Tendencia", subcategory: "Herramientas", price: 260, img: "", description: "Estuche de aluminio con puntas magnéticas de aleación S2." },
+    { id: 208, name: "Mini Pinza Multiusos 10 en 1", category: "Tendencia", subcategory: "Herramientas", price: 185, img: "", description: "Herramienta de bolsillo plegable que incluye navaja y alicates." },
+    { id: 209, name: "Collar Unisex Ojo de Agamotto", category: "Tendencia", subcategory: "Bisutería", price: 135, img: "", description: "Amuleto de aleación de zinc con acabados dorados y gema detallada." },
+    { id: 210, name: "Pulsera de Cuentas de Piedra Volcánica", category: "Tendencia", subcategory: "Bisutería", price: 95, img: "", description: "Diseño elástico unisex con esferas de roca volcánica real de 8mm." }
 ];
 
 let cart = [];
@@ -1089,12 +966,10 @@ let selectedLat = null;
 let selectedLng = null;
 let currentSlideIndex = 0;
 
-// LÓGICA DE CONTROL DEL NUEVO CARRUSEL
 function showSlide(index) {
     const slides = document.querySelectorAll('.carousel-slide');
     if (index >= slides.length) currentSlideIndex = 0;
     if (index < 0) currentSlideIndex = slides.length - 1;
-    
     slides.forEach(slide => slide.classList.remove('active'));
     slides[currentSlideIndex].classList.add('active');
 }
@@ -1104,10 +979,7 @@ function changeSlide(direction) {
     showSlide(currentSlideIndex);
 }
 
-// Inicialización automática cada 5 segundos
-setInterval(() => {
-    changeSlide(1);
-}, 5000);
+setInterval(() => { changeSlide(1); }, 5000);
 
 function openLoginInterface() { document.getElementById("loginContainer").style.display = "flex"; }
 function closeLoginInterface() { document.getElementById("loginContainer").style.display = "none"; }
@@ -1129,7 +1001,7 @@ function renderProducts(productsList) {
         let nameLower = prod.name.toLowerCase();
         let fallbackUrl = "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=300&auto=format&fit=crop";
 
-        if (nameLower.includes("funko")) fallbackUrl = "https://images.unsplash.com/photo-1608889174637-3c99800e1791?q=80&w=300&auto=format&fit=crop";
+        if (nameLower.includes("funko") || nameLower.includes("lego") || nameLower.includes("blocks") || nameLower.includes("bricks") || nameLower.includes("armable")) fallbackUrl = "https://images.unsplash.com/photo-1608889174637-3c99800e1791?q=80&w=300&auto=format&fit=crop";
         else if (nameLower.includes("peluche")) fallbackUrl = "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=300&auto=format&fit=crop";
         else if (nameLower.includes("taza") || nameLower.includes("termo")) fallbackUrl = "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=300&auto=format&fit=crop";
         else if (nameLower.includes("gorra")) fallbackUrl = "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=300&auto=format&fit=crop";
@@ -1141,7 +1013,7 @@ function renderProducts(productsList) {
         else if (nameLower.includes("playera")) fallbackUrl = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=300&auto=format&fit=crop";
 
         const isPlayera = nameLower.includes("playera");
-        const specLabel = isPlayera ? "Especificación Textil" : "Ficha Técnica / Características";
+        const specLabel = isPlayera ? "Especificación Textil" : "Ficha Técnica";
 
         const card = document.createElement("div");
         card.className = "card";
@@ -1155,26 +1027,20 @@ function renderProducts(productsList) {
                     
                     ${isPlayera ? `
                     <div class="clothing-selection-container">
-                        <div class="select-wrapper">
-                            <label for="size-${prod.id}">Talla:</label>
-                            <select id="size-${prod.id}" class="product-size-select">
-                                <option value="CH">Chica (CH)</option>
-                                <option value="M" selected>Mediana (M)</option>
-                                <option value="G">Grande (G)</option>
-                                <option value="XG">Extra Grande (XG)</option>
-                            </select>
-                        </div>
-                        <div class="select-wrapper">
-                            <label for="gender-${prod.id}">Corte:</label>
-                            <select id="gender-${prod.id}" class="product-gender-select">
-                                <option value="Hombre" selected>Hombre</option>
-                                <option value="Mujer">Mujer</option>
-                            </select>
-                        </div>
+                        <select id="size-${prod.id}" class="product-size-select">
+                            <option value="CH">Chica (CH)</option>
+                            <option value="M" selected>Mediana (M)</option>
+                            <option value="G">Grande (G)</option>
+                            <option value="XG">Extra Grande (XG)</option>
+                        </select>
+                        <select id="gender-${prod.id}" class="product-gender-select">
+                            <option value="Hombre" selected>Hombre</option>
+                            <option value="Mujer">Mujer</option>
+                        </select>
                     </div>
                     ` : ''}
                 </div>
-                <button class="buy-btn" onclick="addToCart(${prod.id}, ${isPlayera})">Agregar al Carrito</button>
+                <button class="buy-btn" onclick="addToCart(${prod.id}, ${isPlayera})">Agregar</button>
             </div>
         `;
         grid.appendChild(card);
@@ -1214,15 +1080,15 @@ function updateCartUI() {
     } else {
         cart.forEach((item, index) => {
             total += item.price;
-            const clothingSpecs = (item.chosenSize && item.chosenGender) ? ` [${item.chosenGender} - Talla: ${item.chosenSize}]` : '';
+            const clothingSpecs = (item.chosenSize && item.chosenGender) ? ` [${item.chosenGender} - ${item.chosenSize}]` : '';
             const div = document.createElement("div");
             div.className = "cart-item";
             div.innerHTML = `
-                <div class="cart-item-details">
-                    <div class="cart-item-title">${item.name}${clothingSpecs}</div>
-                    <div class="cart-item-price">$${item.price} MXN</div>
+                <div style="flex:1;">
+                    <div style="font-size:13px; font-weight:600; color:#333;">${item.name}${clothingSpecs}</div>
+                    <div style="color:#0056b3; font-weight:bold; font-size:13px;">$${item.price} MXN</div>
                 </div>
-                <button class="remove-item-btn" onclick="removeFromCart(${index})">Quitar</button>
+                <button style="background:transparent; border:none; color:#cc0000; font-size:12px; cursor:pointer;" onclick="removeFromCart(${index})">Quitar</button>
             `;
             container.appendChild(div);
         });
@@ -1234,10 +1100,8 @@ function openCheckout() {
     if(cart.length === 0) return; 
     document.getElementById("cartSidebar").classList.remove("open"); 
     document.getElementById("checkoutOverlay").style.display = "flex"; 
-    
     selectedLat = null;
     selectedLng = null;
-    
     handleLocationChange();
 }
 
@@ -1250,15 +1114,8 @@ function handleLocationChange() {
     let subtotal = cart.reduce((s,i) => s + i.price, 0);
     let totalNeto = subtotal + costEnvio;
     
-    document.getElementById("mapLabel").innerHTML = `
-        🗺️ Región de Entrega activa: ${municipioSeleccionado}. Arrastra el marcador rojo hasta tu casa.
-    `;
-
-    document.getElementById("checkoutSummaryText").innerHTML = `
-        Artículos: <b>${cart.length}</b> | Subtotal: <b>$${subtotal} MXN</b><br>
-        Envío (${municipioSeleccionado}): <b>$${costEnvio} MXN</b><br>
-        Total Neto: <span style='color:#0056b3; font-weight:bold;'>$${totalNeto} MXN</span>
-    `;
+    document.getElementById("mapLabel").innerHTML = `🗺️ Entrega activa: ${municipioSeleccionado}. Mueve el marcador rojo a tu casa.`;
+    document.getElementById("checkoutSummaryText").innerHTML = `Artículos: <b>${cart.length}</b> | Subtotal: <b>$${subtotal} MXN</b><br>Envío: <b>$${costEnvio} MXN</b><br>Total General: <b>$${totalNeto} MXN</b>`;
     
     const coords = locationCoordinates[municipioSeleccionado] || [20.6592, -90.0019];
     selectedLat = coords[0];
@@ -1267,18 +1124,14 @@ function handleLocationChange() {
     setTimeout(() => {
         if (!mapInstance) {
             mapInstance = L.map('interactiveMap').setView(coords, 14);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap'
-            }).addTo(mapInstance);
-            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(mapInstance);
             currentMarker = L.marker(coords, { draggable: true }).addTo(mapInstance);
             
-            currentMarker.on('dragend', function(e) {
+            currentMarker.on('dragend', function() {
                 let position = currentMarker.getLatLng();
                 selectedLat = position.lat;
                 selectedLng = position.lng;
             });
-
             mapInstance.on('click', function(e) {
                 currentMarker.setLatLng(e.latlng);
                 selectedLat = e.latlng.lat;
@@ -1289,7 +1142,7 @@ function handleLocationChange() {
             currentMarker.setLatLng(coords);
             mapInstance.invalidateSize();
         }
-    }, 200);
+    }, 250);
 }
 
 function sendOrderWhatsApp() {
@@ -1304,16 +1157,15 @@ function sendOrderWhatsApp() {
     let telefono = "529993931005"; 
     let subtotal = cart.reduce((s,i) => s + i.price, 0);
     let totalNeto = subtotal + costEnvio;
-    
     let googleMapsLink = `https://www.google.com/maps?q=${selectedLat},${selectedLng}`;
     
-    let msg = `¡Hola Dcharly'z! Nuevo Pedido Web:\n\n👤 Cliente: ${name}\n📍 Municipio/Región: ${municipio}\n🏠 Dirección: ${address}\n📌 Ubicación de satélite fija:\n${googleMapsLink}\n\n🛒 Productos:\n`;
+    let msg = `¡Hola Dcharly'z! Nuevo Pedido Web:\n\n👤 Cliente: ${name}\n📍 Municipio/Región: ${municipio}\n🏠 Dirección: ${address}\n📌 Ubicación:\n${googleMapsLink}\n\n🛒 Productos:\n`;
     
     cart.forEach((item, index) => { 
         const clothingSpecs = (item.chosenSize && item.chosenGender) ? ` (${item.chosenGender} - Talla: ${item.chosenSize})` : '';
         msg += `${index + 1}. ${item.name}${clothingSpecs} - $${item.price} MXN\n`; 
     });
-    msg += `\n📦 Costo Envío: $${costEnvio} MXN\n💰 Total General: $${totalNeto} MXN`;
+    msg += `\n📦 Envío: $${costEnvio} MXN\n💰 Total: $${totalNeto} MXN`;
     
     window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(msg)}`, '_blank');
     clearCart(); 
@@ -1332,14 +1184,11 @@ function filterCategory(category, element) {
         document.getElementById("sectionTitle").innerText = "Colección Destacada";
         renderProducts(productsData);
     } else if(category === 'Tendencia') {
-        // Mostrar la barra de subcategorías si entramos a "De todo un poco"
         subcatBar.style.display = "flex";
         document.getElementById("sectionTitle").innerText = "Catálogo: De todo un poco";
-        // Resetear píldora activa de subcategoría
         const subBtns = document.querySelectorAll('.subcat-btn');
         subBtns.forEach(b => b.classList.remove('active-sub'));
         subBtns[0].classList.add('active-sub');
-        
         renderProducts(productsData.filter(p => p.category === "Tendencia"));
     } else {
         subcatBar.style.display = "none";
@@ -1348,7 +1197,6 @@ function filterCategory(category, element) {
     }
 }
 
-// NUEVO: FILTRADO DE SUB-CATEGORÍAS INTERNAS
 function filterSubcategory(subcat) {
     const subBtns = document.querySelectorAll('.subcat-btn');
     subBtns.forEach(b => b.classList.remove('active-sub'));
