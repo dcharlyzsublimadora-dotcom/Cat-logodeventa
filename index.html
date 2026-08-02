@@ -778,11 +778,11 @@ footer{
                     <select id="checkoutLocation" onchange="handleLocationChange()">
                         <option value="Maxcanu" data-cost="0">Maxcanú (Local - Gratis)</option>
                         <option value="Halacho" data-cost="35">Halachó</option>
-                        <option value="Granada" data-cost="40">Granada</option>
-                        <option value="San Fernando" data-cost="45">San Fernando</option>
-                        <option value="Paraiso" data-cost="50">Paraíso</option>
+                        <option value="Granada" data-cost="35">Granada</option>
+                        <option value="San Fernando" data-cost="35">San Fernando</option>
+                        <option value="Paraiso" data-cost="35">Paraíso</option>
                         <option value="Cepeda" data-cost="35">Cepeda</option>
-                        <option value="San Bernaldo" data-cost="40">San Bernaldo</option>
+                        <option value="San Bernaldo" data-cost="35">San Bernaldo</option>
                     </select>
                 </div>
                 <div class="checkout-form-group full-width">
@@ -813,7 +813,7 @@ footer{
         </div>
         <nav class="menu">
             <a href="#" class="active-menu" id="btnInicio" onclick="filterCategory('Todo', this)">Inicio</a>
-            <a href="#" onclick="filterCategory('Funkos', this)">Funkos</a>
+            <a href="#" onclick="filterCategory('Funkos', this)">Funkos y Legos </a>
             <a href="#" onclick="filterCategory('Electronica', this)">Electrónica</a>
             <a href="#" onclick="filterCategory('Peluches', this)">Peluches</a>
             
@@ -842,14 +842,14 @@ footer{
             <p>Estilo urbano y diseños únicos para protegerte del sol.</p>
         </div>
     </div>
-    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop');">
+    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1608889174637-3c99800e1791?q=80&w=1200&auto=format&fit=crop');">
         <div class="carousel-overlay"></div>
         <div class="carousel-content">
             <h1>Cultura Anime</h1>
             <p>Tus personajes favoritos plasmados en las mejores playeras y accesorios.</p>
         </div>
     </div>
-    <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1608889174637-3c99800e1791?q=80&w=1200&auto=format&fit=crop');">
+    <div class="carousel-slide" style="background-image: url('https://i5.walmartimages.com/asr/de1ec4c4-1130-4ddc-97b4-462a322dc68f.b4135524b6aff687638824a0e60ff5e0.jpeg');">
         <div class="carousel-overlay"></div>
         <div class="carousel-content">
             <h1>Mundo Funkos</h1>
@@ -871,6 +871,8 @@ footer{
             <button class="subcat-btn" onclick="filterSubcategory('Cinturones')">Cinturones</button>
             <button class="subcat-btn" onclick="filterSubcategory('Herramientas')">Herramientas</button>
             <button class="subcat-btn" onclick="filterSubcategory('Bisutería')">Bisutería</button>
+            <button class="subcat-btn" onclick="filterSubcategory('Lentes')">Lentes</button>
+            <button class="subcat-btn" onclick="filterSubcategory('Accesorios De Vehiculos')">Accesorios De Vehiculos</button>
         </div>
     </div>
     
@@ -880,7 +882,7 @@ footer{
 <footer>
     <p>© 2026 Dcharly'z | Especialistas en mercancía Anime y artículos personalizados de alta calidad.</p>
     
-    <!-- SECCIÓN DE REDES SOCIALES SOLICITADA -->
+    <!-- SECCIÓN DE REDES SOCIALES Y POLÍTICAS -->
     <div class="footer-socials">
         <!-- Facebook -->
         <a href="https://www.facebook.com/share/1Hn64NxNWw/" target="_blank" class="social-link fb" title="Síguenos en Facebook">
@@ -894,6 +896,10 @@ footer{
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
             </svg>
         </a>
+        <!-- Botón de Políticas -->
+        <button onclick="openPoliciesModal()" class="policy-btn" style="background:#f4f6f9; border:1px solid #cccccc; padding:10px 16px; border-radius:22px; font-weight:600; color:#333333; cursor:pointer; font-size:13px; transition:0.2s;" onmouseover="this.style.background='#0056b3'; this.style.color='#ffffff';" onmouseout="this.style.background='#f4f6f9'; this.style.color='#333333';">
+            📋 Políticas
+        </button>
     </div>
 </footer>
 </div>
@@ -911,6 +917,7 @@ const locationCoordinates = {
     "Cepeda": [20.5475, -90.0572],
     "San Bernaldo": [20.6940, -89.9210]
 };
+
 const productsData = [
    
     { id: 1, name: "Playera Blanca Snoopy & Stitch ", category: "Hello Kitty", price: 150, img: "img-20260628-wa0018.jpg", description: "Corte premium 100% algodón, tacto suave. Estampado de alta durabilidad." },
@@ -946,17 +953,7 @@ const productsData = [
     { id: 42, name: "DRON con sensor", category: "Electronica", price: 110, img: "lego19.jpg", description: "Juguete volador, se controla con la palma de la mano" },
     { id: 71, name: "Llavero Chopper one pice", category: "Peluches", price: 299, img: "pelu1.jpg", description: "Tamaño: 13cm de alto. Material: Extra suave ." },
     { id: 72, name: "Llavero Sabo one pice", category: "Peluches", price: 280, img: "pelu3.jpg", description: "Tamaño: 13cm. Material suave." },
-    { id: 131, name: "Taza Sublimada Naruto Rasengan", category: "Anime", price: 140, img: "", description: "Capacidad: 11 oz. Material: Cerámica de alta calidad apta para microondas." },
-    { id: 201, name: "Gorra Snapback Akatsuki Bordada", category: "Tendencia", subcategory: "Gorras", price: 245, img: "", description: "Gorra de visera plana con el logo clásico de Akatsuki bordado en relieve." },
-    { id: 202, name: "Gorra Trucker Básica Ajustable", category: "Tendencia", subcategory: "Gorras", price: 150, img: "", description: "Estilo camionero clásico con malla transpirable posterior." },
-    { id: 203, name: "Cartera Minimalista de Fibra de Carbono", category: "Tendencia", subcategory: "Carteras", price: 320, img: "", description: "Tarjetero rígido con protección RFID integrada anti-clonación." },
-    { id: 204, name: "Cartera de Piel Genuina Vintage", category: "Tendencia", subcategory: "Carteras", price: 280, img: "", description: "Billetera clásica de piel texturizada con compartimento doble." },
-    { id: 205, name: "Cinturón Táctico Militar Hebilla", category: "Tendencia", subcategory: "Cinturones", price: 195, img: "", description: "Cinta de lona de nylon reforzada con hebilla de liberación rápida." },
-    { id: 206, name: "Cinturón Casual de Piel Negra", category: "Tendencia", subcategory: "Cinturones", price: 220, img: "", description: "Hebilla metálica pulida mate en color plata con correa de piel premium." },
-    { id: 207, name: "Juego de Destornilladores de Precisión", category: "Tendencia", subcategory: "Herramientas", price: 260, img: "", description: "Estuche de aluminio con puntas magnéticas de aleación S2." },
-    { id: 208, name: "Mini Pinza Multiusos 10 en 1", category: "Tendencia", subcategory: "Herramientas", price: 185, img: "", description: "Herramienta de bolsillo plegable que incluye navaja y alicates." },
-    { id: 209, name: "Collar Unisex Ojo de Agamotto", category: "Tendencia", subcategory: "Bisutería", price: 135, img: "", description: "Amuleto de aleación de zinc con acabados dorados y gema detallada." },
-    { id: 210, name: "Pulsera de Cuentas de Piedra Volcánica", category: "Tendencia", subcategory: "Bisutería", price: 95, img: "", description: "Diseño elástico unisex con esferas de roca volcánica real de 8mm." }, 
+   
     { id: 211, name: "Billetera bmw", category: "Tendencia", subcategory: "Carteras", price: 55, img: "car1.jpg", description: "bonito" },
     { id: 212, name: "Lacoste", category: "Tendencia", subcategory: "Carteras", price: 55, img: "car2.jpg", description: "." },
     { id: 213, name: "Gacci", category: "Tendencia", subcategory: "Carteras", price: 55, img: "car3.jpg", description: "" }, 
@@ -1014,9 +1011,79 @@ const productsData = [
     { id: 265, name: "Gorra GUCCI", category: "Tendencia", subcategory: "Gorras", price: 95, img: "go34.jpg", description: ""},
     { id: 266, name: "Gorra Gris Adidas 2", category: "Tendencia", subcategory: "Gorras", price: 95, img: "go35.jpg", description: ""},
     { id: 267, name: "Gorra Negra Adidas 4", category: "Tendencia", subcategory: "Gorras", price: 90, img: "go36.jpg", description: ""},
-    { id: 268, name: "Gorra Roja BASKETBALL", category: "Tendencia", subcategory: "Gorras", price: 70, img: "go37.jpg", description: ""}
-];
+    { id: 268, name: "Gorra Roja BASKETBALL", category: "Tendencia", subcategory: "Gorras", price: 70, img: "go37.jpg", description: ""},
+    { id: 269, name: "Auriculares Better Sound ", category: "Electronica", price: 20, img: "au1.jpg", description: ""},
+    { id: 270, name: "Bolsa con diseño ", category: "Tendencia", subcategory: "Bisutería", price: 25, img: "bolsa1.jpg", description: ""},
+    { id: 271, name: "Collar para mascota ", category: "Tendencia", subcategory: "Bisutería", price: 30, img: "gato1.jpg", description: ""},
+    { id: 272, name: "Botellon de Plastico ", category: "Tendencia", subcategory: "Bisutería", price: 30, img: "go38.jpg", description: ""},
+    { id: 273, name: "Donas Capibara ", category: "Tendencia", subcategory: "Bisutería", price: 10, img: "dona1.jpg", description: ""},
+    { id: 274, name: "Timbre para el hogar ", category: "Electronica", price: 90, img: "dorb1.jpg", description: ""},
+    { id: 275, name: "Mascara Facial Hello Kitty ", category: "Tendencia", subcategory: "Bisutería", price: 10, img: "masc2.jpg", description: ""},
+    { id: 276, name: "Naruto Building Block ", category: "Funkos", price: 25, img: "naruto1.jpg", description: ""},
+    { id: 277, name: "Auriculares Better Sound ", category: "Electronica", price: 20, img: "au2.jpg", description: ""},
+    { id: 278, name: "Super Plumer Building Block ", category: "Funkos", price: 25, img: "plumer1.jpg", description: ""},
+    { id: 279, name: "Esponja Makeup Puff ", category: "Tendencia", subcategory: "Bisutería", price: 20, img: "esponja1.jpg", description: "Se envia un diseño al azar"},
+    { id: 280, name: "Pulsera Mariposa Fashion ", category: "Tendencia", subcategory: "Bisutería", price: 15, img: "pul1.jpg", description: ""},
+    { id: 281, name: "Pulsera Corazón Fashion ", category: "Tendencia", subcategory: "Bisutería", price: 15, img: "pul2.jpg", description: ""},
+    { id: 282, name: "Pulsera Trebol Fashion ", category: "Tendencia", subcategory: "Bisutería", price: 15, img: "pul3.jpg", description: ""},
+    { id: 283, name: "Pulsera Stainless Steel ", category: "Tendencia", subcategory: "Bisutería", price: 15, img: "pul4.jpg", description: ""},
+    { id: 284, name: "Pulsera Sanrio", category: "Tendencia", subcategory: "Bisutería", price: 44, img: "pul5.jpg", description: "Se envía un diseño al azar. ¡Todos son hermosos"},
+    { id: 285, name: "Mascara Facial Collagen Crystal ", category: "Tendencia", subcategory: "Bisutería", price: 10, img: "masc3.jpg", description: ""},
+    { id: 286, name: "Rizador de Pestañas  ", category: "Tendencia", subcategory: "Bisutería", price: 30, img: "pes1.jpg", description: "Se envía un color al azar."},
+    { id: 287, name: "OTG USB ", category: "Electronica", price: 15, img: "otg1.jpg", description: "Se envía un color al azar."},
+    { id: 288, name: "Estuchera de Peluche Gris ", category: "Tendencia", subcategory: "Bisutería", price: 90, img: "estuche1.jpg", description: ""},
+    { id: 289, name: "Estuchera de Peluche Rosado ", category: "Tendencia", subcategory: "Bisutería", price: 90, img: "estuche2.jpg", description: ""},
+    { id: 290, name: "Cepillo para peinar ", category: "Tendencia", subcategory: "Bisutería", price: 50, img: "cepillo1.jpg", description: ""},
+    { id: 291, name: "Mascara Facial Masadi ", category: "Tendencia", subcategory: "Bisutería", price: 15, img: "masc1.jpg", description: ""},
+    { id: 292, name: "Botellon de Plastico Rojo ", category: "Tendencia", subcategory: "Bisutería", price: 30, img: "rojo.jpg", description: ""},
+    { id: 293, name: "Botellon de Plastico Verde ", category: "Tendencia", subcategory: "Bisutería", price: 30, img: "verde.jpg", description: ""},
+//ELECTRONICA SECTOR//
+    { id: 293, name: "Guantes de Motociclista Rojo ", category: "Tendencia", subcategory: "Accesorios De Vehiculos", price: 67, img: "GU1.jpg", description: ""},
+    { id: 293, name: "Guantes de Motociclista NEGRO", category: "Tendencia", subcategory: "Accesorios De Vehiculos", price: 67, img: "GU2.jpg", description: ""},
+    { id: 293, name: "Lente color amarillo unisex", category: "Tendencia", subcategory: "Lentes", price: 70, img: "GU3.jpg", description: ""},
+    { id: 294, name: "Convertidor Bluetooth", category: "Electronica", price: 44, img: "GU4.jpg", description: "Usa puerto AUX es compatible para cuaquier Vehiculo "},
+    { id: 295, name: "Cable AUX ", category: "Electronica", price: 32, img: "GU5.jpg", description: ""},
+    { id: 296, name: "Adaptador type c a AUX", category: "Electronica", price: 32, img: "GU6.jpg", description: "Son para dispositivos que no tiene entrada AUX "},
+    { id: 297, name: "Cable de carga type c a c ", category: "Electronica", price: 25, img: "GU7.jpg", description: ""},
+    { id: 298, name: "Cargador v8 ", category: "Tendencia", price: 55, img: "GU8.jpg", description: "compatible con telefonos, bocinas,etc."},
+    { id: 299, name: "USB 8 gb ", category: "Electronica", price: 80, img: "GU9.jpg", description: ""},
+    { id: 300, name: "Lentes con audio integrado ", category: "Electronica", price: 170, img: "GU10.jpg", description: "puedes escuchar musica mietras los llevas puesto."},
+    { id: 301, name: "Cargador de Bateria", category: "Electronica", price: 45, img: "GU11.jpg", description: ""},
+    { id: 302, name: "Cargador Marca xiaomi  ", category: "Electronica", price: 100, img: "GU12.jpg", description: "cargador carga rapida con 2 puertos de carga 67 w y 15 w"},
+    { id: 303, name: "Audifono sony chicharo ", category: "Electronica", price: 140, img: "GU13.jpg", description: ""},
+    { id: 304, name: "Audifono Hora 1 ", category: "Electronica", price: 200, img: "GU14.jpg", description: ""},
+    { id: 305, name: "Bocina-Radio vx-311b1 ", category: "Electronica", price: 300, img: "GU15.jpg", description: "Bocina Bluetooth y radio con frecuencia para cualquier lugar"},
+    { id: 306, name: "Bocina-Radio VX-319", category: "Electronica", price: 260, img: "GU16.jpg", description: "Bocina Bluetooth y radio con frecuencia para cualquier lugar"},
+    { id: 307, name: "Lente de dama 1", category: "Tendencia", subcategory: "Lentes", price: 70, img: "GU17.jpg", description: ""},
+    { id: 308, name: "Lente con aumento 1.50", category: "Tendencia", subcategory: "Lentes", price: 50, img: "GU18.jpg", description: ""},
+    { id: 309, name: "Lente con aumento 2.25", category: "Tendencia", subcategory: "Lentes", price: 70, img: "GU19.jpg", description: ""},
+    { id: 310, name: "Lente de dama 2", category: "Tendencia", subcategory: "Lentes", price: 70, img: "GU21.jpg", description: ""},
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+];
 
 let cart = [];
 let mapInstance = null;
@@ -1058,18 +1125,8 @@ function renderProducts(productsList) {
 
     productsList.forEach(prod => {
         let nameLower = prod.name.toLowerCase();
-        let fallbackUrl = "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=300&auto=format&fit=crop";
-
-        if (nameLower.includes("funko") || nameLower.includes("lego") || nameLower.includes("blocks") || nameLower.includes("bricks") || nameLower.includes("armable")) fallbackUrl = "https://images.unsplash.com/photo-1608889174637-3c99800e1791?q=80&w=300&auto=format&fit=crop";
-        else if (nameLower.includes("peluche")) fallbackUrl = "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?q=80&w=300&auto=format&fit=crop";
-        else if (nameLower.includes("taza") || nameLower.includes("termo")) fallbackUrl = "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=300&auto=format&fit=crop";
-        else if (nameLower.includes("gorra")) fallbackUrl = "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=300&auto=format&fit=crop";
-        else if (nameLower.includes("cartera")) fallbackUrl = "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=300&auto=format&fit=crop";
-        else if (nameLower.includes("cinturón") || nameLower.includes("cinturon")) fallbackUrl = "https://images.unsplash.com/photo-1624222247344-550fb8ef986d?q=80&w=300&auto=format&fit=crop";
-        else if (prod.subcategory === "Herramientas") fallbackUrl = "https://images.unsplash.com/photo-1581244277943-fe4a9c777189?q=80&w=300&auto=format&fit=crop";
-        else if (prod.subcategory === "Bisutería") fallbackUrl = "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=300&auto=format&fit=crop";
-        else if (prod.category === "Electronica") fallbackUrl = "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=300&auto=format&fit=crop";
-        else if (nameLower.includes("playera")) fallbackUrl = "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=300&auto=format&fit=crop";
+        // Imagen local por defecto muy ligera para cuando no haya foto subida aún
+        let fallbackUrl = "logod.png"; 
 
         const isPlayera = nameLower.includes("playera");
         const specLabel = isPlayera ? "Especificación Textil" : "Ficha Técnica";
@@ -1077,7 +1134,8 @@ function renderProducts(productsList) {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
-            <img src="${prod.img ? prod.img : 'error-trigger.png'}" alt="${prod.name}" onerror="this.onerror=null; this.src='${fallbackUrl}';">
+            <!-- AGREGADO loading="lazy" PARA QUE CARGUE MÁS RÁPIDO -->
+            <img src="${prod.img ? prod.img : 'logod.png'}" alt="${prod.name}" loading="lazy" onerror="this.onerror=null; this.src='${fallbackUrl}';">
             <div class="card-content">
                 <div>
                     <div class="price">$${prod.price} MXN</div>
@@ -1278,6 +1336,51 @@ function searchProduct() {
 }
 
 window.onload = function() { renderProducts(productsData); };
+
+
+function openPoliciesModal() {
+    document.getElementById("policiesOverlay").style.display = "flex";
+}
+
+function closePoliciesModal() {
+    document.getElementById("policiesOverlay").style.display = "none";
+}
+
 </script>
+<!-- MODAL DE POLÍTICAS Y GARANTÍAS -->
+<div class="checkout-overlay" id="policiesOverlay">
+    <div class="checkout-modal" style="max-width: 550px;">
+        <div class="cart-header">
+            <span style="font-weight:bold; color:#0056b3;">POLÍTICAS DE COMPRA Y GARANTÍA</span>
+            <button class="close-cart" onclick="closePoliciesModal()">×</button>
+        </div>
+        <div class="checkout-body" style="text-align: left; font-size: 13px; line-height: 1.5; color: #444444;">
+            
+            <h3 style="color: #0056b3; margin-bottom: 8px; font-size: 14px;">1. Verificación al momento de la entrega</h3>
+            <p style="margin-bottom: 12px;">Es obligación del cliente **revisar minuciosamente el producto en el momento exacto de la entrega** para asegurarse de que se encuentre en óptimas condiciones y sin defectos visibles.</p>
+
+            <h3 style="color: #0056b3; margin-bottom: 8px; font-size: 14px;">2. Tiempos y Cobertura de Garantía por Precio</h3>
+            <ul style="margin-bottom: 12px; padding-left: 20px;">
+                <li><strong>Productos menores a $90 MXN:</strong> No cuentan con garantía posterior a la entrega. Se deben validar al recibir.</li>
+                <li><strong>Productos mayores a $90 MXN hasta $199 MXN:</strong> Cuentan con <strong>1 día de garantía</strong> por defecto de fábrica.</li>
+                <li><strong>Productos de $200 MXN o más:</strong> Cuentan con <strong>2 días de garantía</strong> por defecto de fábrica.</li>
+            </ul>
+
+            <h3 style="color: #c53030; margin-bottom: 8px; font-size: 14px;">3. Casos en que NO aplica la garantía</h3>
+            <p style="margin-bottom: 6px;">La garantía quedará completamente anulada en los siguientes casos:</p>
+            <ul style="margin-bottom: 12px; padding-left: 20px; color: #666666;">
+                <li>Golpes, caídas, fisuras o mal uso del producto.</li>
+                <li>Daños provocados por agua, humedad o exposición a líquidos.</li>
+                <li>Sobrecargas eléctricas o mal manejo de artículos electrónicos.</li>
+                <li>Desgaste natural o manipulación incorrecta por parte del comprador.</li>
+            </ul>
+
+            <h3 style="color: #0056b3; margin-bottom: 8px; font-size: 14px;">4. Devoluciones por cambio de opinión</h3>
+            <p style="margin-bottom: 15px;">No se realizan devoluciones ni cambios si el producto no presenta ningún daño de fábrica y la solicitud es únicamente por **gusto personal, decisión del cliente o error en la elección del modelo/talla** al momento de comprar.</p>
+
+            <button onclick="closePoliciesModal()" style="width: 100%; padding: 10px; background: #0056b3; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Entendido</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
